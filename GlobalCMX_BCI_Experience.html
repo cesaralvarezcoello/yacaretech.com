@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Yacaretech Cia. Ltda.">
+    <meta name="company" content="Global CX">
+    <meta name="description" content="Global CX &times; BCI - Experiencia Cinematica Trade Finance">
+    <meta name="copyright" content="&copy; 2026 Yacaretech Cia. Ltda. All rights reserved.">
+    <title>Global CX &times; BCI - Experiencia Trade Finance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent: #06b6d4;
+            --accent-light: #22d3ee;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-dark: #0a0a1a;
+            --bg-card: rgba(255,255,255,0.05);
+            --bg-glass: rgba(255,255,255,0.08);
+            --border-glass: rgba(255,255,255,0.12);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --gradient-hero: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            --gradient-blue: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-cyan: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --gradient-green: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+            --gradient-pink: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            --gradient-gold: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            --gradient-text: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6, #60a5fa);
+            --bci-orange: #e8590c;
+            --bci-orange-light: #fb923c;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============ LANDING SCREEN ============ */
+        .landing {
+            position: fixed; top:0;left:0;right:0;bottom:0; z-index: 1000;
+            background: var(--bg-dark);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .landing.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .landing-particles {
+            position: absolute; top:0;left:0;right:0;bottom:0; overflow: hidden; pointer-events: none;
+        }
+        .landing-particles .particle {
+            position: absolute; border-radius: 50%; opacity: 0;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+        @keyframes particleFloat {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.3; }
+            100% { opacity: 0; transform: translateY(-20vh) scale(1); }
+        }
+        .landing-logo {
+            position: relative; z-index: 1; margin-bottom: 40px;
+            filter: drop-shadow(0 0 40px rgba(99,102,241,0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+        .landing-logo .hex-ring { transform-origin: 80px 80px; animation: rotateRing 20s linear infinite; }
+        .landing-logo .pulse-ring { animation: pulse 3s ease-in-out infinite; }
+        .landing-title {
+            position: relative; z-index: 1; font-size: 2.4rem; font-weight: 800;
+            letter-spacing: -0.03em; margin-bottom: 12px; text-align: center;
+        }
+        .landing-sub {
+            position: relative; z-index: 1; font-size: 1.1rem; font-weight: 300;
+            color: var(--text-secondary); margin-bottom: 50px; text-align: center;
+        }
+        .landing-cta {
+            position: relative; z-index: 1;
+            display: inline-block; padding: 18px 56px; border-radius: 50px;
+            background: var(--gradient-blue); color: #fff; font-size: 1.15rem; font-weight: 700;
+            border: none; cursor: pointer; transition: all 0.3s ease;
+            text-decoration: none; letter-spacing: 0.02em;
+            box-shadow: 0 4px 30px rgba(99,102,241,0.5);
+            animation: glow 3s ease-in-out infinite;
+        }
+        .landing-cta:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 40px rgba(99,102,241,0.7); }
+        .landing-audio-toggle {
+            position: relative; z-index: 1; margin-top: 24px;
+            background: none; border: 1px solid var(--border-glass); color: var(--text-muted);
+            padding: 8px 20px; border-radius: 20px; font-size: 0.75rem; cursor: pointer;
+            font-family: inherit; transition: all 0.3s ease;
+        }
+        .landing-audio-toggle:hover { border-color: var(--primary); color: var(--text-secondary); }
+
+        /* ============ NO-JS CSS FALLBACK ============ */
+        #noJsStart { display: none; }
+        #noJsStart:checked ~ .landing { opacity: 0; visibility: hidden; pointer-events: none; }
+        #noJsStart:checked ~ .presentation { pointer-events: auto; }
+        #noJsStart:checked ~ .presentation .slide[data-slide="0"] { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+        /* ============ TRADE BACKGROUND ============ */
+        .trade-bg {
+            position: fixed; top:0;left:0;right:0;bottom:0; z-index: 0; pointer-events: none;
+            opacity: 0.12;
+        }
+        .trade-bg .route { stroke-dasharray: 12,8; animation: tradeRoute 30s linear infinite; }
+        .trade-bg .port { animation: portPulse 3s ease-in-out infinite; }
+        @keyframes tradeRoute { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -200; } }
+        @keyframes portPulse { 0%,100% { r: 3; opacity: 0.6; } 50% { r: 5; opacity: 1; } }
+
+        /* ============ PRESENTATION LAYOUT ============ */
+        .presentation { width: 100vw; height: 100vh; overflow: hidden; position: relative; z-index: 1; }
+
+        .slide {
+            position: absolute; top:0;left:0;right:0;bottom:0;
+            display: flex; flex-direction: column; align-items: center;
+            padding: 50px 80px 90px;
+            opacity: 0; transform: scale(0.95); pointer-events: none;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            text-align: center; overflow-y: auto;
+        }
+        .slide.scrollable { justify-content: flex-start; }
+        .slide:not(.scrollable) { justify-content: center; }
+        .slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+        /* ============ VEHICLE BACKGROUNDS ============ */
+        .slide-vehicle {
+            position: absolute; top:0;left:0;right:0;bottom:0; pointer-events: none;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.6s ease;
+            overflow: hidden;
+        }
+        .slide.active .slide-vehicle { opacity: 1; }
+        .slide-vehicle svg {
+            width: 80%; max-width: 700px; opacity: 0.03;
+            transform: scale(0.2);
+        }
+        .slide.active .slide-vehicle svg {
+            animation: vehicleApproach 10s cubic-bezier(0.05,0.5,0.3,1) forwards;
+        }
+        @keyframes vehicleApproach {
+            0%   { transform: scale(0.2); opacity: 0.01; }
+            15%  { opacity: 0.06; }
+            50%  { transform: scale(1.2); opacity: 0.10; }
+            100% { transform: scale(2.2); opacity: 0.03; }
+        }
+        body.cinematic .slide.active .slide-vehicle svg {
+            animation: vehicleApproachCine 14s cubic-bezier(0.05,0.5,0.3,1) forwards;
+        }
+        @keyframes vehicleApproachCine {
+            0%   { transform: scale(0.15); opacity: 0.01; }
+            10%  { opacity: 0.05; }
+            40%  { transform: scale(1.0); opacity: 0.12; }
+            70%  { transform: scale(1.8); opacity: 0.08; }
+            100% { transform: scale(3.0); opacity: 0.02; }
+        }
+
+        /* ============ ATTENTION TECHNIQUES ============ */
+
+        /* 1. Ambient particle layer per slide - subtle moving dots */
+        .slide::after {
+            content: ''; position: absolute; top:0;left:0;right:0;bottom:0;
+            pointer-events: none; z-index: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(99,102,241,0.4) 50%, transparent 100%),
+                radial-gradient(1px 1px at 80% 10%, rgba(6,182,212,0.3) 50%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 50% 80%, rgba(99,102,241,0.3) 50%, transparent 100%),
+                radial-gradient(1px 1px at 30% 60%, rgba(16,185,129,0.3) 50%, transparent 100%),
+                radial-gradient(1px 1px at 90% 70%, rgba(129,140,248,0.25) 50%, transparent 100%);
+            background-size: 200% 200%;
+            animation: ambientDrift 20s ease-in-out infinite;
+            opacity: 0; transition: opacity 1s ease;
+        }
+        .slide.active::after { opacity: 1; }
+        @keyframes ambientDrift {
+            0%   { background-position: 0% 0%; }
+            25%  { background-position: 100% 50%; }
+            50%  { background-position: 50% 100%; }
+            75%  { background-position: 0% 50%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* 2. Radial glow spotlight that moves - draws eye */
+        .slide::before {
+            content: ''; position: absolute; top:0;left:0;right:0;bottom:0;
+            pointer-events: none; z-index: 0;
+            background: radial-gradient(ellipse 600px 400px at 30% 40%, rgba(99,102,241,0.08) 0%, transparent 70%);
+            animation: spotlightMove 12s ease-in-out infinite;
+            opacity: 0; transition: opacity 0.8s ease;
+        }
+        .slide.active::before { opacity: 1; }
+        @keyframes spotlightMove {
+            0%   { background: radial-gradient(ellipse 600px 400px at 20% 30%, rgba(99,102,241,0.08) 0%, transparent 70%); }
+            33%  { background: radial-gradient(ellipse 600px 400px at 70% 60%, rgba(6,182,212,0.07) 0%, transparent 70%); }
+            66%  { background: radial-gradient(ellipse 600px 400px at 40% 80%, rgba(16,185,129,0.06) 0%, transparent 70%); }
+            100% { background: radial-gradient(ellipse 600px 400px at 20% 30%, rgba(99,102,241,0.08) 0%, transparent 70%); }
+        }
+
+        /* 3. Slide entrance micro-animations - content staggers */
+        .slide.active > *:not(.slide-vehicle) {
+            position: relative; z-index: 1;
+        }
+
+        /* 4. Pulse accent on key numbers/stats */
+        .slide.active .big-number {
+            animation: numberPop 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards;
+            animation-delay: 0.6s; opacity: 0;
+        }
+        @keyframes numberPop {
+            from { opacity: 0; transform: scale(0.5); filter: blur(4px); }
+            to { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+
+        /* 5. Glass cards get a subtle shimmer on hover */
+        .slide.active .glass-card::after {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
+            animation: cardShimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes cardShimmer {
+            0%   { transform: translateX(-100%) rotate(0deg); }
+            100% { transform: translateX(100%) rotate(0deg); }
+        }
+
+        /* 6. Progress indicator glow */
+        .progress-bar {
+            position: fixed; bottom: 0; left: 0; height: 3px; z-index: 200;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--success));
+            background-size: 200% 100%;
+            animation: progressGlow 3s linear infinite;
+            box-shadow: 0 0 12px rgba(99,102,241,0.5), 0 0 30px rgba(6,182,212,0.3);
+            transition: width 0.3s linear;
+        }
+        @keyframes progressGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* ============ PER-SLIDE BACKGROUNDS ============ */
+        /* Cover - azul marino profundo */
+        .slide.hero-bg[data-slide="0"] { background: linear-gradient(160deg, #0a0e27 0%, #1a2255 40%, #0d1333 100%) !important; }
+        /* Carta - azul marino */
+        .slide.hero-bg[data-slide="1"] { background: linear-gradient(160deg, #0a0e27 0%, #111340 40%, #0d1333 100%) !important; }
+        /* Hero - purpura clasico */
+        .slide.hero-bg[data-slide="2"] { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%) !important; }
+        /* BCI Hoy - azul oceano */
+        .slide.hero-bg[data-slide="3"] { background: linear-gradient(150deg, #071520 0%, #0c4a6e 45%, #082f49 100%) !important; }
+        /* Retos - rojo vino oscuro */
+        .slide.hero-bg[data-slide="4"] { background: linear-gradient(160deg, #1a0505 0%, #7f1d1d 45%, #450a0a 100%) !important; }
+        /* Dolor->Solucion - indigo vibrante */
+        .slide.hero-bg[data-slide="5"] { background: linear-gradient(145deg, #0c0a2a 0%, #3730a3 45%, #1e1b4b 100%) !important; }
+        /* Capacidades - verde esmeralda */
+        .slide.hero-bg[data-slide="6"] { background: linear-gradient(160deg, #021a0e 0%, #065f46 45%, #022c22 100%) !important; }
+        /* Casos de Uso - cyan profundo */
+        .slide.hero-bg[data-slide="7"] { background: linear-gradient(150deg, #051525 0%, #155e75 45%, #083344 100%) !important; }
+        /* Integracion - purpura magenta */
+        .slide.hero-bg[data-slide="8"] { background: linear-gradient(160deg, #1a052e 0%, #6b21a8 45%, #3b0764 100%) !important; }
+        /* ROI - dorado ambar */
+        .slide.hero-bg[data-slide="9"] { background: linear-gradient(155deg, #1a1005 0%, #92400e 45%, #451a03 100%) !important; }
+        /* Roadmap - slate grafito */
+        .slide.hero-bg[data-slide="10"] { background: linear-gradient(160deg, #0c0f17 0%, #334155 45%, #1e293b 100%) !important; }
+        /* Comparacion - azul electrico */
+        .slide.hero-bg[data-slide="11"] { background: linear-gradient(150deg, #050d1f 0%, #1d4ed8 45%, #1e3a5f 100%) !important; }
+        /* CTA - purpura premium */
+        .slide.hero-bg[data-slide="12"] { background: linear-gradient(135deg, #0f0524 0%, #4c1d95 40%, #2e1065 70%, #0f0524 100%) !important; }
+
+        /* ============ ANIMATIONS ============ */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes pulse { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+        @keyframes rotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(99,102,241,0.3); } 50% { box-shadow: 0 0 40px rgba(99,102,241,0.6); } }
+
+        .slide.active .anim-1 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.1s; opacity: 0; }
+        .slide.active .anim-2 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.25s; opacity: 0; }
+        .slide.active .anim-3 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.4s; opacity: 0; }
+        .slide.active .anim-4 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.55s; opacity: 0; }
+        .slide.active .anim-5 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.7s; opacity: 0; }
+        .slide.active .anim-6 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.85s; opacity: 0; }
+        .slide.active .anim-left { animation: fadeInLeft 0.8s ease forwards; animation-delay: 0.3s; opacity: 0; }
+        .slide.active .anim-right { animation: fadeInRight 0.8s ease forwards; animation-delay: 0.3s; opacity: 0; }
+
+        body.cinematic .slide.active .anim-1 { animation-duration: 1.2s; }
+        body.cinematic .slide.active .anim-2 { animation-duration: 1.2s; animation-delay: 0.4s; }
+        body.cinematic .slide.active .anim-3 { animation-duration: 1.2s; animation-delay: 0.65s; }
+        body.cinematic .slide.active .anim-4 { animation-duration: 1.2s; animation-delay: 0.9s; }
+        body.cinematic .slide.active .anim-5 { animation-duration: 1.2s; animation-delay: 1.1s; }
+        body.cinematic .slide.active .anim-6 { animation-duration: 1.2s; animation-delay: 1.3s; }
+
+        /* ============ TYPOGRAPHY ============ */
+        .slide-title {
+            font-size: 3rem; font-weight: 800; letter-spacing: -0.03em;
+            margin-bottom: 10px; line-height: 1.1;
+        }
+        .slide-subtitle {
+            font-size: 1.3rem; font-weight: 300; color: var(--text-secondary);
+            margin-bottom: 40px; max-width: 700px;
+        }
+        .gradient-text {
+            background: var(--gradient-text); background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+        .section-label {
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.2em; color: var(--primary-light); margin-bottom: 12px;
+        }
+        .big-number { font-size: 4rem; font-weight: 900; line-height: 1; }
+        .big-label { font-size: 1rem; font-weight: 400; color: var(--text-secondary); margin-top: 8px; }
+
+        /* ============ CARDS & GLASS ============ */
+        .glass-card {
+            background: var(--bg-glass); border: 1px solid var(--border-glass);
+            border-radius: 16px; padding: 28px; text-align: left;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+        .glass-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+        .glass-card .card-icon {
+            width: 44px; height: 44px; border-radius: 12px; display: flex;
+            align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 14px;
+        }
+        .glass-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+        .glass-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 1000px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1100px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; max-width: 1100px; }
+
+        /* ============ TABLES ============ */
+        .comparison-table {
+            width: 100%; max-width: 1000px; border-collapse: collapse;
+            font-size: 0.85rem; text-align: center;
+        }
+        .comparison-table th {
+            padding: 12px 16px; font-weight: 700; border-bottom: 2px solid var(--border-glass);
+            color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .comparison-table th:first-child { text-align: left; }
+        .comparison-table th.highlight { color: var(--accent-light); }
+        .comparison-table td { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .comparison-table td:first-child { text-align: left; font-weight: 500; }
+        .comparison-table .check { color: var(--success); font-weight: 700; font-size: 1.1rem; }
+        .comparison-table .cross { color: var(--danger); font-weight: 700; font-size: 1rem; }
+        .comparison-table .partial { color: var(--warning); font-size: 0.8rem; }
+        .comparison-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+        .roi-table {
+            width: 100%; max-width: 1000px; border-collapse: collapse; font-size: 0.85rem;
+        }
+        .roi-table th {
+            padding: 12px 16px; font-weight: 700; border-bottom: 2px solid var(--border-glass);
+            color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+            text-align: left;
+        }
+        .roi-table td { padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: left; }
+        .roi-table td:last-child { text-align: center; font-weight: 700; color: var(--success); }
+        .roi-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+        /* ============ SPECIFIC COMPONENTS ============ */
+        /* hero-bg background removed - per-slide backgrounds handle this now */
+        .hero-bg > * { position: relative; z-index: 1; }
+
+        .logo-svg { filter: drop-shadow(0 0 30px rgba(99,102,241,0.4)); animation: float 6s ease-in-out infinite; }
+        .logo-svg .ring { transform-origin: 60px 60px; animation: rotateRing 20s linear infinite; }
+        .logo-svg .pulse-ring { animation: pulse 3s ease-in-out infinite; }
+
+        .stat-box {
+            background: var(--bg-glass); border: 1px solid var(--border-glass);
+            border-radius: 12px; padding: 20px 24px; text-align: center;
+            min-width: 160px; backdrop-filter: blur(10px);
+        }
+
+        .pain-point {
+            display: flex; align-items: flex-start; gap: 16px; text-align: left;
+            padding: 16px 20px; border-radius: 12px;
+            background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.15);
+        }
+        .pain-point .pain-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+        .pain-point h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+        .pain-point p { font-size: 0.8rem; color: var(--text-secondary); }
+
+        .solution-card {
+            background: var(--bg-glass); border: 1px solid var(--border-glass);
+            border-radius: 16px; padding: 20px; text-align: left;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .solution-card:hover { transform: translateY(-4px); border-color: var(--success); }
+        .solution-card .pain-label {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--danger); margin-bottom: 6px;
+        }
+        .solution-card .pain-text { font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; }
+        .solution-card .arrow { text-align: center; color: var(--success); font-size: 1.2rem; margin-bottom: 8px; }
+        .solution-card .sol-label {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--success); margin-bottom: 4px;
+        }
+        .solution-card .sol-text { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; }
+
+        .usecase-card {
+            background: var(--bg-glass); border: 1px solid var(--border-glass);
+            border-radius: 16px; padding: 24px; text-align: left;
+            backdrop-filter: blur(12px); transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .usecase-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+        .usecase-card .uc-icon { font-size: 2rem; margin-bottom: 12px; }
+        .usecase-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+        .usecase-card .uc-before, .usecase-card .uc-after {
+            font-size: 0.8rem; line-height: 1.5; padding: 10px 12px; border-radius: 8px; margin-bottom: 8px;
+        }
+        .usecase-card .uc-before { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.15); color: var(--text-secondary); }
+        .usecase-card .uc-after { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); color: var(--text-secondary); }
+        .usecase-card .uc-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+
+        .eco-hub { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; max-width: 950px; }
+        .eco-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        .eco-box {
+            padding: 10px 18px; border-radius: 10px; font-size: 0.8rem; font-weight: 600;
+            text-align: center; min-width: 130px;
+        }
+        .eco-connector { font-size: 1.5rem; color: var(--text-muted); text-align: center; }
+
+        .timeline { display: flex; gap: 0; width: 100%; max-width: 1000px; position: relative; }
+        .timeline::before {
+            content: ''; position: absolute; top: 36px; left: 5%; right: 5%; height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--success), var(--warning));
+            border-radius: 2px;
+        }
+        .timeline-phase { flex: 1; text-align: center; padding: 0 12px; position: relative; }
+        .timeline-dot {
+            width: 20px; height: 20px; border-radius: 50%; margin: 26px auto 16px;
+            position: relative; z-index: 1;
+        }
+        .timeline-phase h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; }
+        .timeline-phase p { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+
+        .letter-container {
+            background: #fff; color: #1a1a2e; border-radius: 8px;
+            padding: 50px 60px; max-width: 800px; width: 100%;
+            text-align: left; font-size: 0.9rem; line-height: 1.7;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5); margin: 20px 0;
+        }
+        .letter-container .letter-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; }
+        .letter-container .letter-logo { font-size: 1.4rem; font-weight: 800; color: #4f46e5; }
+        .letter-container .letter-date { color: #64748b; font-size: 0.85rem; }
+        .letter-container h2 { font-size: 1.2rem; font-weight: 700; color: #1e293b; margin: 20px 0 10px; }
+        .letter-container p { margin-bottom: 12px; color: #334155; }
+        .letter-container .letter-signature { margin-top: 30px; }
+        .letter-container .letter-signature .sig-name { font-weight: 700; color: #1e293b; }
+        .letter-container .letter-signature .sig-title { font-size: 0.85rem; color: #64748b; }
+        .letter-container ul { margin: 10px 0 14px 20px; }
+        .letter-container li { margin-bottom: 6px; color: #334155; }
+
+        .savings-banner {
+            background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.15));
+            border: 1px solid rgba(16,185,129,0.3);
+            border-radius: 16px; padding: 20px 30px; margin-top: 20px;
+            text-align: center; max-width: 1000px; width: 100%;
+        }
+
+        .cta-btn {
+            display: inline-block; padding: 16px 48px; border-radius: 50px;
+            background: var(--gradient-blue); color: #fff; font-size: 1.1rem; font-weight: 700;
+            border: none; cursor: pointer; transition: all 0.3s ease;
+            text-decoration: none; letter-spacing: 0.02em;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.4);
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.6); }
+
+        .quote-box {
+            margin-top: 30px; padding: 24px 40px;
+            border-left: 3px solid var(--primary);
+            background: rgba(99,102,241,0.05);
+            border-radius: 0 12px 12px 0; max-width: 800px;
+        }
+        .quote-box p { font-size: 1.1rem; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
+
+        /* Next step card for CTA slide */
+        .next-step-card {
+            background: var(--bg-glass); border: 1px solid var(--border-glass);
+            border-radius: 16px; padding: 24px; text-align: center;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .next-step-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+        .next-step-card .step-num {
+            width: 36px; height: 36px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800;
+            margin: 0 auto 12px; background: var(--gradient-blue); color: #fff;
+        }
+        .next-step-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+        .next-step-card p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4; }
+
+        /* ============ NAVIGATION ============ */
+        .nav-dots {
+            position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 8px; z-index: 100;
+        }
+        .nav-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); cursor: pointer;
+            transition: all 0.3s ease; border: none; padding: 0;
+        }
+        .nav-dot.active { background: var(--primary); transform: scale(1.4); box-shadow: 0 0 10px var(--primary); }
+        .nav-dot:hover { background: rgba(255,255,255,0.5); }
+
+        .cine-controls {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; align-items: center; gap: 16px; z-index: 100;
+            background: rgba(10,10,26,0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass); border-radius: 30px; padding: 8px 20px;
+        }
+        .cine-btn {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: transparent; border: 1px solid var(--border-glass);
+            color: #fff; font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .cine-btn:hover { background: var(--primary); border-color: var(--primary); }
+        .cine-btn:disabled { opacity: 0.3; cursor: default; }
+        .cine-btn.active { background: var(--primary); border-color: var(--primary); }
+        .slide-counter { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; min-width: 50px; text-align: center; }
+
+        .progress-bar {
+            position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+            background: var(--gradient-blue); width: 0%; transition: width 0.3s ease;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .slide { padding: 40px 40px 80px; }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .timeline { flex-wrap: wrap; gap: 16px; }
+            .timeline::before { display: none; }
+            .timeline-phase { flex: 1 1 45%; min-width: 200px; }
+        }
+        @media (max-width: 768px) {
+            .slide { padding: 24px 18px 90px; justify-content: flex-start; overflow-y: auto; }
+            .slide:not(.scrollable) { justify-content: flex-start; padding-top: 40px; }
+            .slide-title { font-size: 1.6rem; margin-bottom: 8px; }
+            .slide-subtitle { font-size: 1rem; margin-bottom: 20px; }
+            .section-label { font-size: 0.65rem; }
+            .grid-2 { grid-template-columns: 1fr; gap: 12px; }
+            .grid-3 { grid-template-columns: 1fr; gap: 12px; }
+            .grid-4 { grid-template-columns: 1fr; gap: 10px; }
+            .glass-card { padding: 18px; }
+            .stat-box { min-width: auto; padding: 14px 16px; }
+            .pain-point { padding: 12px 14px; }
+            .comparison-table { font-size: 0.7rem; }
+            .comparison-table th, .comparison-table td { padding: 8px 6px; }
+            .roi-table { font-size: 0.7rem; }
+            .roi-table th, .roi-table td { padding: 8px 6px; }
+            .timeline { flex-direction: column; gap: 16px; align-items: center; }
+            .timeline::before { display: none; }
+            .timeline-phase { width: 100%; max-width: 300px; }
+            .letter-container { padding: 24px 20px; font-size: 0.82rem; }
+            .nav-dots { display: none; }
+            .cine-controls { bottom: 12px; padding: 6px 14px; gap: 10px; }
+            .cta-btn { padding: 14px 36px; font-size: 1rem; }
+            .quote-box { padding: 16px 20px; }
+            .landing-title { font-size: 1.6rem; }
+            .landing-sub { font-size: 0.9rem; }
+        }
+        @media (max-width: 420px) {
+            .slide { padding: 16px 12px 80px; }
+            .slide-title { font-size: 1.3rem; }
+            .letter-container { padding: 18px 14px; font-size: 0.78rem; }
+            .letter-container .letter-header { flex-direction: column; gap: 8px; }
+            .landing-title { font-size: 1.3rem; }
+            .landing-cta { padding: 14px 36px; font-size: 1rem; }
+        }
+
+        /* ============ PRINT ============ */
+        @media print {
+            .landing, .trade-bg, .nav-dots, .cine-controls, .progress-bar, .slide-vehicle { display: none; }
+            .slide { position: relative; page-break-after: always; opacity: 1; transform: none; height: auto; min-height: 100vh; }
+            body { overflow: visible; background: #fff; color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- CSS-only fallback checkbox for no-JS (WhatsApp in-app browser) -->
+<input type="checkbox" id="noJsStart">
+<noscript><div style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:#0a0a1a;color:#f1f5f9;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;font-family:Inter,sans-serif;"><p style="font-size:1.2rem;margin-bottom:16px;">Para la mejor experiencia, abre este archivo en Safari u otro navegador.</p><label for="noJsStart" style="display:inline-block;padding:14px 40px;border-radius:50px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:1rem;font-weight:700;cursor:pointer;">Ver Presentaci&oacute;n</label></div></noscript>
+
+<!-- ============ TRADE BACKGROUND ============ -->
+<svg class="trade-bg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- World map outlines (simplified) -->
+    <g fill="none" stroke="#6366f1" stroke-width="1.2" opacity="0.3">
+        <!-- Americas -->
+        <path d="M320,200 Q340,180 360,195 L380,220 Q400,260 390,300 L370,340 Q350,380 340,420 L330,460 Q320,500 310,520 L300,560 Q290,580 280,560 L270,520 Q260,480 250,440 L240,400 Q230,360 240,320 L260,280 Q280,240 300,220 Z"/>
+        <!-- South America -->
+        <path d="M380,440 Q400,420 420,440 L440,480 Q460,520 450,560 L430,620 Q410,680 400,720 L390,760 Q380,800 370,780 L360,740 Q350,700 360,660 L370,600 Q380,540 380,500 Z"/>
+        <!-- Europe -->
+        <path d="M860,180 Q880,160 920,170 L960,180 Q1000,190 1020,210 L1040,230 Q1060,260 1040,280 L1020,300 Q1000,310 980,300 L940,280 Q900,260 880,240 L860,220 Q850,200 860,180 Z"/>
+        <!-- Africa -->
+        <path d="M920,320 Q940,300 960,310 L980,340 Q1000,380 1010,420 L1020,480 Q1030,540 1020,600 L1010,660 Q1000,700 980,680 L960,640 Q940,600 930,560 L920,500 Q910,440 910,400 L920,360 Z"/>
+        <!-- Asia -->
+        <path d="M1100,160 Q1150,140 1200,150 L1280,170 Q1360,190 1420,220 L1480,260 Q1520,290 1500,320 L1460,340 Q1400,360 1340,350 L1260,330 Q1180,310 1140,280 L1100,240 Q1080,200 1100,160 Z"/>
+        <!-- Southeast Asia / Oceania -->
+        <path d="M1400,380 Q1440,360 1480,380 L1520,420 Q1540,460 1520,500 L1480,520 Q1440,530 1420,500 L1400,460 Q1390,420 1400,380 Z"/>
+        <!-- Australia -->
+        <path d="M1460,600 Q1500,580 1560,590 L1600,610 Q1640,640 1620,680 L1580,710 Q1540,730 1500,720 L1470,690 Q1450,660 1460,630 Z"/>
+    </g>
+    <!-- Trade routes (animated dashed lines) -->
+    <g fill="none" stroke-width="1.5" opacity="0.5">
+        <path class="route" d="M360,300 Q600,200 860,230" stroke="#06b6d4"/>
+        <path class="route" d="M920,280 Q1060,200 1200,180" stroke="#6366f1" style="animation-delay:-5s;"/>
+        <path class="route" d="M1300,250 Q1500,400 1520,500" stroke="#10b981" style="animation-delay:-10s;"/>
+        <path class="route" d="M400,500 Q700,600 920,500" stroke="#f59e0b" style="animation-delay:-15s;"/>
+        <path class="route" d="M1000,350 Q1200,500 1460,620" stroke="#ec4899" style="animation-delay:-20s;"/>
+    </g>
+    <!-- Port dots (pulsing) -->
+    <g fill="#06b6d4">
+        <circle class="port" cx="360" cy="300" r="3" style="animation-delay:0s;"/>
+        <circle class="port" cx="860" cy="230" r="3" style="animation-delay:-0.5s;"/>
+        <circle class="port" cx="920" cy="280" r="3" style="animation-delay:-1s;"/>
+        <circle class="port" cx="1200" cy="180" r="3" style="animation-delay:-1.5s;"/>
+        <circle class="port" cx="1300" cy="250" r="3" style="animation-delay:-2s;"/>
+        <circle class="port" cx="1520" cy="500" r="3" style="animation-delay:-0.3s;"/>
+        <circle class="port" cx="400" cy="500" r="3" style="animation-delay:-0.8s;"/>
+        <circle class="port" cx="1000" cy="350" r="3" style="animation-delay:-1.3s;"/>
+        <circle class="port" cx="1460" cy="620" r="3" style="animation-delay:-1.8s;"/>
+        <circle class="port" cx="700" cy="420" r="3" style="animation-delay:-2.2s;"/>
+    </g>
+</svg>
+
+<!-- ============ LANDING SCREEN ============ -->
+<div class="landing" id="landing">
+    <div class="landing-particles" id="particles"></div>
+    <svg class="landing-logo" width="160" height="160" viewBox="0 0 160 160">
+        <defs>
+            <linearGradient id="landGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#6366f1"/>
+                <stop offset="100%" style="stop-color:#06b6d4"/>
+            </linearGradient>
+            <filter id="landGlow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <circle class="pulse-ring" cx="80" cy="80" r="74" fill="none" stroke="url(#landGrad)" stroke-width="1" opacity="0.3"/>
+        <polygon class="hex-ring" points="80,10 138,40 138,120 80,150 22,120 22,40" fill="none" stroke="url(#landGrad)" stroke-width="2" stroke-dasharray="5,5" filter="url(#landGlow)"/>
+        <polygon points="80,24 130,48 130,112 80,136 30,112 30,48" fill="rgba(99,102,241,0.1)" stroke="url(#landGrad)" stroke-width="2.5"/>
+        <text x="80" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="34" font-weight="900" fill="url(#landGrad)">GCX</text>
+    </svg>
+    <div class="landing-title"><span class="gradient-text">Global CX</span> <span style="font-weight:300;">&times;</span> <span style="font-weight:800;">BCI</span></div>
+    <div class="landing-sub">Experiencia Cinematogr&aacute;fica de Trade Finance</div>
+    <label for="noJsStart" class="landing-cta" id="startBtn" onclick="startExperience()" role="button" tabindex="0">Iniciar Experiencia</label>
+    <button class="landing-audio-toggle" id="audioToggle" onclick="toggleAudio()">&#9835; Audio Ambiental: OFF</button>
+</div>
+
+<!-- ============ PRESENTATION ============ -->
+<div class="presentation" id="presentation">
+
+    <!-- ===== SLIDE 0: CARTA ===== -->
+    <div class="slide hero-bg scrollable" data-slide="0" style="background: linear-gradient(160deg, #0a0e27 0%, #111340 40%, #0d1333 100%) !important; padding: 0;">
+        <!-- Subtle geometric background -->
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;">
+            <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" opacity="0.06">
+                <defs><linearGradient id="coverGrad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6366f1"/><stop offset="100%" style="stop-color:#06b6d4"/></linearGradient></defs>
+                <polygon points="0,0 400,0 200,800 0,800" fill="url(#coverGrad1)"/>
+                <polygon points="800,0 1200,0 1200,800 1000,800" fill="url(#coverGrad1)"/>
+                <circle cx="600" cy="400" r="300" fill="none" stroke="url(#coverGrad1)" stroke-width="1" stroke-dasharray="8,6"/>
+                <circle cx="600" cy="400" r="200" fill="none" stroke="url(#coverGrad1)" stroke-width="0.5" stroke-dasharray="4,8"/>
+            </svg>
+            <!-- Accent line top -->
+            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6366f1,#06b6d4,#6366f1);"></div>
+            <!-- Accent line bottom -->
+            <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#06b6d4,#6366f1,#06b6d4);"></div>
+        </div>
+
+        <!-- Content -->
+        <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;width:100%;padding:60px 80px;">
+
+            <!-- Top: Confidential badge -->
+            <div class="anim-1" style="position:absolute;top:40px;right:60px;font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#6366f1;border:1px solid rgba(99,102,241,0.3);padding:6px 16px;border-radius:20px;background:rgba(99,102,241,0.08);">Confidencial</div>
+
+            <!-- Logos side by side -->
+            <div class="anim-1" style="display:flex;align-items:center;gap:40px;margin-bottom:50px;">
+                <!-- YacareTech logo -->
+                <div style="display:flex;flex-direction:column;align-items:center;">
+                    <svg width="56" height="56" viewBox="0 0 120 120">
+                        <rect x="10" y="10" width="100" height="100" rx="20" fill="none" stroke="#818cf8" stroke-width="2.5"/>
+                        <text x="60" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="900" fill="#818cf8">YT</text>
+                    </svg>
+                    <div style="margin-top:8px;font-size:1.1rem;font-weight:800;color:#e2e8f0;letter-spacing:0.05em;">YACARETECH</div>
+                    <div style="font-size:0.65rem;color:#64748b;font-weight:400;letter-spacing:0.1em;">CIA. LTDA.</div>
+                </div>
+
+                <!-- Divider -->
+                <div style="width:1px;height:60px;background:linear-gradient(180deg,transparent,rgba(99,102,241,0.4),transparent);"></div>
+
+                <!-- Global CX logo -->
+                <div style="display:flex;flex-direction:column;align-items:center;">
+                    <svg width="56" height="56" viewBox="0 0 120 120">
+                        <defs><linearGradient id="coverLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6366f1"/><stop offset="100%" style="stop-color:#06b6d4"/></linearGradient></defs>
+                        <polygon points="60,8 104,30 104,90 60,112 16,90 16,30" fill="rgba(99,102,241,0.1)" stroke="url(#coverLogoGrad)" stroke-width="2.5"/>
+                        <text x="60" y="67" text-anchor="middle" font-family="Inter,sans-serif" font-size="26" font-weight="900" fill="url(#coverLogoGrad)">GCX</text>
+                    </svg>
+                    <div style="margin-top:8px;font-size:1.1rem;font-weight:800;letter-spacing:0.05em;background:linear-gradient(90deg,#818cf8,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">GLOBAL CX</div>
+                    <div style="font-size:0.65rem;color:#64748b;font-weight:400;letter-spacing:0.1em;">TRADE FINANCE PLATFORM</div>
+                </div>
+            </div>
+
+            <!-- Thin separator -->
+            <div class="anim-2" style="width:120px;height:1px;background:linear-gradient(90deg,transparent,#6366f1,#06b6d4,transparent);margin-bottom:40px;"></div>
+
+            <!-- Title -->
+            <div class="anim-2" style="text-align:center;max-width:700px;">
+                <h1 style="font-size:2.6rem;font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:16px;">
+                    <span style="color:#f1f5f9;">Propuesta de</span><br>
+                    <span style="background:linear-gradient(90deg,#818cf8,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Transformaci&oacute;n Digital</span><br>
+                    <span style="color:#f1f5f9;">en Trade Finance</span>
+                </h1>
+            </div>
+
+            <!-- Subtitle -->
+            <div class="anim-3" style="text-align:center;margin-bottom:50px;">
+                <p style="font-size:1.05rem;font-weight:300;color:#94a3b8;letter-spacing:0.02em;">Preparado para</p>
+                <p style="font-size:1.4rem;font-weight:700;color:#f1f5f9;margin-top:4px;">Banco de Cr&eacute;dito e Inversiones (BCI)</p>
+                <p style="font-size:0.85rem;color:#64748b;margin-top:4px;">Gerencia de Comercio Exterior &bull; Gerencia de Banca Empresas</p>
+            </div>
+
+            <!-- Key stats row -->
+            <div class="anim-4" style="display:flex;gap:30px;justify-content:center;flex-wrap:wrap;">
+                <div style="text-align:center;padding:12px 24px;border:1px solid rgba(99,102,241,0.2);border-radius:12px;background:rgba(99,102,241,0.05);min-width:100px;">
+                    <div style="font-size:1.5rem;font-weight:800;color:#818cf8;">85%</div>
+                    <div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Reducci&oacute;n tiempo</div>
+                </div>
+                <div style="text-align:center;padding:12px 24px;border:1px solid rgba(6,182,212,0.2);border-radius:12px;background:rgba(6,182,212,0.05);min-width:100px;">
+                    <div style="font-size:1.5rem;font-weight:800;color:#22d3ee;">100%</div>
+                    <div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">SWIFT nativo</div>
+                </div>
+                <div style="text-align:center;padding:12px 24px;border:1px solid rgba(16,185,129,0.2);border-radius:12px;background:rgba(16,185,129,0.05);min-width:100px;">
+                    <div style="font-size:1.5rem;font-weight:800;color:#10b981;">IA</div>
+                    <div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Trade Finance</div>
+                </div>
+                <div style="text-align:center;padding:12px 24px;border:1px solid rgba(251,146,60,0.2);border-radius:12px;background:rgba(251,146,60,0.05);min-width:100px;">
+                    <div style="font-size:1.5rem;font-weight:800;color:#fb923c;">API</div>
+                    <div style="font-size:0.6rem;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Open Finance</div>
+                </div>
+            </div>
+
+            <!-- Bottom: Date -->
+            <div class="anim-5" style="position:absolute;bottom:40px;text-align:center;">
+                <div style="font-size:0.75rem;color:#64748b;letter-spacing:0.1em;text-transform:uppercase;">Febrero 2026</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== SLIDE 1: CARTA ===== -->
+    <div class="slide hero-bg scrollable" data-slide="1" style="background: linear-gradient(160deg, #0a0e27 0%, #111340 40%, #0d1333 100%) !important;">
+        <div class="letter-container anim-1">
+            <div class="letter-header">
+                <div>
+                    <div class="letter-logo">YACARETECH</div>
+                    <div style="font-size:0.75rem; color:#94a3b8;">Cia. Ltda.</div>
+                </div>
+                <div class="letter-date">Febrero 2026</div>
+            </div>
+            <p style="margin-bottom:20px;">
+                <strong>Atenci&oacute;n:</strong><br>
+                <span style="color:#64748b;">Gerencia de Comercio Exterior / Gerencia de Banca Empresas<br>Banco de Cr&eacute;dito e Inversiones (BCI)</span>
+            </p>
+            <h2>Asunto: Propuesta de Transformaci&oacute;n Digital en Trade Finance para BCI</h2>
+            <p>Estimados Se&ntilde;ores,</p>
+            <p>En Yacaretech nos especializamos en soluciones tecnol&oacute;gicas de nivel empresarial para el sector financiero. Nos complace presentar <strong>Global CX</strong>, nuestra plataforma integral de Trade Finance dise&ntilde;ada para instituciones bancarias l&iacute;deres que buscan modernizar sus operaciones de comercio exterior.</p>
+            <p>Conocemos el liderazgo de BCI en comercio exterior chileno &mdash; con <strong>18% de participaci&oacute;n de mercado</strong>, su posici&oacute;n como <strong>banco m&aacute;s innovador de Chile</strong> por 16 a&ntilde;os consecutivos, y su inversi&oacute;n de m&aacute;s de <strong>USD $500M en infraestructura digital</strong>. Global CX est&aacute; dise&ntilde;ado para potenciar esa visi&oacute;n.</p>
+            <h2>&iquest;Por qu&eacute; Global CX para BCI?</h2>
+            <ul>
+                <li><strong>Reducci&oacute;n del 80-85%</strong> en tiempos de procesamiento SWIFT</li>
+                <li><strong>Plataforma unificada</strong>: LC Import/Export, Garant&iacute;as, Cobranzas, todo en un solo sistema CQRS</li>
+                <li><strong>IA aplicada a Trade Finance</strong>: Chat con RAG, scoring de riesgo autom&aacute;tico, an&aacute;lisis de portafolio</li>
+                <li><strong>API-first</strong>: Arquitectura lista para Open Finance (CMF julio 2026)</li>
+                <li><strong>Integraci&oacute;n nativa</strong> con el ecosistema BCI: Core Banking, Data Hub, MACHBANK</li>
+            </ul>
+            <p>En las siguientes p&aacute;ginas encontrar&aacute; un an&aacute;lisis detallado de c&oacute;mo Global CX puede complementar la estrategia digital de BCI, junto con casos de uso espec&iacute;ficos, ROI estimado y un roadmap de implementaci&oacute;n por fases.</p>
+            <p>Ser&iacute;a un honor agendar una demostraci&oacute;n personalizada con su equipo de comercio exterior.</p>
+            <div class="letter-signature">
+                <p>Atentamente,</p><br>
+                <div class="sig-name">Yacaretech Cia. Ltda.</div>
+                <div class="sig-title">Divisi&oacute;n de Soluciones de Trade Finance</div>
+                <div style="margin-top:8px; font-size:0.8rem; color:#6366f1;">info@globalcx.com &nbsp;|&nbsp; www.globalcx.com</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 2: HERO ===== -->
+    <div class="slide hero-bg" data-slide="2">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 120" fill="none" stroke="#6366f1" stroke-width="1"><path d="M40,70 L80,70 L100,55 L160,55 L170,60 L170,70 L180,70"/><path d="M90,55 L70,30 L130,30 L160,55"/><path d="M100,30 L100,20 L140,20 L150,30"/><circle cx="60" cy="78" r="6"/><circle cx="150" cy="78" r="6"/></svg></div>
+        <div style="position:relative; z-index:1;">
+            <div class="anim-1" style="margin-bottom:20px;">
+                <svg class="logo-svg" width="100" height="100" viewBox="0 0 120 120">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#6366f1"/>
+                            <stop offset="100%" style="stop-color:#06b6d4"/>
+                        </linearGradient>
+                        <filter id="glow2"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    <circle class="pulse-ring" cx="60" cy="60" r="55" fill="none" stroke="url(#logoGrad)" stroke-width="1" opacity="0.3"/>
+                    <polygon class="ring" points="60,8 104,30 104,90 60,112 16,90 16,30" fill="none" stroke="url(#logoGrad)" stroke-width="2" stroke-dasharray="4,4" filter="url(#glow2)"/>
+                    <polygon points="60,18 97,36 97,84 60,102 23,84 23,36" fill="rgba(99,102,241,0.1)" stroke="url(#logoGrad)" stroke-width="2.5"/>
+                    <text x="60" y="67" text-anchor="middle" font-family="Inter, sans-serif" font-size="26" font-weight="900" fill="url(#logoGrad)">GCX</text>
+                </svg>
+            </div>
+            <div class="section-label anim-2">PLATAFORMA TRADE FINANCE</div>
+            <h1 class="slide-title anim-3" style="font-size:3.2rem;">
+                <span class="gradient-text">Plataforma Trade Finance</span><br>
+                <span style="font-weight:300; font-size:2rem;">Pr&oacute;xima Generaci&oacute;n</span>
+            </h1>
+            <p class="slide-subtitle anim-4" style="margin-bottom:24px;">Potenciando al l&iacute;der de comercio exterior de Chile con tecnolog&iacute;a de clase mundial</p>
+            <div class="anim-5" style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+                <div class="stat-box" style="padding:16px 20px;">
+                    <div style="font-size:1.6rem; font-weight:800; color:var(--bci-orange-light);">18%</div>
+                    <div style="font-size:0.7rem; color:var(--text-muted);">Mercado Comex Chile</div>
+                </div>
+                <div class="stat-box" style="padding:16px 20px;">
+                    <div style="font-size:1.6rem; font-weight:800; color:var(--accent-light);">#1</div>
+                    <div style="font-size:0.7rem; color:var(--text-muted);">Innovaci&oacute;n 16 a&ntilde;os</div>
+                </div>
+                <div class="stat-box" style="padding:16px 20px;">
+                    <div style="font-size:1.6rem; font-weight:800; color:var(--success);">USD$500M+</div>
+                    <div style="font-size:0.7rem; color:var(--text-muted);">Inversi&oacute;n Digital</div>
+                </div>
+                <div class="stat-box" style="padding:16px 20px;">
+                    <div style="font-size:1.6rem; font-weight:800; color:var(--primary-light);">30seg</div>
+                    <div style="font-size:0.7rem; color:var(--text-muted);">Portafolio Completo</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 2: BCI HOY ===== -->
+    <div class="slide hero-bg" data-slide="3">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 200" fill="none" stroke="#6366f1" stroke-width="1"><circle cx="100" cy="100" r="80"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="40"/><ellipse cx="100" cy="100" rx="80" ry="30"/><ellipse cx="100" cy="100" rx="30" ry="80"/><line x1="100" y1="20" x2="100" y2="180"/><line x1="20" y1="100" x2="180" y2="100"/></svg></div>
+        <div class="section-label anim-1">BCI HOY</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">L&iacute;der del Comercio Exterior</span><br>en Chile</h2>
+        <p class="slide-subtitle anim-3">BCI domina el mercado de Trade Finance chileno con una posici&oacute;n privilegiada que merece tecnolog&iacute;a a la altura</p>
+        <div class="grid-3 anim-4">
+            <div class="glass-card" style="text-align:center;">
+                <div style="font-size:2.4rem; font-weight:900; color:var(--bci-orange-light); margin-bottom:8px;">18%</div>
+                <div style="font-size:0.85rem; font-weight:600; margin-bottom:4px;">Participaci&oacute;n de Mercado</div>
+                <p>L&iacute;der en operaciones de comercio exterior bancario en Chile</p>
+            </div>
+            <div class="glass-card" style="text-align:center;">
+                <div style="font-size:2.4rem; font-weight:900; color:var(--accent-light); margin-bottom:8px;">#1</div>
+                <div style="font-size:0.85rem; font-weight:600; margin-bottom:4px;">Banco M&aacute;s Innovador</div>
+                <p>Reconocido por 16 a&ntilde;os consecutivos como referente en innovaci&oacute;n</p>
+            </div>
+            <div class="glass-card" style="text-align:center;">
+                <div style="font-size:2.4rem; font-weight:900; color:var(--success); margin-bottom:8px;">3</div>
+                <div style="font-size:0.85rem; font-weight:600; margin-bottom:4px;">Asistentes IA</div>
+                <p>Ya en producci&oacute;n: BCI Bot, BCI GPT y asistente Comex interno</p>
+            </div>
+        </div>
+        <div class="quote-box anim-5" style="margin-top:24px;">
+            <p>&ldquo;BCI ha invertido m&aacute;s de USD $500M en infraestructura digital, posicion&aacute;ndose como el banco m&aacute;s tecnol&oacute;gico de Chile.&rdquo;</p>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 3: RETOS ESPECIFICOS ===== -->
+    <div class="slide hero-bg scrollable" data-slide="4">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 200" fill="none" stroke="#6366f1" stroke-width="1.5"><path d="M100,30 L100,170"/><path d="M60,60 L100,170 L140,60"/><path d="M45,90 L100,170 L155,90"/><circle cx="100" cy="170" r="10"/><path d="M80,170 Q80,190 100,190 Q120,190 120,170"/></svg></div>
+        <div class="section-label anim-1">RETOS ESPEC&Iacute;FICOS</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">Desaf&iacute;os</span> que Enfrentan Hoy</h2>
+        <p class="slide-subtitle anim-3" style="margin-bottom:24px;">6 puntos de dolor cr&iacute;ticos en las operaciones de Trade Finance de BCI</p>
+        <div class="grid-2 anim-4">
+            <div class="pain-point">
+                <div class="pain-icon">&#9888;&#65039;</div>
+                <div>
+                    <h4>Mensajer&iacute;a SWIFT Manual</h4>
+                    <p>Construcci&oacute;n manual de MT700/MT760 con alto riesgo de error. Cada mensaje toma 15-25 minutos de un analista senior.</p>
+                </div>
+            </div>
+            <div class="pain-point">
+                <div class="pain-icon">&#128268;</div>
+                <div>
+                    <h4>Sistemas Fragmentados</h4>
+                    <p>M&uacute;ltiples aplicaciones desconectadas para LC, garant&iacute;as y cobranzas sin visi&oacute;n unificada del portafolio.</p>
+                </div>
+            </div>
+            <div class="pain-point">
+                <div class="pain-icon">&#128338;</div>
+                <div>
+                    <h4>Open Finance 2026</h4>
+                    <p>La CMF exige APIs abiertas para julio 2026. La arquitectura actual no est&aacute; preparada para esta regulaci&oacute;n.</p>
+                </div>
+            </div>
+            <div class="pain-point">
+                <div class="pain-icon">&#128202;</div>
+                <div>
+                    <h4>Reporting Limitado</h4>
+                    <p>Sin dashboard de Business Intelligence en tiempo real. Reportes manuales en Excel que toman horas generar.</p>
+                </div>
+            </div>
+            <div class="pain-point">
+                <div class="pain-icon">&#128274;</div>
+                <div>
+                    <h4>Aprobaciones Lentas</h4>
+                    <p>Flujos de aprobaci&oacute;n basados en email y papel. Sin scoring autom&aacute;tico de riesgo para operaciones.</p>
+                </div>
+            </div>
+            <div class="pain-point">
+                <div class="pain-icon">&#127760;</div>
+                <div>
+                    <h4>Portal de Clientes Inexistente</h4>
+                    <p>Los clientes corporativos no tienen autoservicio digital. Dependen de llamadas y emails para consultar estados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 4: DOLOR -> SOLUCION ===== -->
+    <div class="slide hero-bg scrollable" data-slide="5">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 100" fill="none" stroke="#6366f1" stroke-width="1"><path d="M10,60 L30,60 L40,50 L150,50 L160,40 L180,40 L190,50 L190,70 L10,70 Z"/><rect x="50" y="30" width="25" height="20" rx="2"/><rect x="80" y="25" width="25" height="25" rx="2"/><rect x="110" y="30" width="25" height="20" rx="2"/><line x1="10" y1="75" x2="190" y2="75" stroke-dasharray="4,4"/></svg></div>
+        <div class="section-label anim-1">DOLOR &rarr; SOLUCI&Oacute;N</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">Cada Problema</span> Tiene Respuesta</h2>
+        <p class="slide-subtitle anim-3" style="margin-bottom:20px;">Mapeo directo de cada dolor a su soluci&oacute;n en Global CX</p>
+        <div class="grid-3 anim-4">
+            <div class="solution-card">
+                <div class="pain-label">Dolor</div>
+                <div class="pain-text">SWIFT Manual (15-25 min)</div>
+                <div class="arrow">&#8595;</div>
+                <div class="sol-label">Soluci&oacute;n</div>
+                <div class="sol-text">Constructor SWIFT visual con autocompletado. Genera MT700 en &lt;2 min con validaci&oacute;n en tiempo real.</div>
+            </div>
+            <div class="solution-card">
+                <div class="pain-label">Dolor</div>
+                <div class="pain-text">Sistemas Fragmentados</div>
+                <div class="arrow">&#8595;</div>
+                <div class="sol-label">Soluci&oacute;n</div>
+                <div class="sol-text">Plataforma CQRS unificada: LC, Garant&iacute;as, Cobranzas, Financiamiento en un solo sistema con Event Sourcing.</div>
+            </div>
+            <div class="solution-card">
+                <div class="pain-label">Dolor</div>
+                <div class="pain-text">Open Finance 2026</div>
+                <div class="arrow">&#8595;</div>
+                <div class="sol-label">Soluci&oacute;n</div>
+                <div class="sol-text">Arquitectura API-first con OpenAPI 3.0, OAuth2 y webhooks. Lista para cumplir la normativa CMF.</div>
+            </div>
+            <div class="solution-card">
+                <div class="pain-label">Dolor</div>
+                <div class="pain-text">Reporting Limitado</div>
+                <div class="arrow">&#8595;</div>
+                <div class="sol-label">Soluci&oacute;n</div>
+                <div class="sol-text">Dashboard BI en tiempo real con KPIs, alertas configurables y exportaci&oacute;n autom&aacute;tica de reportes.</div>
+            </div>
+            <div class="solution-card">
+                <div class="pain-label">Dolor</div>
+                <div class="pain-text">Aprobaciones Lentas</div>
+                <div class="arrow">&#8595;</div>
+                <div class="sol-label">Soluci&oacute;n</div>
+                <div class="sol-text">Motor de flujos de aprobaci&oacute;n configurables con scoring de riesgo autom&aacute;tico y notificaciones en tiempo real.</div>
+            </div>
+            <div class="solution-card">
+                <div class="pain-label">Dolor</div>
+                <div class="pain-text">Sin Portal de Clientes</div>
+                <div class="arrow">&#8595;</div>
+                <div class="sol-label">Soluci&oacute;n</div>
+                <div class="sol-text">Portal web de autoservicio para clientes corporativos con tracking de operaciones, documentos y chat IA.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 5: CAPACIDADES CLAVE ===== -->
+    <div class="slide hero-bg scrollable" data-slide="6">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 120" fill="none" stroke="#6366f1" stroke-width="1"><path d="M30,80 L60,80 L80,60 L170,60 L180,50 L190,50 L190,80 L195,80"/><path d="M90,60 L80,35 L130,25 L140,60"/><path d="M100,25 L100,15 L130,15 L135,25"/><circle cx="50" cy="88" r="7"/><circle cx="170" cy="88" r="7"/><line x1="75" y1="40" x2="140" y2="40" stroke-dasharray="3,3" opacity="0.5"/></svg></div>
+        <div class="section-label anim-1">CAPACIDADES CLAVE</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">8 M&oacute;dulos</span> Integrados</h2>
+        <p class="slide-subtitle anim-3" style="margin-bottom:20px;">Todo lo que BCI necesita para dominar Trade Finance digital</p>
+        <div class="grid-4 anim-4">
+            <div class="glass-card">
+                <div class="card-icon" style="background:var(--gradient-blue);">&#9997;&#65039;</div>
+                <h3>Constructor SWIFT</h3>
+                <p>Editor visual de mensajes MT/MX con validaci&oacute;n de campos, autocompletado y previsualizaci&oacute;n en tiempo real.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon" style="background:var(--gradient-cyan);">&#9989;</div>
+                <h3>Flujos de Aprobaci&oacute;n</h3>
+                <p>Motor de workflows configurables con niveles jer&aacute;rquicos, delegaci&oacute;n autom&aacute;tica y audit trail completo.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon" style="background:var(--gradient-green);">&#128202;</div>
+                <h3>Dashboard BI</h3>
+                <p>Visualizaci&oacute;n de portafolio en tiempo real con KPIs, tendencias, alertas y exportaci&oacute;n a Excel/PDF.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon" style="background:var(--gradient-gold);">&#128737;&#65039;</div>
+                <h3>Motor de Riesgo</h3>
+                <p>Scoring autom&aacute;tico por operaci&oacute;n y participante con reglas configurables y machine learning integrado.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon" style="background:var(--gradient-pink);">&#129302;</div>
+                <h3>Chat IA con RAG</h3>
+                <p>Asistente conversacional entrenado con UCP 600, ISBP y pol&iacute;ticas internas. Respuestas contextualizadas.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon" style="background:linear-gradient(135deg, #f59e0b, #10b981);">&#128176;</div>
+                <h3>Comisiones</h3>
+                <p>C&aacute;lculo autom&aacute;tico de comisiones con reglas DRL, tarifarios personalizables y contabilizaci&oacute;n integrada.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon" style="background:linear-gradient(135deg, #64748b, #94a3b8);">&#128209;</div>
+                <h3>Auditor&iacute;a Completa</h3>
+                <p>Event Sourcing nativo: cada cambio registrado con timestamp, usuario y detalle. Cumplimiento regulatorio total.</p>
+            </div>
+            <div class="glass-card">
+                <div class="card-icon" style="background:linear-gradient(135deg, #06b6d4, #ec4899);">&#127760;</div>
+                <h3>Portal de Clientes</h3>
+                <p>Autoservicio web para clientes corporativos: tracking de operaciones, subida de documentos y comunicaci&oacute;n directa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 6: CASOS DE USO BCI ===== -->
+    <div class="slide hero-bg" data-slide="7">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 200" fill="none" stroke="#6366f1" stroke-width="1.5"><circle cx="100" cy="100" r="80"/><circle cx="100" cy="100" r="5" fill="#6366f1"/><line x1="100" y1="100" x2="100" y2="40"/><line x1="100" y1="100" x2="150" y2="130"/><path d="M100,25 L105,20 L100,15 L95,20 Z" fill="#6366f1"/><path d="M175,100 L180,105 L185,100 L180,95 Z" fill="#6366f1"/><path d="M100,175 L105,180 L100,185 L95,180 Z" fill="#6366f1"/><path d="M15,100 L20,105 L25,100 L20,95 Z" fill="#6366f1"/></svg></div>
+        <div class="section-label anim-1">CASOS DE USO BCI</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">Escenarios Reales</span></h2>
+        <p class="slide-subtitle anim-3">C&oacute;mo Global CX transforma operaciones cotidianas en BCI</p>
+        <div class="grid-3 anim-4">
+            <div class="usecase-card">
+                <div class="uc-icon">&#128188;</div>
+                <h3>Portafolio en 30 Segundos</h3>
+                <div class="uc-label" style="color:var(--danger);">Antes</div>
+                <div class="uc-before">Analista extrae datos de 3 sistemas diferentes. Consolida en Excel. Toma 2+ horas generar vista de portafolio.</div>
+                <div class="uc-label" style="color:var(--success);">Con Global CX</div>
+                <div class="uc-after">Dashboard unificado con todos los productos. Filtros por cliente, moneda, vencimiento. Carga en &lt;30 segundos.</div>
+            </div>
+            <div class="usecase-card">
+                <div class="uc-icon">&#128196;</div>
+                <h3>Aprobaci&oacute;n LC con Scoring</h3>
+                <div class="uc-label" style="color:var(--danger);">Antes</div>
+                <div class="uc-before">Analista revisa manualmente al participante, busca historial en diferentes bases, escala por email. 2-3 d&iacute;as.</div>
+                <div class="uc-label" style="color:var(--success);">Con Global CX</div>
+                <div class="uc-after">Risk scoring autom&aacute;tico al crear operaci&oacute;n. Workflow de aprobaci&oacute;n con escalamiento inteligente. &lt;4 horas.</div>
+            </div>
+            <div class="usecase-card">
+                <div class="uc-icon">&#129302;</div>
+                <h3>IA Conversacional Trade</h3>
+                <div class="uc-label" style="color:var(--danger);">Antes</div>
+                <div class="uc-before">Consultas sobre UCP 600 o pol&iacute;ticas internas requieren buscar manuales f&iacute;sicos o llamar a especialistas.</div>
+                <div class="uc-label" style="color:var(--success);">Con Global CX</div>
+                <div class="uc-after">Chat IA entrenado con regulaciones y pol&iacute;ticas BCI. Respuestas instant&aacute;neas con citas de fuentes.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 7: INTEGRACION ECOSISTEMA ===== -->
+    <div class="slide hero-bg scrollable" data-slide="8">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 200" fill="none" stroke="#6366f1" stroke-width="1"><circle cx="100" cy="100" r="20"/><circle cx="100" cy="40" r="12"/><circle cx="160" cy="70" r="12"/><circle cx="160" cy="130" r="12"/><circle cx="100" cy="160" r="12"/><circle cx="40" cy="130" r="12"/><circle cx="40" cy="70" r="12"/><line x1="100" y1="80" x2="100" y2="52"/><line x1="118" y1="88" x2="148" y2="74"/><line x1="118" y1="112" x2="148" y2="126"/><line x1="100" y1="120" x2="100" y2="148"/><line x1="82" y1="112" x2="52" y2="126"/><line x1="82" y1="88" x2="52" y2="74"/></svg></div>
+        <div class="section-label anim-1">INTEGRACI&Oacute;N</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">Ecosistema BCI</span></h2>
+        <p class="slide-subtitle anim-3" style="margin-bottom:20px;">Arquitectura de integraci&oacute;n transparente con los sistemas existentes</p>
+        <div class="eco-hub anim-4">
+            <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.15em; color:var(--bci-orange-light);">Sistemas BCI</div>
+            <div class="eco-row">
+                <div class="eco-box" style="background:rgba(232,89,12,0.15); border:1px solid rgba(232,89,12,0.3); color:var(--bci-orange-light);">Core Banking</div>
+                <div class="eco-box" style="background:rgba(232,89,12,0.15); border:1px solid rgba(232,89,12,0.3); color:var(--bci-orange-light);">Data Hub</div>
+                <div class="eco-box" style="background:rgba(232,89,12,0.15); border:1px solid rgba(232,89,12,0.3); color:var(--bci-orange-light);">MACHBANK</div>
+                <div class="eco-box" style="background:rgba(232,89,12,0.15); border:1px solid rgba(232,89,12,0.3); color:var(--bci-orange-light);">BCI GPT</div>
+            </div>
+            <div class="eco-connector">&#8595; APIs REST / Webhooks &#8595;</div>
+            <div class="eco-row">
+                <div class="eco-box" style="background:rgba(99,102,241,0.2); border:1px solid rgba(99,102,241,0.4); color:var(--primary-light); min-width:280px; font-size:1rem; padding:14px 24px;">&#9670; Global CX Platform &#9670;</div>
+            </div>
+            <div class="eco-connector">&#8595; APIs / SWIFT / Mensajer&iacute;a &#8595;</div>
+            <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.15em; color:var(--accent-light);">Ecosistema Externo</div>
+            <div class="eco-row">
+                <div class="eco-box" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3); color:var(--accent-light);">SWIFT Network</div>
+                <div class="eco-box" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3); color:var(--accent-light);">CMF / Open Finance</div>
+                <div class="eco-box" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3); color:var(--accent-light);">Bancos Corresponsales</div>
+                <div class="eco-box" style="background:rgba(6,182,212,0.15); border:1px solid rgba(6,182,212,0.3); color:var(--accent-light);">Clientes Corp.</div>
+            </div>
+        </div>
+        <div class="anim-5" style="margin-top:24px; width:100%; max-width:900px; overflow-x:auto;">
+            <table class="roi-table" style="min-width:600px;">
+                <thead><tr><th>Sistema BCI</th><th>M&eacute;todo de Integraci&oacute;n</th><th>Datos Intercambiados</th></tr></thead>
+                <tbody>
+                    <tr><td>Core Banking</td><td>API REST bidireccional</td><td>Cuentas, saldos, contabilizaci&oacute;n</td></tr>
+                    <tr><td>Data Hub</td><td>Event streaming (Kafka)</td><td>Eventos de operaciones, KPIs</td></tr>
+                    <tr><td>MACHBANK</td><td>Webhooks</td><td>Pagos internacionales, FX</td></tr>
+                    <tr><td>BCI GPT</td><td>API embeddings</td><td>Conocimiento Trade Finance, RAG</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 8: ROI ESTIMADO ===== -->
+    <div class="slide hero-bg scrollable" data-slide="9">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 160" fill="none" stroke="#6366f1" stroke-width="1"><rect x="40" y="100" width="120" height="30" rx="3"/><rect x="60" y="70" width="80" height="30" rx="3"/><line x1="100" y1="70" x2="100" y2="30"/><line x1="80" y1="40" x2="120" y2="40"/><line x1="70" y1="50" x2="130" y2="50"/><path d="M90,30 L100,15 L110,30"/><line x1="40" y1="135" x2="40" y2="100" stroke-dasharray="3,3" opacity="0.5"/><line x1="160" y1="135" x2="160" y2="100" stroke-dasharray="3,3" opacity="0.5"/></svg></div>
+        <div class="section-label anim-1">ROI ESTIMADO</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">Retorno de Inversi&oacute;n</span></h2>
+        <p class="slide-subtitle anim-3" style="margin-bottom:20px;">Impacto financiero proyectado a 24 meses</p>
+        <div class="anim-4" style="width:100%; max-width:1000px; overflow-x:auto;">
+            <table class="roi-table" style="min-width:700px;">
+                <thead>
+                    <tr><th>&Aacute;rea de Impacto</th><th>Situaci&oacute;n Actual</th><th>Con Global CX</th><th>Mejora</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Procesamiento SWIFT</td><td>15-25 min / mensaje</td><td>2-3 min / mensaje</td><td>-85%</td></tr>
+                    <tr><td>Generaci&oacute;n Portafolio</td><td>2+ horas</td><td>30 segundos</td><td>-99%</td></tr>
+                    <tr><td>Aprobaci&oacute;n de LC</td><td>2-3 d&iacute;as</td><td>&lt;4 horas</td><td>-90%</td></tr>
+                    <tr><td>Errores en Mensajes SWIFT</td><td>8-12% tasa de error</td><td>&lt;1% con validaci&oacute;n</td><td>-92%</td></tr>
+                    <tr><td>Costo Operativo / Transacci&oacute;n</td><td>$45-65 USD</td><td>$8-15 USD</td><td>-78%</td></tr>
+                    <tr><td>Cumplimiento Open Finance</td><td>No preparado</td><td>API-first nativo</td><td>&#10003;</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="anim-5" style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:20px;">
+            <div class="stat-box">
+                <div style="font-size:2rem; font-weight:900; color:var(--success);">$2.4M</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Ahorro Anual Estimado</div>
+            </div>
+            <div class="stat-box">
+                <div style="font-size:2rem; font-weight:900; color:var(--accent-light);">340%</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">ROI a 24 Meses</div>
+            </div>
+            <div class="stat-box">
+                <div style="font-size:2rem; font-weight:900; color:var(--primary-light);">8 meses</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Payback Period</div>
+            </div>
+        </div>
+        <div class="savings-banner anim-6">
+            <div style="font-size:1.1rem; font-weight:700; color:var(--success);">Ahorro Acumulado Proyectado a 3 A&ntilde;os: USD $7.2M+</div>
+            <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:6px;">Incluye reducci&oacute;n de personal dedicado, eliminaci&oacute;n de errores, y eficiencia operativa</div>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 9: HOJA DE RUTA ===== -->
+    <div class="slide hero-bg" data-slide="10">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 200" fill="none" stroke="#6366f1" stroke-width="1.5"><circle cx="100" cy="100" r="80"/><circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="5" fill="#6366f1"/><line x1="100" y1="100" x2="100" y2="45" stroke-width="2.5"/><line x1="100" y1="100" x2="140" y2="120" stroke-width="2"/><path d="M100,30 L103,22 L97,22 Z" fill="#6366f1"/><path d="M170,100 L178,103 L178,97 Z" fill="#6366f1"/><path d="M100,170 L103,178 L97,178 Z" fill="#6366f1"/><path d="M30,100 L22,103 L22,97 Z" fill="#6366f1"/></svg></div>
+        <div class="section-label anim-1">HOJA DE RUTA</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">Roadmap</span> de Implementaci&oacute;n</h2>
+        <p class="slide-subtitle anim-3">4 fases para llevar a BCI al liderazgo digital en Trade Finance</p>
+        <div class="timeline anim-4">
+            <div class="timeline-phase">
+                <div style="font-size:0.7rem; font-weight:700; color:var(--primary-light);">Fase 1</div>
+                <div class="timeline-dot" style="background:var(--primary);"></div>
+                <h4>PoC (4-6 sem)</h4>
+                <p>Ambiente de prueba con datos reales de BCI. Demostraci&oacute;n de constructor SWIFT, dashboard BI y chat IA con equipo seleccionado.</p>
+            </div>
+            <div class="timeline-phase">
+                <div style="font-size:0.7rem; font-weight:700; color:var(--accent-light);">Fase 2</div>
+                <div class="timeline-dot" style="background:var(--accent);"></div>
+                <h4>Piloto (8-12 sem)</h4>
+                <p>Integraci&oacute;n con Core Banking y Data Hub. Flujos de aprobaci&oacute;n. Piloto con 2-3 sucursales principales y clientes top.</p>
+            </div>
+            <div class="timeline-phase">
+                <div style="font-size:0.7rem; font-weight:700; color:var(--success);">Fase 3</div>
+                <div class="timeline-dot" style="background:var(--success);"></div>
+                <h4>Producci&oacute;n (12-16 sem)</h4>
+                <p>Despliegue nacional. Motor de comisiones. Portal de clientes. Integraci&oacute;n completa con MACHBANK y APIs Open Finance.</p>
+            </div>
+            <div class="timeline-phase">
+                <div style="font-size:0.7rem; font-weight:700; color:var(--warning);">Fase 4</div>
+                <div class="timeline-dot" style="background:var(--warning);"></div>
+                <h4>Diferenciaci&oacute;n (ongoing)</h4>
+                <p>IA avanzada, modelos predictivos, autoservicio completo para clientes, y expansi&oacute;n a nuevos productos financieros.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 10: COMPARACION ===== -->
+    <div class="slide hero-bg scrollable" data-slide="11">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 100" fill="none" stroke="#6366f1" stroke-width="1"><path d="M10,60 L40,60 L50,50 L160,50 L170,45 L185,45 L190,55 L190,65 L10,65 Z"/><path d="M60,50 L65,35 L140,30 L155,50"/><line x1="50" y1="40" x2="160" y2="40" stroke-dasharray="3,3" opacity="0.4"/><circle cx="35" cy="68" r="5"/><circle cx="170" cy="68" r="5"/><path d="M10,70 L190,70" stroke-dasharray="6,4" opacity="0.3"/></svg></div>
+        <div class="section-label anim-1">COMPARACI&Oacute;N</div>
+        <h2 class="slide-title anim-2"><span class="gradient-text">Global CX</span> vs Legacy</h2>
+        <p class="slide-subtitle anim-3" style="margin-bottom:20px;">10 criterios cr&iacute;ticos para evaluar la plataforma</p>
+        <div class="anim-4" style="width:100%; max-width:1000px; overflow-x:auto;">
+            <table class="comparison-table" style="min-width:650px;">
+                <thead>
+                    <tr>
+                        <th>Criterio</th>
+                        <th class="highlight">Global CX</th>
+                        <th>Soluciones Legacy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Constructor SWIFT Visual</td><td class="check">&#10003;</td><td class="cross">&#10007;</td></tr>
+                    <tr><td>Event Sourcing / CQRS</td><td class="check">&#10003;</td><td class="cross">&#10007;</td></tr>
+                    <tr><td>IA Conversacional (RAG)</td><td class="check">&#10003;</td><td class="cross">&#10007;</td></tr>
+                    <tr><td>API-first / Open Finance</td><td class="check">&#10003;</td><td class="partial">Parcial</td></tr>
+                    <tr><td>Dashboard BI en Tiempo Real</td><td class="check">&#10003;</td><td class="partial">Parcial</td></tr>
+                    <tr><td>Risk Scoring Autom&aacute;tico</td><td class="check">&#10003;</td><td class="cross">&#10007;</td></tr>
+                    <tr><td>Portal de Clientes</td><td class="check">&#10003;</td><td class="cross">&#10007;</td></tr>
+                    <tr><td>Comisiones con DRL</td><td class="check">&#10003;</td><td class="partial">Manual</td></tr>
+                    <tr><td>Auditor&iacute;a Event-level</td><td class="check">&#10003;</td><td class="partial">B&aacute;sica</td></tr>
+                    <tr><td>Tiempo de Implementaci&oacute;n</td><td style="color:var(--success); font-weight:600;">4-6 meses</td><td style="color:var(--danger); font-weight:600;">12-18 meses</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===== SLIDE 11: CTA ===== -->
+    <div class="slide hero-bg" data-slide="12">
+        <div class="slide-vehicle"><svg viewBox="0 0 200 120" fill="none" stroke="#6366f1" stroke-width="1"><path d="M60,90 L80,90 L100,70 L150,65 L170,55 L180,55"/><path d="M100,70 L80,40 L140,30 L160,55"/><path d="M90,40 L90,25 L140,20 L145,30"/><circle cx="70" cy="96" r="5"/><circle cx="160" cy="96" r="5" opacity="0.3"/><path d="M170,50 L185,40 L190,42" stroke-width="0.8" opacity="0.5"/></svg></div>
+        <div class="section-label anim-1">SIGUIENTE PASO</div>
+        <h2 class="slide-title anim-2" style="font-size:2.6rem;"><span class="gradient-text">&iquest;Listo para potenciar</span><br>Trade Finance de BCI?</h2>
+        <p class="slide-subtitle anim-3">Tres pasos concretos para comenzar la transformaci&oacute;n</p>
+        <div class="grid-3 anim-4" style="max-width:900px; margin-bottom:30px;">
+            <div class="next-step-card">
+                <div class="step-num">1</div>
+                <h3>Demo Personalizada</h3>
+                <p>Sesi&oacute;n de 90 minutos con el equipo de Comex de BCI. Casos de uso reales con datos representativos.</p>
+            </div>
+            <div class="next-step-card">
+                <div class="step-num">2</div>
+                <h3>PoC en 4 Semanas</h3>
+                <p>Ambiente de prueba configurado con la data de BCI. Evaluaci&oacute;n de fit t&eacute;cnico y funcional sin compromiso.</p>
+            </div>
+            <div class="next-step-card">
+                <div class="step-num">3</div>
+                <h3>Propuesta Comercial</h3>
+                <p>Modelo de licenciamiento flexible adaptado al volumen de operaciones y roadmap de BCI.</p>
+            </div>
+        </div>
+        <div class="anim-5">
+            <a href="mailto:info@globalcx.com?subject=Demo%20Global%20CX%20para%20BCI" class="cta-btn" style="animation:glow 3s ease-in-out infinite;">Agendar Demo &rarr;</a>
+        </div>
+        <div class="anim-6" style="margin-top:30px; text-align:center;">
+            <div style="font-size:0.85rem; color:var(--text-muted);">info@globalcx.com &nbsp;|&nbsp; www.globalcx.com</div>
+            <div style="font-size:0.7rem; color:var(--text-muted); margin-top:8px;">&copy; 2026 Yacaretech Cia. Ltda. Todos los derechos reservados.</div>
+        </div>
+    </div>
+
+</div><!-- end .presentation -->
+
+<!-- ============ NAVIGATION ============ -->
+<div class="nav-dots" id="navDots"></div>
+<div class="cine-controls" id="cineControls">
+    <button class="cine-btn" id="prevBtn" onclick="navigate(-1)" aria-label="Anterior">&#9664;</button>
+    <button class="cine-btn" id="playPauseBtn" onclick="toggleAutoPlay()" aria-label="Auto-play">&#9654;</button>
+    <span class="slide-counter" id="slideCounter">1 / 13</span>
+    <button class="cine-btn" id="nextBtn" onclick="navigate(1)" aria-label="Siguiente">&#9654;</button>
+    <button class="cine-btn" id="audioBtn" onclick="toggleAudio()" aria-label="Audio" style="font-size:0.85rem;">&#9835;</button>
+</div>
+<div class="progress-bar" id="progressBar"></div>
+
+<script>
+(function() {
+    'use strict';
+
+    // ============ CONFIGURATION ============
+    var TOTAL_SLIDES = 13;
+    var SLIDE_DURATION = [15, 12, 10, 12, 12, 12, 14, 12, 14, 14, 12, 14, 15];
+    var currentSlide = 0;
+    var isPlaying = false;
+    var autoPlayTimer = null;
+    var progressTimer = null;
+    var audioEnabled = false;
+    var audioCtx = null;
+    var experienceStarted = false;
+
+    // ============ LANDING PARTICLES ============
+    function createParticles() {
+        var container = document.getElementById('particles');
+        if (!container) return;
+        var colors = ['#6366f1','#06b6d4','#10b981','#818cf8','#22d3ee'];
+        for (var i = 0; i < 40; i++) {
+            var p = document.createElement('div');
+            p.className = 'particle';
+            var size = Math.random() * 6 + 2;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.background = colors[Math.floor(Math.random() * colors.length)];
+            p.style.animationDelay = (Math.random() * 8) + 's';
+            p.style.animationDuration = (Math.random() * 6 + 6) + 's';
+            container.appendChild(p);
+        }
+    }
+    createParticles();
+
+    // ============ START EXPERIENCE ============
+    window.startExperience = function() {
+        if (experienceStarted) return;
+        experienceStarted = true;
+        try {
+            // Auto-activate audio on user gesture (required by browsers)
+            if (!audioEnabled) {
+                initAudio();
+                audioEnabled = true;
+                var toggle = document.getElementById('audioToggle');
+                if (toggle) toggle.textContent = '\u266B Audio Ambiental: ON';
+                var audioB = document.getElementById('audioBtn');
+                if (audioB) audioB.classList.add('active');
+            }
+            var landing = document.getElementById('landing');
+            if (landing) landing.classList.add('hidden');
+            goToSlide(0);
+            // Auto-start cinematic playback
+            setTimeout(function() { startAutoPlay(); }, 800);
+        } catch(e) {
+            // iOS fallback
+            var landing2 = document.getElementById('landing');
+            if (landing2) { landing2.style.opacity = '0'; landing2.style.visibility = 'hidden'; landing2.style.pointerEvents = 'none'; }
+        }
+    };
+
+    // iOS fallback: multiple event types
+    var startBtn = document.getElementById('startBtn');
+    if (startBtn) {
+        startBtn.addEventListener('click', function(e) { e.preventDefault(); window.startExperience(); });
+        startBtn.addEventListener('touchend', function(e) { e.preventDefault(); window.startExperience(); });
+    }
+
+    // ============ NAVIGATION DOTS ============
+    var dotsContainer = document.getElementById('navDots');
+    for (var i = 0; i < TOTAL_SLIDES; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('data-index', i);
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', (function(idx) { return function() { goToSlide(idx); }; })(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    // ============ SLIDE NAVIGATION ============
+    function goToSlide(index) {
+        if (index < 0 || index >= TOTAL_SLIDES) return;
+        var slides = document.querySelectorAll('.slide');
+        var dots = document.querySelectorAll('.nav-dot');
+        slides.forEach(function(s) { s.classList.remove('active'); });
+        dots.forEach(function(d) { d.classList.remove('active'); });
+        if (slides[index]) slides[index].classList.add('active');
+        if (dots[index]) dots[index].classList.add('active');
+        currentSlide = index;
+        updateSlide();
+        playSlideTransitionSfx(index);
+    }
+
+    window.navigate = function(dir) {
+        var next = currentSlide + dir;
+        if (next < 0) next = TOTAL_SLIDES - 1;
+        if (next >= TOTAL_SLIDES) next = 0;
+        goToSlide(next);
+    };
+
+    function updateSlide() {
+        var counter = document.getElementById('slideCounter');
+        if (counter) counter.textContent = (currentSlide + 1) + ' / ' + TOTAL_SLIDES;
+        var prevBtn = document.getElementById('prevBtn');
+        var nextBtn = document.getElementById('nextBtn');
+        if (prevBtn) prevBtn.disabled = false;
+        if (nextBtn) nextBtn.disabled = false;
+
+        // Reset auto-play timer if playing
+        if (isPlaying) {
+            scheduleNext();
+        }
+    }
+
+    // ============ AUTO-PLAY ============
+    window.toggleAutoPlay = function() {
+        if (isPlaying) {
+            stopAutoPlay();
+        } else {
+            startAutoPlay();
+        }
+    };
+
+    function startAutoPlay() {
+        isPlaying = true;
+        var btn = document.getElementById('playPauseBtn');
+        if (btn) { btn.innerHTML = '&#9646;&#9646;'; btn.classList.add('active'); }
+        document.body.classList.add('cinematic');
+        scheduleNext();
+    }
+
+    function stopAutoPlay() {
+        isPlaying = false;
+        var btn = document.getElementById('playPauseBtn');
+        if (btn) { btn.innerHTML = '&#9654;'; btn.classList.remove('active'); }
+        document.body.classList.remove('cinematic');
+        if (autoPlayTimer) { clearTimeout(autoPlayTimer); autoPlayTimer = null; }
+        if (progressTimer) { cancelAnimationFrame(progressTimer); progressTimer = null; }
+        var bar = document.getElementById('progressBar');
+        if (bar) bar.style.width = '0%';
+    }
+
+    function scheduleNext() {
+        if (autoPlayTimer) clearTimeout(autoPlayTimer);
+        if (progressTimer) cancelAnimationFrame(progressTimer);
+        var duration = (SLIDE_DURATION[currentSlide] || 10) * 1000;
+        var startTime = Date.now();
+        animateProgress(startTime, duration);
+        autoPlayTimer = setTimeout(function() {
+            if (!isPlaying) return;
+            var next = currentSlide + 1;
+            if (next >= TOTAL_SLIDES) {
+                stopAutoPlay();
+                return;
+            }
+            goToSlide(next);
+        }, duration);
+    }
+
+    function animateProgress(startTime, duration) {
+        var bar = document.getElementById('progressBar');
+        if (!bar) return;
+        function frame() {
+            if (!isPlaying) return;
+            var elapsed = Date.now() - startTime;
+            var pct = Math.min((elapsed / duration) * 100, 100);
+            bar.style.width = pct + '%';
+            if (pct < 100) {
+                progressTimer = requestAnimationFrame(frame);
+            }
+        }
+        progressTimer = requestAnimationFrame(frame);
+    }
+
+    // ============ AUDIO ============
+    window.toggleAudio = function() {
+        if (!audioEnabled) {
+            initAudio();
+            audioEnabled = true;
+            var toggle = document.getElementById('audioToggle');
+            if (toggle) toggle.textContent = '\u266B Audio Ambiental: ON';
+            var audioB = document.getElementById('audioBtn');
+            if (audioB) audioB.classList.add('active');
+        } else {
+            if (audioCtx) { audioCtx.close(); audioCtx = null; }
+            audioEnabled = false;
+            var toggle2 = document.getElementById('audioToggle');
+            if (toggle2) toggle2.textContent = '\u266B Audio Ambiental: OFF';
+            var audioB2 = document.getElementById('audioBtn');
+            if (audioB2) audioB2.classList.remove('active');
+        }
+    };
+
+    function initAudio() {
+        try {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AC();
+            if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+
+            // Chord progression: Cmaj7 -> Am9 -> Fmaj7 -> Gsus2
+            var chords = [
+                [261.63, 329.63, 392.00, 493.88],  // Cmaj7
+                [220.00, 277.18, 329.63, 493.88],  // Am9
+                [174.61, 220.00, 261.63, 329.63],  // Fmaj7
+                [196.00, 220.00, 293.66, 392.00]   // Gsus2
+            ];
+
+            // Pentatonic scale for melody
+            var pentatonic = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
+
+            var masterGain = audioCtx.createGain();
+            masterGain.gain.value = 0.12;
+            masterGain.connect(audioCtx.destination);
+
+            // Deep pad
+            function playPad() {
+                if (!audioCtx || audioCtx.state === 'closed') return;
+                var chordIdx = Math.floor((Date.now() / 4000) % 4);
+                var chord = chords[chordIdx];
+                chord.forEach(function(freq) {
+                    var osc = audioCtx.createOscillator();
+                    var gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.value = freq * 0.5;
+                    gain.gain.setValueAtTime(0, audioCtx.currentTime);
+                    gain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 1);
+                    gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 3.8);
+                    osc.connect(gain);
+                    gain.connect(masterGain);
+                    osc.start(audioCtx.currentTime);
+                    osc.stop(audioCtx.currentTime + 4);
+                });
+                setTimeout(playPad, 4000);
+            }
+
+            // Melody
+            function playMelody() {
+                if (!audioCtx || audioCtx.state === 'closed') return;
+                var note = pentatonic[Math.floor(Math.random() * pentatonic.length)];
+                var osc = audioCtx.createOscillator();
+                var gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.value = note;
+                gain.gain.setValueAtTime(0, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
+                osc.connect(gain);
+                gain.connect(masterGain);
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 2.5);
+                var nextDelay = 1500 + Math.random() * 2500;
+                setTimeout(playMelody, nextDelay);
+            }
+
+            playPad();
+            setTimeout(playMelody, 1000);
+
+        } catch(e) {
+            // Audio not supported
+            audioEnabled = false;
+        }
+    }
+
+    // ============ SLIDE TRANSITION SFX ============
+    function playSfxShipHorn() {
+        if (!audioCtx || audioCtx.state !== 'running') return;
+        var t = audioCtx.currentTime;
+        var osc = audioCtx.createOscillator();
+        var osc2 = audioCtx.createOscillator();
+        var g = audioCtx.createGain();
+        var flt = audioCtx.createBiquadFilter();
+        osc.type = 'sawtooth'; osc.frequency.value = 85;
+        osc2.type = 'sine'; osc2.frequency.value = 170;
+        flt.type = 'lowpass'; flt.frequency.value = 300; flt.Q.value = 2;
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.06, t + 0.3);
+        g.gain.setValueAtTime(0.06, t + 1.2);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 2.5);
+        osc.connect(flt); osc2.connect(flt); flt.connect(g); g.connect(audioCtx.destination);
+        osc.start(t); osc.stop(t + 2.6);
+        osc2.start(t); osc2.stop(t + 2.6);
+    }
+
+    function playSfxAirplane() {
+        if (!audioCtx || audioCtx.state !== 'running') return;
+        var t = audioCtx.currentTime;
+        var len = 1.5;
+        var buf = audioCtx.createBuffer(1, audioCtx.sampleRate * len, audioCtx.sampleRate);
+        var d = buf.getChannelData(0);
+        for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * 0.5;
+        var src = audioCtx.createBufferSource();
+        var bp = audioCtx.createBiquadFilter();
+        var g = audioCtx.createGain();
+        src.buffer = buf;
+        bp.type = 'bandpass'; bp.Q.value = 5;
+        bp.frequency.setValueAtTime(200, t);
+        bp.frequency.exponentialRampToValueAtTime(2000, t + 0.8);
+        bp.frequency.exponentialRampToValueAtTime(400, t + 1.5);
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(0.05, t + 0.2);
+        g.gain.setValueAtTime(0.05, t + 0.8);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 1.5);
+        src.connect(bp); bp.connect(g); g.connect(audioCtx.destination);
+        src.start(t); src.stop(t + 1.5);
+    }
+
+    function playSfxCoins() {
+        if (!audioCtx || audioCtx.state !== 'running') return;
+        var t = audioCtx.currentTime;
+        [0, 0.12, 0.24].forEach(function(delay) {
+            var osc = audioCtx.createOscillator();
+            var g = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = 2000 + Math.random() * 1500;
+            g.gain.setValueAtTime(0.04, t + delay);
+            g.gain.exponentialRampToValueAtTime(0.001, t + delay + 0.3);
+            osc.connect(g); g.connect(audioCtx.destination);
+            osc.start(t + delay); osc.stop(t + delay + 0.35);
+        });
+    }
+
+    // Map slides to SFX: ships on 0,4,10 | airplanes on 1,5,11 | coins on 2,8
+    var slideSfx = {
+        0: playSfxShipHorn, 1: playSfxAirplane, 2: playSfxCoins,
+        4: playSfxShipHorn, 5: playSfxAirplane, 8: playSfxCoins,
+        10: playSfxShipHorn, 11: playSfxAirplane
+    };
+
+    function playSlideTransitionSfx(index) {
+        if (!audioEnabled || !audioCtx) return;
+        try {
+            var sfxFn = slideSfx[index];
+            if (sfxFn) sfxFn();
+        } catch(e) {}
+    }
+
+    // ============ KEYBOARD NAVIGATION ============
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); navigate(1); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); }
+        else if (e.key === ' ') { e.preventDefault(); toggleAutoPlay(); }
+        else if (e.key === 'Escape') { stopAutoPlay(); }
+    });
+
+    // ============ TOUCH NAVIGATION ============
+    var touchStartX = 0, touchStartY = 0;
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+        var dx = e.changedTouches[0].screenX - touchStartX;
+        var dy = e.changedTouches[0].screenY - touchStartY;
+        // Horizontal dominance check
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+            if (dx < 0) navigate(1);
+            else navigate(-1);
+        }
+    }, { passive: true });
+
+    // ============ MOUSE WHEEL ============
+    var wheelDebounce = false;
+    document.addEventListener('wheel', function(e) {
+        if (wheelDebounce) return;
+        wheelDebounce = true;
+        if (e.deltaY > 0) navigate(1);
+        else if (e.deltaY < 0) navigate(-1);
+        setTimeout(function() { wheelDebounce = false; }, 800);
+    }, { passive: true });
+
+})();
+</script>
+</body>
+</html>
