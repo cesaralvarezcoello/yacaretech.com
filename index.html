@@ -380,36 +380,46 @@ a.product-card-link:hover .product-link-arrow {
   line-height: 1.55;
 }
 
-/* ---- STATS ---- */
+/* ---- WHY US ---- */
 .stats-section {
   background: var(--bg-primary);
-  text-align: center;
 }
 
-.stats-grid {
+.why-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  margin-top: 64px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 56px;
 }
 
-.stat-item {
-  padding: 20px;
+.why-card {
+  background: var(--bg-alt);
+  border-radius: 20px;
+  padding: 40px 32px;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.stat-number {
-  font-size: clamp(2.5rem, 5vw, 3.8rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: var(--text-primary);
-  line-height: 1;
-  margin-bottom: 8px;
+.why-card:hover {
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-4px);
 }
 
-.stat-label {
+.why-icon {
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+.why-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.why-card p {
   font-size: 0.95rem;
   color: var(--text-secondary);
-  font-weight: 500;
+  line-height: 1.6;
 }
 
 /* ---- TECH ---- */
@@ -591,7 +601,7 @@ footer {
 @media (max-width: 960px) {
   .products-grid { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: 1fr 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .contact-layout { grid-template-columns: 1fr; gap: 48px; }
 }
@@ -624,7 +634,7 @@ footer {
 
   .products-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 
   .product-card { padding: 32px 24px; }
@@ -634,7 +644,7 @@ footer {
 @media (max-width: 480px) {
   .hero h1 { font-size: 2.2rem; }
   .hero-buttons { flex-direction: column; align-items: center; }
-  .stats-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
 }
 </style>
@@ -648,7 +658,7 @@ footer {
     <ul class="nav-links" id="navLinks">
       <li><a href="#productos" data-i18n="nav.products">Productos</a></li>
       <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
-      <li><a href="#casos" data-i18n="nav.cases">Casos de &Eacute;xito</a></li>
+      <li><a href="#casos" data-i18n="nav.cases">&iquest;Por qu&eacute; elegirnos?</a></li>
       <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
     </ul>
     <div style="display:flex;align-items:center;gap:16px;">
@@ -742,30 +752,34 @@ footer {
   </div>
 </section>
 
-<!-- ===== CASOS / STATS ===== -->
+<!-- ===== POR QUE ELEGIRNOS ===== -->
 <section class="stats-section" id="casos">
   <div class="container">
-    <div class="fade-in">
-      <p class="section-label" data-i18n="stats.label">Casos de &Eacute;xito</p>
-      <h2 class="section-title" data-i18n="stats.title">N&uacute;meros que respaldan nuestra experiencia</h2>
-      <p class="section-subtitle" style="margin:0 auto;" data-i18n="stats.subtitle">Confianza ganada a trav&eacute;s de resultados reales en el sector financiero global.</p>
+    <div class="fade-in" style="text-align:center;">
+      <p class="section-label" data-i18n="stats.label">&iquest;Por qu&eacute; elegirnos?</p>
+      <h2 class="section-title" data-i18n="stats.title">Enfoque, experiencia y tecnolog&iacute;a de punta</h2>
+      <p class="section-subtitle" style="margin:0 auto;" data-i18n="stats.subtitle">Combinamos conocimiento profundo del sector financiero con ingenier&iacute;a de software moderna para entregar soluciones que realmente importan.</p>
     </div>
-    <div class="stats-grid">
-      <div class="stat-item fade-in">
-        <div class="stat-number" data-count="50">+50</div>
-        <div class="stat-label" data-i18n="stats.institutions">Instituciones Financieras</div>
+    <div class="why-grid">
+      <div class="why-card fade-in">
+        <div class="why-icon">&#127919;</div>
+        <h3 data-i18n="stats.focus.title">Especializaci&oacute;n Financiera</h3>
+        <p data-i18n="stats.focus.desc">No somos generalistas. Cada l&iacute;nea de c&oacute;digo est&aacute; dise&ntilde;ada para resolver problemas reales de banca, trade finance y cumplimiento regulatorio.</p>
       </div>
-      <div class="stat-item fade-in">
-        <div class="stat-number">+10</div>
-        <div class="stat-label" data-i18n="stats.years">A&ntilde;os de Experiencia</div>
+      <div class="why-card fade-in">
+        <div class="why-icon">&#129302;</div>
+        <h3 data-i18n="stats.ai.title">IA Nativa</h3>
+        <p data-i18n="stats.ai.desc">Inteligencia artificial integrada desde el dise&ntilde;o, no como complemento. Automatizaci&oacute;n inteligente de documentos, an&aacute;lisis y toma de decisiones.</p>
       </div>
-      <div class="stat-item fade-in">
-        <div class="stat-number">99.9%</div>
-        <div class="stat-label" data-i18n="stats.uptime">Uptime Garantizado</div>
+      <div class="why-card fade-in">
+        <div class="why-icon">&#9889;</div>
+        <h3 data-i18n="stats.modern.title">Arquitectura Moderna</h3>
+        <p data-i18n="stats.modern.desc">Event Sourcing, CQRS, microservicios y cloud-native. Sistemas que escalan, se auditan y evolucionan sin fricci&oacute;n.</p>
       </div>
-      <div class="stat-item fade-in">
-        <div class="stat-number">+15</div>
-        <div class="stat-label" data-i18n="stats.countries">Pa&iacute;ses</div>
+      <div class="why-card fade-in">
+        <div class="why-icon">&#129309;</div>
+        <h3 data-i18n="stats.partner.title">Partners, No Proveedores</h3>
+        <p data-i18n="stats.partner.desc">Trabajamos como extensi&oacute;n de su equipo. Compromiso real con sus objetivos, plazos y est&aacute;ndares de calidad.</p>
       </div>
     </div>
   </div>
@@ -864,7 +878,7 @@ footer {
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer.company">Empresa</h4>
-        <a href="#casos" data-i18n="footer.cases">Casos de &Eacute;xito</a>
+        <a href="#casos" data-i18n="footer.cases">&iquest;Por qu&eacute; elegirnos?</a>
         <a href="#contacto" data-i18n="footer.contact">Contacto</a>
       </div>
     </div>
@@ -880,7 +894,7 @@ const i18n = {
   es: {
     'nav.products': 'Productos',
     'nav.services': 'Servicios',
-    'nav.cases': 'Casos de \u00c9xito',
+    'nav.cases': '\u00bfPor qu\u00e9 elegirnos?',
     'nav.contact': 'Contacto',
     'hero.title': 'Ingenier\u00eda de Software para el Sector Financiero',
     'hero.subtitle': 'Desarrollamos plataformas de trade finance, core banking e inteligencia artificial para instituciones financieras en Am\u00e9rica Latina y el mundo.',
@@ -909,13 +923,17 @@ const i18n = {
     'services.cloud.desc': 'Transici\u00f3n segura a Azure, GCP o AWS con arquitecturas cloud-native y cero tiempo de inactividad.',
     'services.support.title': 'Soporte y Mantenimiento',
     'services.support.desc': 'Monitoreo 24/7, actualizaciones proactivas y SLAs garantizados para operaci\u00f3n continua.',
-    'stats.label': 'Casos de \u00c9xito',
-    'stats.title': 'N\u00fameros que respaldan nuestra experiencia',
-    'stats.subtitle': 'Confianza ganada a trav\u00e9s de resultados reales en el sector financiero global.',
-    'stats.institutions': 'Instituciones Financieras',
-    'stats.years': 'A\u00f1os de Experiencia',
-    'stats.uptime': 'Uptime Garantizado',
-    'stats.countries': 'Pa\u00edses',
+    'stats.label': '\u00bfPor qu\u00e9 elegirnos?',
+    'stats.title': 'Enfoque, experiencia y tecnolog\u00eda de punta',
+    'stats.subtitle': 'Combinamos conocimiento profundo del sector financiero con ingenier\u00eda de software moderna para entregar soluciones que realmente importan.',
+    'stats.focus.title': 'Especializaci\u00f3n Financiera',
+    'stats.focus.desc': 'No somos generalistas. Cada l\u00ednea de c\u00f3digo est\u00e1 dise\u00f1ada para resolver problemas reales de banca, trade finance y cumplimiento regulatorio.',
+    'stats.ai.title': 'IA Nativa',
+    'stats.ai.desc': 'Inteligencia artificial integrada desde el dise\u00f1o, no como complemento. Automatizaci\u00f3n inteligente de documentos, an\u00e1lisis y toma de decisiones.',
+    'stats.modern.title': 'Arquitectura Moderna',
+    'stats.modern.desc': 'Event Sourcing, CQRS, microservicios y cloud-native. Sistemas que escalan, se auditan y evolucionan sin fricci\u00f3n.',
+    'stats.partner.title': 'Partners, No Proveedores',
+    'stats.partner.desc': 'Trabajamos como extensi\u00f3n de su equipo. Compromiso real con sus objetivos, plazos y est\u00e1ndares de calidad.',
     'tech.label': 'Tecnolog\u00eda',
     'tech.title': 'Construido con lo mejor',
     'tech.subtitle': 'Stack tecnol\u00f3gico de clase mundial para soluciones financieras de misi\u00f3n cr\u00edtica.',
@@ -942,13 +960,13 @@ const i18n = {
     'footer.support': 'Soporte',
     'footer.tech': 'Tecnolog\u00eda',
     'footer.company': 'Empresa',
-    'footer.cases': 'Casos de \u00c9xito',
+    'footer.cases': '\u00bfPor qu\u00e9 elegirnos?',
     'footer.contact': 'Contacto'
   },
   en: {
     'nav.products': 'Products',
     'nav.services': 'Services',
-    'nav.cases': 'Success Stories',
+    'nav.cases': 'Why Us?',
     'nav.contact': 'Contact',
     'hero.title': 'Software Engineering for the Financial Sector',
     'hero.subtitle': 'We build trade finance, core banking and artificial intelligence platforms for financial institutions across Latin America and the world.',
@@ -977,13 +995,17 @@ const i18n = {
     'services.cloud.desc': 'Secure transition to Azure, GCP or AWS with cloud-native architectures and zero downtime.',
     'services.support.title': 'Support & Maintenance',
     'services.support.desc': '24/7 monitoring, proactive updates and guaranteed SLAs for continuous operation.',
-    'stats.label': 'Success Stories',
-    'stats.title': 'Numbers that back our experience',
-    'stats.subtitle': 'Trust earned through real results in the global financial sector.',
-    'stats.institutions': 'Financial Institutions',
-    'stats.years': 'Years of Experience',
-    'stats.uptime': 'Guaranteed Uptime',
-    'stats.countries': 'Countries',
+    'stats.label': 'Why Choose Us?',
+    'stats.title': 'Focus, expertise and cutting-edge technology',
+    'stats.subtitle': 'We combine deep financial sector knowledge with modern software engineering to deliver solutions that truly matter.',
+    'stats.focus.title': 'Financial Specialization',
+    'stats.focus.desc': 'We are not generalists. Every line of code is designed to solve real problems in banking, trade finance and regulatory compliance.',
+    'stats.ai.title': 'Native AI',
+    'stats.ai.desc': 'Artificial intelligence integrated from design, not as an add-on. Intelligent document automation, analysis and decision-making.',
+    'stats.modern.title': 'Modern Architecture',
+    'stats.modern.desc': 'Event Sourcing, CQRS, microservices and cloud-native. Systems that scale, audit and evolve without friction.',
+    'stats.partner.title': 'Partners, Not Vendors',
+    'stats.partner.desc': 'We work as an extension of your team. Real commitment to your goals, timelines and quality standards.',
     'tech.label': 'Technology',
     'tech.title': 'Built with the best',
     'tech.subtitle': 'World-class technology stack for mission-critical financial solutions.',
@@ -1010,7 +1032,7 @@ const i18n = {
     'footer.support': 'Support',
     'footer.tech': 'Technology',
     'footer.company': 'Company',
-    'footer.cases': 'Success Stories',
+    'footer.cases': 'Why Us?',
     'footer.contact': 'Contact'
   }
 };
