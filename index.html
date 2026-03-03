@@ -304,6 +304,25 @@ section {
   background: linear-gradient(135deg, #ff9f0a, #ff6723);
 }
 
+a.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product-link-arrow {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: transform 0.2s;
+}
+
+a.product-card-link:hover .product-link-arrow {
+  transform: translateX(4px);
+}
+
 .product-card h3 {
   font-size: 1.35rem;
   font-weight: 700;
@@ -664,11 +683,12 @@ footer {
       <p class="section-subtitle" data-i18n="products.subtitle">Plataformas robustas dise&ntilde;adas para las necesidades del sector financiero moderno.</p>
     </div>
     <div class="products-grid">
-      <div class="product-card fade-in">
+      <a href="globalCX.html" class="product-card product-card-link fade-in">
         <div class="product-icon">&#9878;</div>
         <h3 data-i18n="products.tf.title">Trade Finance</h3>
         <p data-i18n="products.tf.desc">Plataforma integral para Cartas de Cr&eacute;dito, Garant&iacute;as, Cobranzas Documentarias y operaciones de comercio exterior bajo est&aacute;ndares ICC/UCP.</p>
-      </div>
+        <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
+      </a>
       <div class="product-card fade-in">
         <div class="product-icon">&#9881;</div>
         <h3 data-i18n="products.cb.title">Core Banking</h3>
@@ -876,6 +896,7 @@ const i18n = {
     'products.ai.desc': 'Extracci\u00f3n inteligente de datos de mensajes SWIFT, documentos PDF y formularios bancarios con precisi\u00f3n superior al 98%.',
     'products.cr.title': 'Compliance & Risk',
     'products.cr.desc': 'Soluciones de KYC, AML y gesti\u00f3n de riesgo operacional para cumplimiento regulatorio automatizado y en tiempo real.',
+    'products.tf.cta': 'Explorar \u2192',
     'services.label': 'Servicios',
     'services.title': 'Acompa\u00f1amos cada etapa',
     'services.subtitle': 'Desde la consultor\u00eda estrat\u00e9gica hasta el soporte continuo, cubrimos todo el ciclo de vida de sus proyectos tecnol\u00f3gicos.',
@@ -943,6 +964,7 @@ const i18n = {
     'products.ai.desc': 'Intelligent data extraction from SWIFT messages, PDF documents and banking forms with over 98% accuracy.',
     'products.cr.title': 'Compliance & Risk',
     'products.cr.desc': 'KYC, AML and operational risk management solutions for automated, real-time regulatory compliance.',
+    'products.tf.cta': 'Explore \u2192',
     'services.label': 'Services',
     'services.title': 'We support every stage',
     'services.subtitle': 'From strategic consulting to ongoing support, we cover the entire lifecycle of your technology projects.',
