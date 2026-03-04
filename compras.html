@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="Yacaretech Cia. Ltda.">
+<meta name="description" content="Sistema Inteligente de Compras Publicas Ecuador con IA">
+<meta name="copyright" content="© 2026 Yacaretech Cia. Ltda. Todos los derechos reservados.">
+<title>Compras Publicas EC - Sistema Inteligente con IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --primary: #1d4ed8;
+    --primary-light: #3b82f6;
+    --accent: #059669;
+    --accent-light: #10b981;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --ecuador-yellow: #FFD100;
+    --ecuador-blue: #0038A8;
+    --ecuador-red: #CE1126;
+    --bg-dark: #0a0f1a;
+    --bg-card: rgba(255,255,255,0.05);
+    --bg-glass: rgba(255,255,255,0.07);
+    --border-glass: rgba(255,255,255,0.12);
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --gradient-hero: linear-gradient(135deg, #0c1929 0%, #1e3a5f 50%, #0f2440 100%);
+    --gradient-blue: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+    --gradient-green: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+    --gradient-gold: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
+    --gradient-text: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ============ LANDING ============ */
+.landing {
+    position: fixed; top:0;left:0;right:0;bottom:0; z-index: 1000;
+    background: var(--bg-dark);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.landing.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.landing-particles { position: absolute; top:0;left:0;right:0;bottom:0; overflow: hidden; pointer-events: none; }
+.landing-particles .particle {
+    position: absolute; border-radius: 50%; opacity: 0;
+    animation: particleFloat 8s ease-in-out infinite;
+}
+@keyframes particleFloat {
+    0% { opacity: 0; transform: translateY(100vh) scale(0); }
+    20% { opacity: 0.6; }
+    80% { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-20vh) scale(1); }
+}
+.landing-logo {
+    position: relative; z-index: 1; margin-bottom: 30px;
+    filter: drop-shadow(0 0 40px rgba(29,78,216,0.5));
+    animation: float 6s ease-in-out infinite;
+}
+.landing-title {
+    position: relative; z-index: 1; font-size: 2.6rem; font-weight: 800;
+    letter-spacing: -0.03em; margin-bottom: 8px; text-align: center;
+}
+.landing-sub {
+    position: relative; z-index: 1; font-size: 1.15rem; font-weight: 300;
+    color: var(--text-secondary); margin-bottom: 12px; text-align: center;
+}
+.landing-legal {
+    position: relative; z-index: 1; font-size: 0.8rem; font-weight: 400;
+    color: var(--text-muted); margin-bottom: 40px; text-align: center; max-width: 500px;
+}
+.landing-cta {
+    position: relative; z-index: 1;
+    display: inline-block; padding: 18px 56px; border-radius: 50px;
+    background: var(--gradient-blue); color: #fff; font-size: 1.15rem; font-weight: 700;
+    border: none; cursor: pointer; transition: all 0.3s ease;
+    text-decoration: none; letter-spacing: 0.02em;
+    box-shadow: 0 4px 30px rgba(29,78,216,0.5);
+    animation: glow 3s ease-in-out infinite;
+}
+.landing-cta:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 40px rgba(29,78,216,0.7); }
+.ec-flag { display: flex; gap: 0; margin-bottom: 20px; position: relative; z-index: 1; }
+.ec-flag div { width: 60px; height: 4px; }
+.ec-flag .fy { background: var(--ecuador-yellow); border-radius: 2px 0 0 2px; }
+.ec-flag .fb { background: var(--ecuador-blue); }
+.ec-flag .fr { background: var(--ecuador-red); border-radius: 0 2px 2px 0; }
+
+/* ============ PRESENTATION ============ */
+.presentation { width: 100vw; height: 100vh; overflow: hidden; position: relative; z-index: 1; }
+
+.slide {
+    position: absolute; top:0;left:0;right:0;bottom:0;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 50px 80px 90px;
+    opacity: 0; transform: scale(0.95); pointer-events: none;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    text-align: center; overflow-y: auto;
+}
+.slide.scrollable { justify-content: flex-start; }
+.slide:not(.scrollable) { justify-content: center; }
+.slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+/* ============ AMBIENT EFFECTS ============ */
+.slide::after {
+    content: ''; position: absolute; top:0;left:0;right:0;bottom:0;
+    pointer-events: none; z-index: 0;
+    background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(29,78,216,0.4) 50%, transparent 100%),
+        radial-gradient(1px 1px at 80% 10%, rgba(5,150,105,0.3) 50%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 50% 80%, rgba(29,78,216,0.3) 50%, transparent 100%),
+        radial-gradient(1px 1px at 30% 60%, rgba(16,185,129,0.3) 50%, transparent 100%);
+    background-size: 200% 200%;
+    animation: ambientDrift 20s ease-in-out infinite;
+    opacity: 0; transition: opacity 1s ease;
+}
+.slide.active::after { opacity: 1; }
+@keyframes ambientDrift {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+.slide::before {
+    content: ''; position: absolute; top:0;left:0;right:0;bottom:0;
+    pointer-events: none; z-index: 0;
+    background: radial-gradient(ellipse 600px 400px at 30% 40%, rgba(29,78,216,0.08) 0%, transparent 70%);
+    animation: spotlightMove 12s ease-in-out infinite;
+    opacity: 0; transition: opacity 0.8s ease;
+}
+.slide.active::before { opacity: 1; }
+@keyframes spotlightMove {
+    0%   { background: radial-gradient(ellipse 600px 400px at 20% 30%, rgba(29,78,216,0.08) 0%, transparent 70%); }
+    33%  { background: radial-gradient(ellipse 600px 400px at 70% 60%, rgba(5,150,105,0.07) 0%, transparent 70%); }
+    66%  { background: radial-gradient(ellipse 600px 400px at 40% 80%, rgba(217,119,6,0.06) 0%, transparent 70%); }
+    100% { background: radial-gradient(ellipse 600px 400px at 20% 30%, rgba(29,78,216,0.08) 0%, transparent 70%); }
+}
+
+/* Per-slide backgrounds */
+.slide[data-slide="0"]  { background: linear-gradient(160deg, #0a0e27 0%, #1e3a5f 40%, #0d1333 100%); }
+.slide[data-slide="1"]  { background: linear-gradient(160deg, #0c1a0a 0%, #065f46 40%, #022c22 100%); }
+.slide[data-slide="2"]  { background: linear-gradient(160deg, #1a0505 0%, #7f1d1d 40%, #450a0a 100%); }
+.slide[data-slide="3"]  { background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%); }
+.slide[data-slide="4"]  { background: linear-gradient(150deg, #071520 0%, #0c4a6e 40%, #082f49 100%); }
+.slide[data-slide="5"]  { background: linear-gradient(160deg, #021a0e 0%, #065f46 40%, #022c22 100%); }
+.slide[data-slide="6"]  { background: linear-gradient(145deg, #0c0a2a 0%, #3730a3 40%, #1e1b4b 100%); }
+.slide[data-slide="7"]  { background: linear-gradient(160deg, #051525 0%, #155e75 40%, #083344 100%); }
+.slide[data-slide="8"]  { background: linear-gradient(155deg, #1a1005 0%, #92400e 40%, #451a03 100%); }
+.slide[data-slide="9"]  { background: linear-gradient(160deg, #0c0f17 0%, #334155 40%, #1e293b 100%); }
+.slide[data-slide="10"] { background: linear-gradient(150deg, #050d1f 0%, #1d4ed8 40%, #1e3a5f 100%); }
+.slide[data-slide="11"] { background: linear-gradient(135deg, #0f0524 0%, #4c1d95 35%, #2e1065 100%); }
+
+/* ============ ANIMATIONS ============ */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+@keyframes pulse { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(29,78,216,0.3); } 50% { box-shadow: 0 0 40px rgba(29,78,216,0.6); } }
+@keyframes numberPop { from { opacity: 0; transform: scale(0.5); filter: blur(4px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+
+.slide.active .anim-1 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.1s; opacity: 0; }
+.slide.active .anim-2 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.25s; opacity: 0; }
+.slide.active .anim-3 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.4s; opacity: 0; }
+.slide.active .anim-4 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.55s; opacity: 0; }
+.slide.active .anim-5 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.7s; opacity: 0; }
+.slide.active .anim-6 { animation: fadeInUp 0.8s ease forwards; animation-delay: 0.85s; opacity: 0; }
+.slide.active .anim-left { animation: fadeInLeft 0.8s ease forwards; animation-delay: 0.3s; opacity: 0; }
+.slide.active .anim-right { animation: fadeInRight 0.8s ease forwards; animation-delay: 0.3s; opacity: 0; }
+.slide.active .big-number { animation: numberPop 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards; animation-delay: 0.6s; opacity: 0; }
+body.cinematic .slide.active .anim-1 { animation-duration: 1.2s; }
+body.cinematic .slide.active .anim-2 { animation-duration: 1.2s; animation-delay: 0.4s; }
+body.cinematic .slide.active .anim-3 { animation-duration: 1.2s; animation-delay: 0.65s; }
+body.cinematic .slide.active .anim-4 { animation-duration: 1.2s; animation-delay: 0.9s; }
+body.cinematic .slide.active .anim-5 { animation-duration: 1.2s; animation-delay: 1.1s; }
+
+/* ============ TYPOGRAPHY ============ */
+.slide-title { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; line-height: 1.1; }
+.slide-subtitle { font-size: 1.3rem; font-weight: 300; color: var(--text-secondary); margin-bottom: 40px; max-width: 750px; }
+.gradient-text {
+    background: var(--gradient-text); background-size: 200% auto;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; animation: shimmer 4s linear infinite;
+}
+.section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--primary-light); margin-bottom: 12px; }
+.big-number { font-size: 4rem; font-weight: 900; line-height: 1; }
+.big-label { font-size: 1rem; font-weight: 400; color: var(--text-secondary); margin-top: 8px; }
+
+/* ============ CARDS & GLASS ============ */
+.glass-card {
+    background: var(--bg-glass); border: 1px solid var(--border-glass);
+    border-radius: 16px; padding: 28px; text-align: left;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative; overflow: hidden;
+}
+.glass-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+.glass-card .card-icon {
+    width: 44px; height: 44px; border-radius: 12px; display: flex;
+    align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 14px;
+}
+.glass-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+.glass-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+.slide.active .glass-card::after {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
+    animation: cardShimmer 4s ease-in-out infinite; pointer-events: none;
+}
+@keyframes cardShimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; max-width: 1000px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; max-width: 1100px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; max-width: 1200px; }
+
+/* ============ STAT BOXES ============ */
+.stat-row { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin: 30px 0; }
+.stat-box { text-align: center; padding: 20px 30px; }
+
+/* ============ PAIN/SOLUTION CARDS ============ */
+.pain-card { border-left: 3px solid var(--danger); }
+.pain-card .pain-label { color: var(--danger); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.solution-arrow { display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--accent); padding: 8px 0; }
+.solution-label { color: var(--accent); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+
+/* ============ COMPARISON TABLE ============ */
+.comparison-table { width: 100%; max-width: 900px; border-collapse: collapse; margin: 20px auto; }
+.comparison-table th, .comparison-table td { padding: 12px 20px; text-align: left; border-bottom: 1px solid var(--border-glass); font-size: 0.9rem; }
+.comparison-table th { font-weight: 700; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.comparison-table th.highlight { color: var(--accent-light); }
+.comparison-table .check { color: var(--success); font-weight: 700; }
+.comparison-table .cross { color: var(--danger); }
+.comparison-table .partial { color: var(--warning); font-size: 0.8rem; }
+.comparison-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+/* ============ TIMELINE ============ */
+.timeline { display: flex; gap: 0; width: 100%; max-width: 1000px; position: relative; margin: 30px 0; }
+.timeline::before {
+    content: ''; position: absolute; top: 18px; left: 10%; right: 10%; height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--warning), var(--danger));
+    border-radius: 2px;
+}
+.timeline-phase { flex: 1; text-align: center; position: relative; padding-top: 40px; }
+.timeline-phase .dot {
+    position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    width: 18px; height: 18px; border-radius: 50%; border: 3px solid var(--bg-dark);
+}
+.timeline-phase h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+.timeline-phase .duration { font-size: 0.8rem; color: var(--primary-light); margin-bottom: 6px; }
+.timeline-phase p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4; padding: 0 8px; }
+
+/* ============ ECOSYSTEM ============ */
+.eco-hub { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; max-width: 900px; margin: 20px 0; }
+.eco-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.eco-box {
+    padding: 10px 18px; border-radius: 10px; font-size: 0.8rem; font-weight: 600;
+    border: 1px solid var(--border-glass); background: var(--bg-glass);
+}
+.eco-center {
+    padding: 16px 40px; border-radius: 14px; font-size: 1rem; font-weight: 800;
+    background: var(--gradient-blue); color: white; letter-spacing: 0.02em;
+    box-shadow: 0 4px 30px rgba(29,78,216,0.4);
+}
+.eco-connector { font-size: 0.75rem; color: var(--text-muted); padding: 4px 0; }
+
+/* ============ PROGRESS BAR ============ */
+.progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--warning));
+    background-size: 200% 100%;
+    animation: progressGlow 3s linear infinite;
+    box-shadow: 0 0 12px rgba(29,78,216,0.5);
+    transition: width 0.3s linear;
+}
+@keyframes progressGlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+
+/* ============ NAV ============ */
+.nav-dots {
+    position: fixed; right: 24px; top: 50%; transform: translateY(-50%); z-index: 100;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.nav-dots .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--text-muted); cursor: pointer;
+    transition: all 0.3s ease; opacity: 0.5;
+}
+.nav-dots .dot.active { background: var(--primary-light); opacity: 1; transform: scale(1.4); box-shadow: 0 0 10px rgba(59,130,246,0.5); }
+
+/* ============ CONTROLS ============ */
+.cine-controls {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100;
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(10,15,26,0.85); backdrop-filter: blur(16px);
+    padding: 10px 28px; border-radius: 40px;
+    border: 1px solid var(--border-glass);
+}
+.cine-controls button {
+    background: none; border: none; color: var(--text-secondary);
+    font-size: 1.1rem; cursor: pointer; padding: 6px;
+    transition: color 0.2s; font-family: inherit;
+}
+.cine-controls button:hover { color: var(--text-primary); }
+.cine-controls .counter { font-size: 0.8rem; color: var(--text-muted); min-width: 50px; text-align: center; }
+
+/* ============ LEGAL BOX ============ */
+.legal-box {
+    background: rgba(29,78,216,0.1); border: 1px solid rgba(29,78,216,0.3);
+    border-radius: 12px; padding: 16px 24px; text-align: left; max-width: 800px; margin: 16px auto;
+}
+.legal-box .law { font-size: 0.75rem; font-weight: 700; color: var(--primary-light); margin-bottom: 4px; }
+.legal-box p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+
+/* ============ QUOTE ============ */
+.quote-box {
+    border-left: 3px solid var(--accent); padding: 16px 24px; margin: 20px auto;
+    max-width: 700px; text-align: left; background: rgba(5,150,105,0.05);
+    border-radius: 0 12px 12px 0;
+}
+.quote-box p { font-size: 0.95rem; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
+.quote-box cite { font-size: 0.8rem; color: var(--text-muted); font-style: normal; margin-top: 8px; display: block; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+    .slide { padding: 40px 40px 80px; }
+    .slide-title { font-size: 2.2rem; }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .slide { padding: 30px 20px 80px; }
+    .slide-title { font-size: 1.8rem; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .nav-dots { display: none; }
+    .timeline { flex-direction: column; gap: 20px; }
+    .timeline::before { display: none; }
+    .big-number { font-size: 2.5rem; }
+}
+@media print {
+    .landing, .nav-dots, .cine-controls, .progress-bar { display: none !important; }
+    .slide { position: relative !important; opacity: 1 !important; transform: none !important;
+             pointer-events: auto !important; page-break-after: always; background: white !important; color: #1a1a2e !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ LANDING ============ -->
+<div class="landing" id="landing">
+    <div class="landing-particles" id="particles"></div>
+    <div class="landing-logo">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+            <defs>
+                <linearGradient id="lgShield" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3b82f6"/>
+                    <stop offset="100%" stop-color="#059669"/>
+                </linearGradient>
+                <filter id="glowF"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <circle cx="80" cy="80" r="70" fill="none" stroke="url(#lgShield)" stroke-width="2" opacity="0.3" class="pulse-ring" style="animation: pulse 3s ease-in-out infinite;"/>
+            <circle cx="80" cy="80" r="55" fill="none" stroke="url(#lgShield)" stroke-width="1" opacity="0.15" class="hex-ring" style="transform-origin:80px 80px; animation: rotateRing 20s linear infinite;"/>
+            <!-- Shield shape -->
+            <path d="M80 25 L120 45 L120 85 C120 110 100 130 80 140 C60 130 40 110 40 85 L40 45 Z" fill="url(#lgShield)" opacity="0.15" filter="url(#glowF)"/>
+            <path d="M80 30 L115 48 L115 83 C115 106 97 124 80 133 C63 124 45 106 45 83 L45 48 Z" fill="none" stroke="url(#lgShield)" stroke-width="2"/>
+            <!-- CP text -->
+            <text x="80" y="82" text-anchor="middle" dominant-baseline="middle" font-family="Inter,sans-serif" font-size="28" font-weight="900" fill="white" filter="url(#glowF)">CP</text>
+            <text x="80" y="102" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#94a3b8" letter-spacing="3">ECUADOR</text>
+            <!-- AI sparkle -->
+            <circle cx="110" cy="40" r="4" fill="#f59e0b" opacity="0.8" style="animation: pulse 2s ease-in-out infinite;"/>
+            <text x="110" y="43" text-anchor="middle" font-size="6" fill="#1a1a2e" font-weight="900">IA</text>
+        </svg>
+    </div>
+    <div class="ec-flag"><div class="fy"></div><div class="fb"></div><div class="fr"></div></div>
+    <div class="landing-title"><span class="gradient-text" contenteditable="true">Compras Publicas Ecuador</span></div>
+    <div class="landing-sub" contenteditable="true">Sistema Inteligente de Contratacion Publica con Inteligencia Artificial</div>
+    <div class="landing-legal" contenteditable="true">LOSNCP &bull; RGLOSNCP &bull; Resoluciones SERCOP &bull; Normativa Vigente 2026</div>
+    <button class="landing-cta" onclick="startExperience()">Iniciar Presentacion</button>
+</div>
+
+<!-- ============ PROGRESS BAR ============ -->
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+
+<!-- ============ PRESENTATION ============ -->
+<div class="presentation">
+
+<!-- SLIDE 0: COVER -->
+<div class="slide" data-slide="0">
+    <div class="section-label anim-1" contenteditable="true">YACARETECH CIA. LTDA. &bull; ECUADOR 2026</div>
+    <h1 class="slide-title anim-2" contenteditable="true">Sistema Inteligente de<br><span class="gradient-text">Compras Publicas con IA</span></h1>
+    <p class="slide-subtitle anim-3" contenteditable="true">Plataforma integral que automatiza, valida y optimiza todo el ciclo de contratacion publica ecuatoriana con inteligencia artificial, cumpliendo la LOSNCP y normativa SERCOP.</p>
+    <div class="stat-row anim-4">
+        <div class="stat-box"><div class="big-number" style="background:var(--gradient-blue);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">8</div><div class="big-label">Modulos IA</div></div>
+        <div class="stat-box"><div class="big-number" style="background:var(--gradient-green);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">100%</div><div class="big-label">LOSNCP</div></div>
+        <div class="stat-box"><div class="big-number" style="background:var(--gradient-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">18</div><div class="big-label">Tipos Proceso</div></div>
+        <div class="stat-box"><div class="big-number" style="background:linear-gradient(135deg,#ec4899,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">3</div><div class="big-label">Motores IA</div></div>
+    </div>
+    <div class="ec-flag anim-5"><div class="fy"></div><div class="fb"></div><div class="fr"></div></div>
+</div>
+
+<!-- SLIDE 1: PROBLEMA -->
+<div class="slide scrollable" data-slide="1">
+    <div class="section-label anim-1">EL PROBLEMA</div>
+    <h1 class="slide-title anim-2" contenteditable="true">La Contratacion Publica en Ecuador<br>enfrenta <span style="color:var(--danger)">desafios criticos</span></h1>
+    <p class="slide-subtitle anim-3" contenteditable="true">Mas del 70% de las entidades publicas elaboran sus PAA de forma manual, sin herramientas inteligentes que validen cumplimiento legal.</p>
+    <div class="grid-3 anim-4">
+        <div class="glass-card pain-card">
+            <div class="pain-label">Problema 1</div>
+            <h3>PAA Manual y Reactivo</h3>
+            <p contenteditable="true">Los Planes Anuales de Adquisiciones se elaboran en hojas de calculo sin validacion de umbrales LOSNCP, codigos CPC ni deteccion de fraccionamiento.</p>
+        </div>
+        <div class="glass-card pain-card">
+            <div class="pain-label">Problema 2</div>
+            <h3>Precios sin Referencia</h3>
+            <p contenteditable="true">No existe un sistema centralizado de precios historicos. Las entidades pagan sobreprecios porque no tienen datos de mercado actualizados.</p>
+        </div>
+        <div class="glass-card pain-card">
+            <div class="pain-label">Problema 3</div>
+            <h3>Riesgos Invisibles</h3>
+            <p contenteditable="true">El fraccionamiento, la coercion a proveedores y los conflictos de interes pasan desapercibidos sin herramientas de analisis de riesgo automatizadas.</p>
+        </div>
+        <div class="glass-card pain-card">
+            <div class="pain-label">Problema 4</div>
+            <h3>Cumplimiento Incierto</h3>
+            <p contenteditable="true">Los funcionarios no siempre conocen los umbrales vigentes del PIE, las resoluciones SERCOP actualizadas o los requisitos especificos de cada tipo de proceso.</p>
+        </div>
+        <div class="glass-card pain-card">
+            <div class="pain-label">Problema 5</div>
+            <h3>Procesos Fragmentados</h3>
+            <p contenteditable="true">La informacion vive en multiples sistemas: SERCOP, eSigef, Quipux, Excel. No hay una vision consolidada del ciclo de contratacion.</p>
+        </div>
+        <div class="glass-card pain-card">
+            <div class="pain-label">Problema 6</div>
+            <h3>Transparencia Limitada</h3>
+            <p contenteditable="true">La ciudadania y los organismos de control tienen dificultad para auditar y monitorear procesos de contratacion en tiempo real.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: VISION -->
+<div class="slide" data-slide="2">
+    <div class="section-label anim-1">NUESTRA VISION</div>
+    <h1 class="slide-title anim-2" contenteditable="true">Un Consultor Experto en <span class="gradient-text">Contratacion Publica</span><br>disponible 24/7</h1>
+    <p class="slide-subtitle anim-3" contenteditable="true">Imagina que cada funcionario publico tiene a su lado un experto que conoce toda la LOSNCP, el RGLOSNCP, las resoluciones SERCOP, los umbrales del PIE y las mejores practicas de contratacion.</p>
+    <div class="grid-2 anim-4" style="max-width:800px">
+        <div class="glass-card">
+            <div class="card-icon" style="background:var(--gradient-blue)">&#129302;</div>
+            <h3>IA que Entiende la Ley</h3>
+            <p contenteditable="true">El sistema interpreta la LOSNCP y sus reformas, calcula umbrales automaticamente y sugiere el tipo de proceso correcto para cada contratacion.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:var(--gradient-green)">&#128202;</div>
+            <h3>IA que Analiza Precios</h3>
+            <p contenteditable="true">Compara precios historicos del portal SERCOP, detecta anomalias y sobreprecios, sugiere rangos de mercado realistas antes de publicar.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:var(--gradient-gold)">&#128737;</div>
+            <h3>IA que Detecta Riesgos</h3>
+            <p contenteditable="true">Identifica fraccionamiento (Art. 62), conflictos de interes, patrones de coercion a proveedores y alertas de BANDERA ROJA de la OCDE.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">&#128640;</div>
+            <h3>IA que Genera el PAA</h3>
+            <p contenteditable="true">Construye el Plan Anual de Adquisiciones paso a paso: sugiere items, asigna CPC, calcula umbrales y genera el documento en formato SERCOP.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: TECNOLOGIA -->
+<div class="slide scrollable" data-slide="3">
+    <div class="section-label anim-1">STACK TECNOLOGICO</div>
+    <h1 class="slide-title anim-2" contenteditable="true">Tecnologias que <span class="gradient-text">Impulsan</span> el Sistema</h1>
+    <div class="grid-3 anim-3" style="margin-top:20px">
+        <div class="glass-card">
+            <h3 style="color:var(--primary-light)">Backend</h3>
+            <p contenteditable="true">Java 21 &bull; Spring Boot 3 &bull; CQRS/Event Sourcing &bull; LangChain4j &bull; Kafka &bull; Flyway</p>
+        </div>
+        <div class="glass-card">
+            <h3 style="color:var(--accent-light)">Frontend</h3>
+            <p contenteditable="true">React 18 &bull; TypeScript &bull; Vite &bull; Chakra UI v3 &bull; Recharts &bull; i18next &bull; Chat IA Interactivo</p>
+        </div>
+        <div class="glass-card">
+            <h3 style="color:var(--ecuador-yellow)">Inteligencia Artificial</h3>
+            <p contenteditable="true">Claude AI (Anthropic) &bull; Google Gemini &bull; OpenAI GPT &bull; Triple stack con failover automatico</p>
+        </div>
+        <div class="glass-card">
+            <h3 style="color:#f472b6">Seguridad</h3>
+            <p contenteditable="true">OAuth 2.0 / JWT &bull; Auth0 / Keycloak &bull; Roles y permisos granulares &bull; Auditoria completa de eventos</p>
+        </div>
+        <div class="glass-card">
+            <h3 style="color:#a78bfa">Infraestructura</h3>
+            <p contenteditable="true">Docker &bull; Kubernetes &bull; MySQL 8 &bull; Redis &bull; Kong API Gateway &bull; Cloud-native</p>
+        </div>
+        <div class="glass-card">
+            <h3 style="color:#fb923c">Normativa</h3>
+            <p contenteditable="true">LOSNCP &bull; RGLOSNCP &bull; Resoluciones SERCOP &bull; Umbrales PIE 2024 &bull; CPC Ecuador &bull; OCDE Banderas Rojas</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: MODULOS -->
+<div class="slide scrollable" data-slide="4">
+    <div class="section-label anim-1">MODULOS DEL SISTEMA</div>
+    <h1 class="slide-title anim-2" contenteditable="true">8 Modulos que funcionan <span class="gradient-text">hoy</span></h1>
+    <p class="slide-subtitle anim-3" contenteditable="true">Cada modulo integra inteligencia artificial para asistir, validar y optimizar.</p>
+    <div class="grid-4 anim-4">
+        <div class="glass-card">
+            <div class="card-icon" style="background:var(--gradient-blue)">&#128203;</div>
+            <h3>PAA Inteligente</h3>
+            <p>Wizard conversacional con IA que genera el Plan Anual con items CPC, precios y procesos LOSNCP.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:var(--gradient-green)">&#128176;</div>
+            <h3>Analisis de Precios</h3>
+            <p>Precios historicos SERCOP, deteccion de anomalias y sobreprecios con scoring automatico.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:var(--gradient-gold)">&#9888;&#65039;</div>
+            <h3>Gestion de Riesgos</h3>
+            <p>30+ indicadores OCDE, deteccion de fraccionamiento, coercion y conflictos de interes.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">&#128218;</div>
+            <h3>Asistente Legal IA</h3>
+            <p>Consultor virtual que responde preguntas sobre LOSNCP, RGLOSNCP y resoluciones SERCOP en contexto.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)">&#128200;</div>
+            <h3>Dashboard Analitico</h3>
+            <p>Vision consolidada de procesos, presupuesto, tipos de contratacion y cumplimiento en tiempo real.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">&#128276;</div>
+            <h3>Alertas Inteligentes</h3>
+            <p>Notificaciones automaticas de vencimientos, anomalias de precios y riesgos detectados por IA.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4)">&#128736;</div>
+            <h3>Config. de Procesos</h3>
+            <p>18 tipos de proceso CP configurables con eventos, campos y flujos segun la LOSNCP vigente.</p>
+        </div>
+        <div class="glass-card">
+            <div class="card-icon" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">&#128373;</div>
+            <h3>Auditoria Total</h3>
+            <p>Trazabilidad completa de cada accion: quien, cuando, que cambio. Event sourcing inmutable.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: PAA WIZARD -->
+<div class="slide" data-slide="5">
+    <div class="section-label anim-1">MODULO ESTRELLA</div>
+    <h1 class="slide-title anim-2" contenteditable="true">PAA Inteligente:<br>El <span class="gradient-text">Consultor IA</span> que Genera tu Plan</h1>
+    <p class="slide-subtitle anim-3" contenteditable="true">Un asistente conversacional que guia paso a paso la creacion del Plan Anual de Adquisiciones, enriqueciendo cada input del usuario.</p>
+    <div class="grid-2 anim-4" style="max-width:900px">
+        <div class="glass-card">
+            <h3>&#129302; Validacion de Entidad</h3>
+            <p contenteditable="true">Verifica automaticamente si la entidad existe, deduce el RUC, sector y mision institucional. El usuario solo confirma.</p>
+        </div>
+        <div class="glass-card">
+            <h3>&#127970; Estructura Organizacional</h3>
+            <p contenteditable="true">Sugiere los departamentos reales de la entidad basandose en su conocimiento del sector publico ecuatoriano.</p>
+        </div>
+        <div class="glass-card">
+            <h3>&#128161; Enriquecimiento con IA</h3>
+            <p contenteditable="true">El usuario describe necesidades de forma general. La IA las transforma en items profesionales con CPC, precios de mercado y procedimientos LOSNCP.</p>
+        </div>
+        <div class="glass-card">
+            <h3>&#128203; Formato SERCOP</h3>
+            <p contenteditable="true">Genera el PAA final en el formato oficial del portal de compras publicas con todas las columnas requeridas.</p>
+        </div>
+    </div>
+    <div class="legal-box anim-5">
+        <div class="law">Art. 22 LOSNCP - Plan Anual de Contratacion</div>
+        <p contenteditable="true">Las entidades contratantes deben formular el PAA con el presupuesto correspondiente, de conformidad a la planificacion plurianual de la institucion.</p>
+    </div>
+</div>
+
+<!-- SLIDE 6: PAIN → SOLUTION -->
+<div class="slide scrollable" data-slide="6">
+    <div class="section-label anim-1">DE PROBLEMA A SOLUCION</div>
+    <h1 class="slide-title anim-2" contenteditable="true">Asi <span class="gradient-text">Transformamos</span> cada Desafio</h1>
+    <div class="grid-3 anim-3">
+        <div class="glass-card">
+            <div class="pain-label">ANTES</div>
+            <p>"Elaborar el PAA toma semanas en Excel sin saber si cumplimos los umbrales"</p>
+            <div class="solution-arrow">&#8595;</div>
+            <div class="solution-label">AHORA CON IA</div>
+            <p style="color:var(--accent-light)">El PAA se genera en minutos con items, CPC, precios y procesos validados automaticamente.</p>
+        </div>
+        <div class="glass-card">
+            <div class="pain-label">ANTES</div>
+            <p>"No sabemos si el precio propuesto es justo, no tenemos datos historicos"</p>
+            <div class="solution-arrow">&#8595;</div>
+            <div class="solution-label">AHORA CON IA</div>
+            <p style="color:var(--accent-light)">IA analiza precios historicos del portal SERCOP y detecta anomalias antes de publicar.</p>
+        </div>
+        <div class="glass-card">
+            <div class="pain-label">ANTES</div>
+            <p>"Contraloria encontro fraccionamiento que no detectamos a tiempo"</p>
+            <div class="solution-arrow">&#8595;</div>
+            <div class="solution-label">AHORA CON IA</div>
+            <p style="color:var(--accent-light)">30+ indicadores de riesgo OCDE detectan fraccionamiento y patrones sospechosos en tiempo real.</p>
+        </div>
+        <div class="glass-card">
+            <div class="pain-label">ANTES</div>
+            <p>"No estamos seguros de que proceso usar para este monto"</p>
+            <div class="solution-arrow">&#8595;</div>
+            <div class="solution-label">AHORA CON IA</div>
+            <p style="color:var(--accent-light)">El asistente legal IA calcula umbrales PIE y recomienda el proceso correcto con citas legales.</p>
+        </div>
+        <div class="glass-card">
+            <div class="pain-label">ANTES</div>
+            <p>"La informacion esta en SERCOP, eSigef, Quipux y 5 hojas de Excel distintas"</p>
+            <div class="solution-arrow">&#8595;</div>
+            <div class="solution-label">AHORA CON IA</div>
+            <p style="color:var(--accent-light)">Plataforma unificada con dashboard en tiempo real y vision consolidada del ciclo completo.</p>
+        </div>
+        <div class="glass-card">
+            <div class="pain-label">ANTES</div>
+            <p>"Los ciudadanos no pueden monitorear nuestras compras facilmente"</p>
+            <div class="solution-arrow">&#8595;</div>
+            <div class="solution-label">AHORA CON IA</div>
+            <p style="color:var(--accent-light)">Portal de transparencia con trazabilidad completa y auditoria inmutable por event sourcing.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 7: MARCO LEGAL -->
+<div class="slide scrollable" data-slide="7">
+    <div class="section-label anim-1">CUMPLIMIENTO LEGAL</div>
+    <h1 class="slide-title anim-2" contenteditable="true">Cada Accion Respaldada por la <span class="gradient-text">Ley</span></h1>
+    <p class="slide-subtitle anim-3" contenteditable="true">El sistema tiene integrada toda la normativa ecuatoriana de contratacion publica.</p>
+    <div class="grid-2 anim-4" style="max-width:900px">
+        <div class="legal-box">
+            <div class="law">LOSNCP - Ley Organica del Sistema Nacional de Contratacion Publica</div>
+            <p contenteditable="true">Base legal principal: tipos de proceso, umbrales, prohibiciones, regimen especial, catalogo electronico, subasta inversa.</p>
+        </div>
+        <div class="legal-box">
+            <div class="law">RGLOSNCP - Reglamento General</div>
+            <p contenteditable="true">Procedimientos detallados: plazos, documentos, comisiones tecnicas, actas, informes, garantias.</p>
+        </div>
+        <div class="legal-box">
+            <div class="law">Resoluciones SERCOP</div>
+            <p contenteditable="true">Actualizaciones normativas: codificacion de resoluciones, modelos de pliegos, umbrales del PIE vigentes.</p>
+        </div>
+        <div class="legal-box">
+            <div class="law">Art. 62 LOSNCP - Prohibicion de Fraccionamiento</div>
+            <p contenteditable="true">La IA detecta automaticamente cuando se estan dividiendo contrataciones para eludir procedimientos formales.</p>
+        </div>
+    </div>
+    <div class="quote-box anim-5">
+        <p>"El sistema no reemplaza al funcionario, lo empodera con conocimiento legal preciso y actualizado en cada decision de contratacion."</p>
+    </div>
+</div>
+
+<!-- SLIDE 8: ROI -->
+<div class="slide scrollable" data-slide="8">
+    <div class="section-label anim-1">RESULTADOS ESPERADOS</div>
+    <h1 class="slide-title anim-2" contenteditable="true">Impacto <span class="gradient-text">Medible</span></h1>
+    <table class="comparison-table anim-3">
+        <thead><tr><th>Metrica</th><th>Sin Sistema</th><th class="highlight">Con IA</th><th class="highlight">Mejora</th></tr></thead>
+        <tbody>
+            <tr><td>Elaboracion del PAA</td><td>2-4 semanas</td><td>1-2 horas</td><td style="color:var(--success)">-95%</td></tr>
+            <tr><td>Validacion de umbrales LOSNCP</td><td>Manual, propenso a error</td><td>Automatica en tiempo real</td><td style="color:var(--success)">100% precision</td></tr>
+            <tr><td>Deteccion de fraccionamiento</td><td>Post-auditoria (meses)</td><td>Preventiva (instantanea)</td><td style="color:var(--success)">Riesgo -90%</td></tr>
+            <tr><td>Analisis de precios de mercado</td><td>3-5 dias por proceso</td><td>30 segundos con IA</td><td style="color:var(--success)">-99%</td></tr>
+            <tr><td>Consultas legales LOSNCP</td><td>Abogado externo / busqueda manual</td><td>Respuesta IA inmediata</td><td style="color:var(--success)">24/7</td></tr>
+            <tr><td>Transparencia y auditabilidad</td><td>Reportes mensuales</td><td>Tiempo real con event sourcing</td><td style="color:var(--success)">100%</td></tr>
+        </tbody>
+    </table>
+    <div class="stat-row anim-4">
+        <div class="stat-box"><div class="big-number" style="color:var(--success)">-95%</div><div class="big-label">Tiempo PAA</div></div>
+        <div class="stat-box"><div class="big-number" style="color:var(--primary-light)">-90%</div><div class="big-label">Riesgo Legal</div></div>
+        <div class="stat-box"><div class="big-number" style="color:var(--ecuador-yellow)">&lt;6</div><div class="big-label">Meses ROI</div></div>
+    </div>
+</div>
+
+<!-- SLIDE 9: INTEGRACION -->
+<div class="slide" data-slide="9">
+    <div class="section-label anim-1">ECOSISTEMA</div>
+    <h1 class="slide-title anim-2" contenteditable="true">Integracion con el <span class="gradient-text">Ecosistema Publico</span></h1>
+    <div class="eco-hub anim-3">
+        <div class="eco-row">
+            <div class="eco-box" style="border-color:rgba(29,78,216,0.4)">&#127970; eSigef</div>
+            <div class="eco-box" style="border-color:rgba(29,78,216,0.4)">&#128196; Quipux</div>
+            <div class="eco-box" style="border-color:rgba(29,78,216,0.4)">&#128100; Talento Humano</div>
+            <div class="eco-box" style="border-color:rgba(29,78,216,0.4)">&#128181; Presupuesto</div>
+        </div>
+        <div class="eco-connector">&#8595; APIs REST / Kafka / Webhooks &#8595;</div>
+        <div class="eco-center">&#128737; CP Ecuador IA Platform</div>
+        <div class="eco-connector">&#8595; APIs REST / Portal Web &#8595;</div>
+        <div class="eco-row">
+            <div class="eco-box" style="border-color:rgba(5,150,105,0.4)">&#127758; Portal SERCOP</div>
+            <div class="eco-box" style="border-color:rgba(5,150,105,0.4)">&#128200; Contraloria</div>
+            <div class="eco-box" style="border-color:rgba(5,150,105,0.4)">&#128101; Ciudadania</div>
+            <div class="eco-box" style="border-color:rgba(5,150,105,0.4)">&#127963; Proveedores</div>
+        </div>
+    </div>
+    <div class="quote-box anim-4">
+        <p contenteditable="true">El sistema se integra con la infraestructura existente del Estado ecuatoriano sin requerir reemplazo de sistemas legados.</p>
+    </div>
+</div>
+
+<!-- SLIDE 10: ROADMAP -->
+<div class="slide" data-slide="10">
+    <div class="section-label anim-1">PLAN DE IMPLEMENTACION</div>
+    <h1 class="slide-title anim-2" contenteditable="true">Roadmap de <span class="gradient-text">Implementacion</span></h1>
+    <div class="timeline anim-3">
+        <div class="timeline-phase">
+            <div class="dot" style="background:var(--primary)"></div>
+            <h4>Fase 1: Demo</h4>
+            <div class="duration">1-2 semanas</div>
+            <p contenteditable="true">Demostracion del sistema con datos de ejemplo. PAA inteligente, analisis de precios y riesgos funcionando.</p>
+        </div>
+        <div class="timeline-phase">
+            <div class="dot" style="background:var(--accent)"></div>
+            <h4>Fase 2: PoC</h4>
+            <div class="duration">4-6 semanas</div>
+            <p contenteditable="true">Prueba de concepto con datos reales de la entidad. Integracion basica con portal SERCOP.</p>
+        </div>
+        <div class="timeline-phase">
+            <div class="dot" style="background:var(--warning)"></div>
+            <h4>Fase 3: Piloto</h4>
+            <div class="duration">8-12 semanas</div>
+            <p contenteditable="true">Implementacion piloto en 1-2 entidades. Capacitacion de funcionarios. Integracion con eSigef.</p>
+        </div>
+        <div class="timeline-phase">
+            <div class="dot" style="background:var(--danger)"></div>
+            <h4>Fase 4: Produccion</h4>
+            <div class="duration">12-16 semanas</div>
+            <p contenteditable="true">Despliegue completo. Todas las integraciones activas. Soporte y mejora continua.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 11: CTA -->
+<div class="slide" data-slide="11">
+    <div class="section-label anim-1">SIGUIENTE PASO</div>
+    <h1 class="slide-title anim-2" contenteditable="true"><span class="gradient-text">Modernizar</span> la Contratacion Publica<br>empieza hoy</h1>
+    <p class="slide-subtitle anim-3" contenteditable="true">El sistema esta listo para demostrar su valor con datos reales de su entidad.</p>
+    <div class="grid-3 anim-4" style="max-width:900px">
+        <div class="glass-card" style="text-align:center">
+            <div class="card-icon" style="background:var(--gradient-blue);margin:0 auto 14px">&#128187;</div>
+            <h3>Agendar Demo</h3>
+            <p contenteditable="true">Demostracion en vivo del sistema con el PAA inteligente y analisis de riesgos.</p>
+        </div>
+        <div class="glass-card" style="text-align:center">
+            <div class="card-icon" style="background:var(--gradient-green);margin:0 auto 14px">&#128640;</div>
+            <h3>PoC sin Riesgo</h3>
+            <p contenteditable="true">Prueba de concepto con datos reales de su entidad. Sin compromiso, solo resultados.</p>
+        </div>
+        <div class="glass-card" style="text-align:center">
+            <div class="card-icon" style="background:var(--gradient-gold);margin:0 auto 14px">&#128220;</div>
+            <h3>Propuesta a Medida</h3>
+            <p contenteditable="true">Plan de implementacion personalizado para las necesidades de su institucion.</p>
+        </div>
+    </div>
+    <div style="margin-top:30px" class="anim-5">
+        <a href="mailto:contacto@yacaretech.com?subject=Demo%20Compras%20Publicas%20EC" class="landing-cta" style="font-size:1rem;padding:14px 44px">Solicitar Demo &rarr;</a>
+    </div>
+    <div class="ec-flag anim-6" style="margin-top:24px"><div class="fy"></div><div class="fb"></div><div class="fr"></div></div>
+    <p class="anim-6" style="font-size:0.7rem;color:var(--text-muted);margin-top:16px">&copy; 2026 Yacaretech Cia. Ltda. &bull; Ecuador &bull; Todos los derechos reservados</p>
+</div>
+
+</div><!-- /presentation -->
+
+<!-- ============ NAV DOTS ============ -->
+<div class="nav-dots" id="navDots"></div>
+
+<!-- ============ CONTROLS ============ -->
+<div class="cine-controls">
+    <button onclick="navigate(-1)" title="Anterior">&#9664;</button>
+    <button id="playBtn" onclick="togglePlay()" title="Play/Pause">&#9654;</button>
+    <span class="counter" id="counter">1 / 12</span>
+    <button onclick="navigate(1)" title="Siguiente">&#9654;</button>
+</div>
+
+<script>
+const TOTAL_SLIDES = 12;
+const SLIDE_DURATION = [15, 14, 12, 12, 14, 14, 14, 12, 14, 12, 12, 15];
+let currentSlide = 0, isPlaying = false, autoTimer = null, progressTimer = null, experienceStarted = false;
+
+// Landing particles
+(function(){
+    const c = document.getElementById('particles');
+    const colors = ['rgba(29,78,216,0.6)','rgba(5,150,105,0.5)','rgba(217,119,6,0.4)','rgba(206,17,38,0.3)','rgba(255,209,0,0.4)'];
+    for(let i=0;i<35;i++){
+        const p = document.createElement('div');
+        p.className='particle';
+        const s = 2+Math.random()*6;
+        Object.assign(p.style,{width:s+'px',height:s+'px',left:Math.random()*100+'%',background:colors[i%colors.length],animationDelay:Math.random()*8+'s',animationDuration:(6+Math.random()*6)+'s'});
+        c.appendChild(p);
+    }
+})();
+
+// Nav dots
+(function(){
+    const nd = document.getElementById('navDots');
+    for(let i=0;i<TOTAL_SLIDES;i++){
+        const d = document.createElement('div');
+        d.className='dot'+(i===0?' active':'');
+        d.onclick=()=>goToSlide(i);
+        nd.appendChild(d);
+    }
+})();
+
+function startExperience(){
+    if(experienceStarted) return;
+    experienceStarted=true;
+    document.getElementById('landing').classList.add('hidden');
+    goToSlide(0);
+    setTimeout(()=>startAutoPlay(),800);
+}
+
+function goToSlide(i){
+    document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.nav-dots .dot').forEach(d=>d.classList.remove('active'));
+    const slide=document.querySelector(`.slide[data-slide="${i}"]`);
+    if(slide) slide.classList.add('active');
+    const dot=document.querySelectorAll('.nav-dots .dot')[i];
+    if(dot) dot.classList.add('active');
+    currentSlide=i;
+    document.getElementById('counter').textContent=`${i+1} / ${TOTAL_SLIDES}`;
+    if(isPlaying) scheduleNext();
+}
+
+function navigate(dir){
+    let next=currentSlide+dir;
+    if(next<0) next=TOTAL_SLIDES-1;
+    if(next>=TOTAL_SLIDES) next=0;
+    goToSlide(next);
+}
+
+function togglePlay(){
+    isPlaying?stopAutoPlay():startAutoPlay();
+}
+
+function startAutoPlay(){
+    isPlaying=true;
+    document.body.classList.add('cinematic');
+    document.getElementById('playBtn').innerHTML='&#9646;&#9646;';
+    scheduleNext();
+}
+
+function stopAutoPlay(){
+    isPlaying=false;
+    document.body.classList.remove('cinematic');
+    document.getElementById('playBtn').innerHTML='&#9654;';
+    clearTimeout(autoTimer);
+    cancelAnimationFrame(progressTimer);
+    document.getElementById('progressBar').style.width='0%';
+}
+
+function scheduleNext(){
+    clearTimeout(autoTimer);
+    cancelAnimationFrame(progressTimer);
+    if(currentSlide>=TOTAL_SLIDES-1){stopAutoPlay();return;}
+    const dur=SLIDE_DURATION[currentSlide]*1000;
+    const start=performance.now();
+    const bar=document.getElementById('progressBar');
+    function tick(now){
+        const p=Math.min((now-start)/dur,1);
+        bar.style.width=p*100+'%';
+        if(p<1) progressTimer=requestAnimationFrame(tick);
+    }
+    progressTimer=requestAnimationFrame(tick);
+    autoTimer=setTimeout(()=>navigate(1),dur);
+}
+
+// Keyboard
+document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown') navigate(1);
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp') navigate(-1);
+    else if(e.key===' '){e.preventDefault();togglePlay();}
+    else if(e.key==='Escape') stopAutoPlay();
+});
+
+// Touch
+let tx=0,ty=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+document.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) navigate(dx<0?1:-1);
+},{passive:true});
+
+// Wheel
+let lastWheel=0;
+document.addEventListener('wheel',e=>{
+    const now=Date.now();
+    if(now-lastWheel<800) return;
+    lastWheel=now;
+    navigate(e.deltaY>0?1:-1);
+},{passive:true});
+</script>
+</body>
+</html>
