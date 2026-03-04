@@ -184,30 +184,127 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(180deg, #f5f5f7 0%, #ffffff 100%);
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, #1a2744 0%, #0d1117 50%, #010409 100%);
   padding-top: 52px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(0, 113, 227, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(88, 86, 214, 0.10) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(0, 113, 227, 0.06) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, #ffffff);
+  pointer-events: none;
+}
+
+/* Animated grid lines */
+.hero-grid {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 50% at 50% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 40%, black 20%, transparent 70%);
+  animation: gridPulse 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Floating orbs */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+.hero-orb-1 {
+  width: 400px; height: 400px;
+  background: rgba(0, 113, 227, 0.15);
+  top: 10%; left: 10%;
+}
+
+.hero-orb-2 {
+  width: 350px; height: 350px;
+  background: rgba(88, 86, 214, 0.12);
+  bottom: 20%; right: 10%;
+  animation-delay: -4s;
+}
+
+.hero-orb-3 {
+  width: 250px; height: 250px;
+  background: rgba(48, 209, 88, 0.08);
+  top: 50%; left: 50%;
+  transform: translateX(-50%);
+  animation-delay: -8s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(20px, -30px); }
+  66% { transform: translate(-15px, 20px); }
 }
 
 .hero-content {
-  max-width: 820px;
+  max-width: 860px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-size: clamp(2.8rem, 7vw, 5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.05;
   margin-bottom: 24px;
-  color: var(--text-primary);
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #a8c8f0 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero p {
   font-size: clamp(1.05rem, 2.5vw, 1.35rem);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.6);
   max-width: 600px;
-  margin: 0 auto 40px;
+  margin: 0 auto 44px;
   line-height: 1.6;
 }
+
+/* Nav dark mode over hero */
+nav.nav-dark {
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+nav.nav-dark .nav-logo { color: #fff; }
+nav.nav-dark .nav-links a { color: rgba(255, 255, 255, 0.6); }
+nav.nav-dark .nav-links a:hover { color: #fff; }
+nav.nav-dark .lang-toggle { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
+nav.nav-dark .lang-toggle span { color: rgba(255,255,255,0.6); }
+nav.nav-dark .lang-toggle span.active { background: var(--accent); color: #fff; }
+nav.nav-dark .nav-hamburger span { background: #fff; }
 
 .hero-buttons {
   display: flex;
@@ -238,19 +335,20 @@ section {
 .btn-secondary {
   display: inline-block;
   padding: 14px 32px;
-  background: transparent;
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
   font-size: 0.95rem;
   font-weight: 600;
   border-radius: 980px;
   text-decoration: none;
-  border: 1.5px solid var(--accent);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   transition: background 0.2s, transform 0.15s;
   cursor: pointer;
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 113, 227, 0.06);
+  background: rgba(255, 255, 255, 0.2);
   transform: scale(1.02);
 }
 
@@ -624,13 +722,18 @@ footer {
     border-bottom: 1px solid var(--nav-border);
   }
 
+  nav.nav-dark .nav-links.open {
+    background: rgba(0, 0, 0, 0.85);
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+
   .nav-links.open a {
     font-size: 1rem;
   }
 
   section { padding: 80px 20px 64px; }
 
-  .hero { min-height: auto; padding: 140px 20px 80px; }
+  .hero { min-height: 100vh; padding: 140px 20px 120px; }
 
   .products-grid, .products-grid-3 { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
@@ -675,6 +778,10 @@ footer {
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="inicio">
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
   <div class="hero-content">
     <h1 data-i18n="hero.title">Ingenier&iacute;a de Software para el Sector Financiero</h1>
     <p data-i18n="hero.subtitle">Desarrollamos plataformas de comercio exterior, compras p&uacute;blicas y componentes empresariales con inteligencia artificial para Am&eacute;rica Latina y el mundo.</p>
@@ -1081,6 +1188,22 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ---- Nav dark/light based on hero ----
+const navEl = document.querySelector('nav');
+const heroEl = document.querySelector('.hero');
+
+function updateNav() {
+  const heroBottom = heroEl.offsetTop + heroEl.offsetHeight - 100;
+  if (window.scrollY < heroBottom) {
+    navEl.classList.add('nav-dark');
+  } else {
+    navEl.classList.remove('nav-dark');
+  }
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
 
 // ---- Smooth scroll offset for fixed nav ----
 document.querySelectorAll('a[href^="#"]').forEach(a => {
