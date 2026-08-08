@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Yacaretech Cia. Ltda.">
 <meta name="company" content="YacareTech">
-<meta name="description" content="YacareTech - Ingenieria de Software para el Sector Financiero">
+<meta name="description" content="YacareTech - Y4, el Banking OS sobre BIAN. Comercio exterior, factoring, confirming y banca por video verificada para el sector financiero.">
 <meta name="copyright" content="&copy; 2026 Yacaretech Cia. Ltda. All rights reserved.">
-<title>YacareTech - Ingenieria de Software para el Sector Financiero</title>
+<title>YacareTech - Y4 Banking OS para el Sector Financiero</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -271,6 +271,21 @@ section {
   z-index: 2;
 }
 
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a8c8f0;
+  background: rgba(0, 113, 227, 0.14);
+  border: 1px solid rgba(0, 113, 227, 0.4);
+  padding: 7px 16px;
+  border-radius: 980px;
+  margin-bottom: 26px;
+  letter-spacing: 0.01em;
+}
+
 .hero h1 {
   font-size: clamp(2.8rem, 7vw, 5rem);
   font-weight: 800;
@@ -400,6 +415,18 @@ nav.nav-dark .nav-hamburger span { background: #fff; }
 
 .product-card:nth-child(3) .product-icon {
   background: linear-gradient(135deg, #5856d6, #af52de);
+}
+
+.product-card:nth-child(4) .product-icon {
+  background: linear-gradient(135deg, #14b8a6, #06b6d4);
+}
+
+.product-card:nth-child(5) .product-icon {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
+.product-card:nth-child(6) .product-icon {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
 }
 
 a.product-card-link {
@@ -783,8 +810,9 @@ footer {
   <div class="hero-orb hero-orb-2"></div>
   <div class="hero-orb hero-orb-3"></div>
   <div class="hero-content">
-    <h1 data-i18n="hero.title">Ingenier&iacute;a de Software para el Sector Financiero</h1>
-    <p data-i18n="hero.subtitle">Desarrollamos plataformas de comercio exterior, compras p&uacute;blicas y componentes empresariales con inteligencia artificial para Am&eacute;rica Latina y el mundo.</p>
+    <span class="hero-badge" data-i18n="hero.badge">&#128300; Construyendo un core bancario 100% BIAN-native</span>
+    <h1 data-i18n="hero.title">Llevamos la banca al siguiente nivel</h1>
+    <p data-i18n="hero.subtitle">Y4 es nuestro Banking OS sobre BIAN &mdash;el est&aacute;ndar global&mdash;: estandariza los servicios de un banco y habilita comercio exterior, factoring, confirming y banca por video verificada, por configuraci&oacute;n y no por c&oacute;digo.</p>
     <div class="hero-buttons">
       <a href="#productos" class="btn-primary" data-i18n="hero.cta1">Conoce Nuestros Productos</a>
       <a href="#contacto" class="btn-secondary" data-i18n="hero.cta2">Cont&aacute;ctanos</a>
@@ -796,15 +824,33 @@ footer {
 <section class="products-section" id="productos">
   <div class="container">
     <div class="fade-in">
-      <p class="section-label" data-i18n="products.label">Productos</p>
-      <h2 class="section-title" data-i18n="products.title">Soluciones que transforman la banca</h2>
-      <p class="section-subtitle" data-i18n="products.subtitle">Plataformas robustas dise&ntilde;adas para las necesidades del sector financiero moderno.</p>
+      <p class="section-label" data-i18n="products.label">La suite Y4</p>
+      <h2 class="section-title" data-i18n="products.title">Y4 &middot; la suite que transforma la banca</h2>
+      <p class="section-subtitle" data-i18n="products.subtitle">Un Banking OS sobre BIAN y un conjunto de plataformas listas para producci&oacute;n, del comercio exterior al financiamiento y la banca por video.</p>
     </div>
     <div class="products-grid products-grid-3">
+      <a href="y4.html" class="product-card product-card-link fade-in">
+        <div class="product-icon">&#127974;</div>
+        <h3 data-i18n="products.y4.title">Y4 &middot; Banking OS</h3>
+        <p data-i18n="products.y4.desc">N&uacute;cleo bancario sobre BIAN, el est&aacute;ndar global. Expone y ayuda a <strong>monetizar APIs bancarias est&aacute;ndar sobre tu core actual</strong> &mdash;sin reemplazarlo, con impacto interno m&iacute;nimo&mdash; y lanza nuevos productos por configuraci&oacute;n, no por c&oacute;digo.</p>
+        <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
+      </a>
       <a href="globalCX.html" class="product-card product-card-link fade-in">
         <div class="product-icon">&#127758;</div>
         <h3 data-i18n="products.tf.title">Comercio Exterior</h3>
-        <p data-i18n="products.tf.desc">Plataforma integral para Cartas de Cr&eacute;dito, Garant&iacute;as, Cobranzas Documentarias y operaciones de comercio exterior bajo est&aacute;ndares ICC/UCP.</p>
+        <p data-i18n="products.tf.desc">Cartas de Cr&eacute;dito, Garant&iacute;as, Standby y Cobranzas Documentarias bajo est&aacute;ndares ICC/UCP, con IA para el manejo de documentos.</p>
+        <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
+      </a>
+      <a href="factoring.html" class="product-card product-card-link fade-in">
+        <div class="product-icon">&#128176;</div>
+        <h3 data-i18n="products.fact.title">Factoring &amp; Confirming</h3>
+        <p data-i18n="products.fact.desc">Factoring local e internacional y confirming, con validaci&oacute;n fiscal (SRI), control de cupos y contabilidad autom&aacute;tica. Del anticipo al cobro.</p>
+        <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
+      </a>
+      <a href="y4meet.html" class="product-card product-card-link fade-in">
+        <div class="product-icon">&#127909;</div>
+        <h3 data-i18n="products.meet.title">Y4Meet</h3>
+        <p data-i18n="products.meet.desc">La videollamada nativa del banco: sesi&oacute;n verificada y anti-fraude integrado. Onboarding, asesor&iacute;a y firma cara a cara, sin ir a la sucursal.</p>
         <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
       </a>
       <a href="compras.html" class="product-card product-card-link fade-in">
@@ -876,8 +922,8 @@ footer {
       </div>
       <div class="why-card fade-in">
         <div class="why-icon">&#9889;</div>
-        <h3 data-i18n="stats.modern.title">Arquitectura Moderna</h3>
-        <p data-i18n="stats.modern.desc">Event Sourcing, CQRS, microservicios y cloud-native. Sistemas que escalan, se auditan y evolucionan sin fricci&oacute;n.</p>
+        <h3 data-i18n="stats.modern.title">BIAN &amp; Adopci&oacute;n No Invasiva</h3>
+        <p data-i18n="stats.modern.desc">Sobre BIAN, el est&aacute;ndar global, con Event Sourcing y CQRS. Patr&oacute;n strangler: convivimos con tu core actual, sin reemplazarlo, y evolucionamos sin fricci&oacute;n.</p>
       </div>
       <div class="why-card fade-in">
         <div class="why-icon">&#129309;</div>
@@ -897,6 +943,8 @@ footer {
       <p class="section-subtitle" style="margin:0 auto;" data-i18n="tech.subtitle">Stack tecnol&oacute;gico de clase mundial para soluciones financieras de misi&oacute;n cr&iacute;tica.</p>
     </div>
     <div class="tech-grid fade-in">
+      <div class="tech-tag"><span class="tech-tag-icon">&#127974;</span> BIAN (est&aacute;ndar global)</div>
+      <div class="tech-tag"><span class="tech-tag-icon">&#9881;</span> Banking OS config-driven</div>
       <div class="tech-tag"><span class="tech-tag-icon">&#9749;</span> Java / Spring Boot</div>
       <div class="tech-tag"><span class="tech-tag-icon">&#9883;</span> React</div>
       <div class="tech-tag"><span class="tech-tag-icon">&#9096;</span> Kubernetes</div>
@@ -932,7 +980,7 @@ footer {
           <span class="contact-item-icon">&#128231;</span>
           <div class="contact-item-text">
             <strong>Email</strong>
-            <span>info@yacaretech.com</span>
+            <span>yandry.castro@yacaretech.com<br>cesar.alvarez@yacaretech.com</span>
           </div>
         </div>
         <div class="contact-item">
@@ -960,8 +1008,11 @@ footer {
     <div class="footer-grid">
       <div class="footer-col">
         <h4 data-i18n="footer.products">Productos</h4>
-        <a href="#productos" data-i18n="footer.tf">Comercio Exterior</a>
-        <a href="#productos" data-i18n="footer.cb">Compras P&uacute;blicas</a>
+        <a href="y4.html" data-i18n="footer.y4">Y4 &middot; Banking OS</a>
+        <a href="globalCX.html" data-i18n="footer.tf">Comercio Exterior</a>
+        <a href="factoring.html" data-i18n="footer.fact">Factoring &amp; Confirming</a>
+        <a href="y4meet.html" data-i18n="footer.meet">Y4Meet</a>
+        <a href="compras.html" data-i18n="footer.cb">Compras P&uacute;blicas</a>
         <a href="#productos" data-i18n="footer.comp">Componentes Empresariales</a>
       </div>
       <div class="footer-col">
@@ -998,16 +1049,23 @@ const i18n = {
     'nav.services': 'Servicios',
     'nav.cases': '\u00bfPor qu\u00e9 elegirnos?',
     'nav.contact': 'Contacto',
-    'hero.title': 'Ingenier\u00eda de Software para el Sector Financiero',
-    'hero.subtitle': 'Desarrollamos plataformas de comercio exterior, compras p\u00fablicas y componentes empresariales con inteligencia artificial para Am\u00e9rica Latina y el mundo.',
-    'hero.cta1': 'Conoce Nuestros Productos',
+    'hero.badge': '\ud83d\udd2c Construyendo un core bancario 100% BIAN-native',
+    'hero.title': 'Llevamos la banca al siguiente nivel',
+    'hero.subtitle': 'Y4 es nuestro Banking OS sobre BIAN \u2014el est\u00e1ndar global\u2014: estandariza los servicios de un banco y habilita comercio exterior, factoring, confirming y banca por video verificada, por configuraci\u00f3n y no por c\u00f3digo.',
+    'hero.cta1': 'Conoce la Suite Y4',
     'hero.cta2': 'Cont\u00e1ctanos',
-    'products.label': 'Productos',
-    'products.title': 'Soluciones que transforman industrias',
-    'products.subtitle': 'Plataformas robustas dise\u00f1adas para resolver desaf\u00edos complejos del sector financiero y gubernamental.',
+    'products.label': 'La suite Y4',
+    'products.title': 'Y4 \u00b7 la suite que transforma la banca',
+    'products.subtitle': 'Un Banking OS sobre BIAN y un conjunto de plataformas listas para producci\u00f3n, del comercio exterior al financiamiento y la banca por video.',
+    'products.y4.title': 'Y4 \u00b7 Banking OS',
+    'products.y4.desc': 'N\u00facleo bancario sobre BIAN, el est\u00e1ndar global. Expone y ayuda a monetizar APIs bancarias est\u00e1ndar sobre tu core actual \u2014sin reemplazarlo, con impacto interno m\u00ednimo\u2014 y lanza nuevos productos por configuraci\u00f3n, no por c\u00f3digo.',
     'products.tf.title': 'Comercio Exterior',
-    'products.tf.desc': 'Plataforma integral para Cartas de Cr\u00e9dito, Garant\u00edas, Cobranzas Documentarias y operaciones de comercio exterior bajo est\u00e1ndares ICC/UCP.',
+    'products.tf.desc': 'Cartas de Cr\u00e9dito, Garant\u00edas, Standby y Cobranzas Documentarias bajo est\u00e1ndares ICC/UCP, con IA para el manejo de documentos.',
     'products.tf.cta': 'Explorar \u2192',
+    'products.fact.title': 'Factoring & Confirming',
+    'products.fact.desc': 'Factoring local e internacional y confirming, con validaci\u00f3n fiscal (SRI), control de cupos y contabilidad autom\u00e1tica. Del anticipo al cobro.',
+    'products.meet.title': 'Y4Meet',
+    'products.meet.desc': 'La videollamada nativa del banco: sesi\u00f3n verificada y anti-fraude integrado. Onboarding, asesor\u00eda y firma cara a cara, sin ir a la sucursal.',
     'products.cb.title': 'Compras P\u00fablicas',
     'products.cb.desc': 'Plataforma de compras p\u00fablicas con IA nativa para automatizaci\u00f3n de procesos de contrataci\u00f3n, evaluaci\u00f3n inteligente de ofertas y transparencia en tiempo real.',
     'products.cb.cta': 'Explorar \u2192',
@@ -1031,8 +1089,8 @@ const i18n = {
     'stats.focus.desc': 'No somos generalistas. Cada l\u00ednea de c\u00f3digo est\u00e1 dise\u00f1ada para resolver problemas reales de banca, trade finance y cumplimiento regulatorio.',
     'stats.ai.title': 'IA Nativa',
     'stats.ai.desc': 'Inteligencia artificial integrada desde el dise\u00f1o, no como complemento. Automatizaci\u00f3n inteligente de documentos, an\u00e1lisis y toma de decisiones.',
-    'stats.modern.title': 'Arquitectura Moderna',
-    'stats.modern.desc': 'Event Sourcing, CQRS, microservicios y cloud-native. Sistemas que escalan, se auditan y evolucionan sin fricci\u00f3n.',
+    'stats.modern.title': 'BIAN & Adopci\u00f3n No Invasiva',
+    'stats.modern.desc': 'Sobre BIAN, el est\u00e1ndar global, con Event Sourcing y CQRS. Patr\u00f3n strangler: convivimos con tu core actual, sin reemplazarlo, y evolucionamos sin fricci\u00f3n.',
     'stats.partner.title': 'Partners, No Proveedores',
     'stats.partner.desc': 'Trabajamos como extensi\u00f3n de su equipo. Compromiso real con sus objetivos, plazos y est\u00e1ndares de calidad.',
     'tech.label': 'Tecnolog\u00eda',
@@ -1050,7 +1108,10 @@ const i18n = {
     'contact.info.location': 'Ubicaci\u00f3n',
     'contact.info.locationValue': 'Am\u00e9rica Latina',
     'footer.products': 'Productos',
+    'footer.y4': 'Y4 \u00b7 Banking OS',
     'footer.tf': 'Comercio Exterior',
+    'footer.fact': 'Factoring & Confirming',
+    'footer.meet': 'Y4Meet',
     'footer.cb': 'Compras P\u00fablicas',
     'footer.comp': 'Componentes Empresariales',
     'footer.services': 'Servicios',
@@ -1068,16 +1129,23 @@ const i18n = {
     'nav.services': 'Services',
     'nav.cases': 'Why Us?',
     'nav.contact': 'Contact',
-    'hero.title': 'Software Engineering for the Financial Sector',
-    'hero.subtitle': 'We build foreign trade, public procurement and enterprise component platforms powered by artificial intelligence for Latin America and the world.',
-    'hero.cta1': 'Explore Our Products',
+    'hero.badge': '\ud83d\udd2c Building a 100% BIAN-native banking core',
+    'hero.title': 'We take banking to the next level',
+    'hero.subtitle': 'Y4 is our Banking OS built on BIAN \u2014the global standard\u2014: it standardizes a bank\u2019s services and powers foreign trade, factoring, confirming and verified video banking, by configuration, not by code.',
+    'hero.cta1': 'Explore the Y4 Suite',
     'hero.cta2': 'Contact Us',
-    'products.label': 'Products',
-    'products.title': 'Solutions that transform industries',
-    'products.subtitle': 'Robust platforms designed to solve complex challenges in the financial and government sectors.',
+    'products.label': 'The Y4 suite',
+    'products.title': 'Y4 \u00b7 the suite that transforms banking',
+    'products.subtitle': 'A Banking OS on BIAN plus a set of production-ready platforms, from foreign trade to financing and video banking.',
+    'products.y4.title': 'Y4 \u00b7 Banking OS',
+    'products.y4.desc': 'A banking core built on BIAN, the global standard. It exposes and helps monetize standard banking APIs on top of your existing core \u2014without replacing it, with minimal internal impact\u2014 and launches new products by configuration, not by code.',
     'products.tf.title': 'Foreign Trade',
-    'products.tf.desc': 'Comprehensive platform for Letters of Credit, Guarantees, Documentary Collections and foreign trade operations under ICC/UCP standards.',
+    'products.tf.desc': 'Letters of Credit, Guarantees, Standby and Documentary Collections under ICC/UCP standards, with AI for document handling.',
     'products.tf.cta': 'Explore \u2192',
+    'products.fact.title': 'Factoring & Confirming',
+    'products.fact.desc': 'Local and international factoring plus confirming, with tax validation, credit-limit control and automated accounting. From advance to collection.',
+    'products.meet.title': 'Y4Meet',
+    'products.meet.desc': 'The bank\u2019s native video call: verified session and built-in anti-fraud. Onboarding, advisory and signing face to face \u2014 without visiting a branch.',
     'products.cb.title': 'Public Procurement',
     'products.cb.desc': 'AI-native public procurement platform for automated bidding processes, intelligent offer evaluation and real-time transparency.',
     'products.cb.cta': 'Explore \u2192',
@@ -1101,8 +1169,8 @@ const i18n = {
     'stats.focus.desc': 'We are not generalists. Every line of code is designed to solve real problems in banking, trade finance and regulatory compliance.',
     'stats.ai.title': 'Native AI',
     'stats.ai.desc': 'Artificial intelligence integrated from design, not as an add-on. Intelligent document automation, analysis and decision-making.',
-    'stats.modern.title': 'Modern Architecture',
-    'stats.modern.desc': 'Event Sourcing, CQRS, microservices and cloud-native. Systems that scale, audit and evolve without friction.',
+    'stats.modern.title': 'BIAN & Non-Invasive Adoption',
+    'stats.modern.desc': 'Built on BIAN, the global standard, with Event Sourcing and CQRS. Strangler pattern: we coexist with your existing core, without replacing it, and evolve without friction.',
     'stats.partner.title': 'Partners, Not Vendors',
     'stats.partner.desc': 'We work as an extension of your team. Real commitment to your goals, timelines and quality standards.',
     'tech.label': 'Technology',
@@ -1120,7 +1188,10 @@ const i18n = {
     'contact.info.location': 'Location',
     'contact.info.locationValue': 'Latin America',
     'footer.products': 'Products',
+    'footer.y4': 'Y4 · Banking OS',
     'footer.tf': 'Foreign Trade',
+    'footer.fact': 'Factoring & Confirming',
+    'footer.meet': 'Y4Meet',
     'footer.cb': 'Public Procurement',
     'footer.comp': 'Enterprise Components',
     'footer.services': 'Services',
