@@ -1289,6 +1289,33 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ---- Contact form -> abre el correo con el mensaje prellenado (sitio estatico, sin backend) ----
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const inputs = contactForm.querySelectorAll('input');
+    const nombre = (inputs[0] && inputs[0].value || '').trim();
+    const email = (inputs[1] && inputs[1].value || '').trim();
+    const mensaje = (contactForm.querySelector('textarea') || {}).value || '';
+    const to = 'yandry.castro@yacaretech.com,cesar.alvarez@yacaretech.com';
+    const asunto = encodeURIComponent('Contacto web' + (nombre ? ' — ' + nombre : ''));
+    const cuerpo = encodeURIComponent(
+      'Nombre: ' + nombre + '\n' +
+      'Email: ' + email + '\n\n' +
+      mensaje.trim() + '\n'
+    );
+    // Feedback breve en el boton
+    const btn = contactForm.querySelector('button[type="submit"]');
+    if (btn) {
+      const original = btn.textContent;
+      btn.textContent = currentLang === 'en' ? 'Opening your email…' : 'Abriendo tu correo…';
+      setTimeout(() => { btn.textContent = original; }, 3000);
+    }
+    window.location.href = 'mailto:' + to + '?subject=' + asunto + '&body=' + cuerpo;
+  });
+}
 </script>
 
 </body>
