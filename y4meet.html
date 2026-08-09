@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Y4Meet - La videollamada nativa del banco. Sesion verificada y anti-fraude integrado. Onboarding, asesoria y firma cara a cara, sin ir a la sucursal.">
+<meta name="description" content="Y4Meet - La videollamada nativa del banco. Sesion verificada y anti-fraude integrado, interpretacion en vivo, grabacion, pantalla compartida, plantillas guiadas con IA. Onboarding, asesoria y COMEX cara a cara.">
 <title>Y4Meet — La banca cara a cara, verificada — YacareTech</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#fff;--bg-alt:#f5f5f7;--ink:#1d1d1f;--mut:#6e6e73;--accent:#0071e3;--accent2:#40a0ff;--line:rgba(0,0,0,.08);--shadow:0 2px 12px rgba(0,0,0,.08);--shadow-h:0 10px 30px rgba(0,0,0,.12)}
+:root{--bg:#fff;--bg-alt:#f5f5f7;--ink:#1d1d1f;--mut:#6e6e73;--accent:#0071e3;--accent2:#40a0ff;--teal:#33e0c4;--line:rgba(0,0,0,.08);--shadow:0 2px 12px rgba(0,0,0,.08);--shadow-h:0 10px 30px rgba(0,0,0,.12)}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background:#fff}
 a{text-decoration:none;color:inherit}
@@ -20,32 +20,49 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;ali
 .nav-logo span{color:var(--accent2)}
 .nav-back{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.72)}
 .nav-back:hover{color:#fff}
-.hero{min-height:74vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:130px 24px 100px;background:radial-gradient(ellipse 80% 60% at 50% 35%,#0a1330 0%,#0a0f28 50%,#04060f 100%);position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:160px;background:linear-gradient(to bottom,transparent,#fff)}
-.hero-in{max-width:820px;position:relative;z-index:2}
+.hero{display:flex;align-items:center;justify-content:center;text-align:center;padding:130px 24px 60px;background:radial-gradient(ellipse 80% 70% at 50% 30%,#0a1330 0%,#0a0f28 55%,#04060f 100%);position:relative;overflow:hidden}
+.hero-in{max-width:840px;position:relative;z-index:2}
 .badge{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;color:#7fe6cf;background:rgba(51,224,196,.12);border:1px solid rgba(51,224,196,.4);padding:7px 16px;border-radius:980px;margin-bottom:22px}
-.badge .dot{width:8px;height:8px;border-radius:50%;background:#33e0c4;box-shadow:0 0 10px #33e0c4}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
 .hero h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;color:#fff;margin-bottom:20px;background:linear-gradient(135deg,#fff,#7fe6cf 55%,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero p{font-size:clamp(1.02rem,2.4vw,1.3rem);color:rgba(255,255,255,.64);max-width:640px;margin:0 auto 34px;line-height:1.6}
 .btn{display:inline-block;padding:14px 30px;background:var(--accent);color:#fff;font-size:.95rem;font-weight:600;border-radius:980px;transition:background .2s,transform .15s}
 .btn:hover{background:#0077ed;transform:scale(1.02)}
-section.block{padding:96px 24px}
+.btn-ghost{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;backdrop-filter:blur(10px)}
+.btn-ghost:hover{background:rgba(255,255,255,.2)}
+
+/* ---- Mockup de la llamada (imágenes reales) ---- */
+.showcase{background:linear-gradient(180deg,#04060f 0%,#04060f 40%,#fff 40%,#fff 100%);padding:0 24px 0}
+.appframe{max-width:940px;margin:0 auto;transform:translateY(-10px);border-radius:20px;overflow:hidden;
+  background:#0b1020;border:1px solid rgba(255,255,255,.1);box-shadow:0 40px 90px rgba(0,0,0,.55)}
+.af-top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.07)}
+.af-bank{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:.92rem}
+.af-bank .lg{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,#0071e3,#40a0ff);display:flex;align-items:center;justify-content:center;font-size:.8rem}
+.af-verify{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:600;color:var(--teal);border:1px solid rgba(51,224,196,.4);background:rgba(51,224,196,.1);padding:5px 11px;border-radius:999px}
+.af-verify .d{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal)}
+.af-phish{display:flex;align-items:center;gap:8px;justify-content:center;padding:8px 14px;font-size:.74rem;font-weight:600;color:#ffd7a8;background:rgba(180,90,30,.16);border-bottom:1px solid rgba(255,180,120,.14)}
+.af-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px;background:#04060f}
+.af-tile{position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#0b1230}
+.af-tile img{width:100%;height:100%;object-fit:cover;display:block}
+.af-name{position:absolute;left:10px;bottom:10px;display:flex;align-items:center;gap:6px;font-size:.74rem;font-weight:600;color:#fff;background:rgba(0,0,0,.5);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
+.af-name .chk{color:var(--teal)}
+.af-dock{display:flex;align-items:center;justify-content:center;gap:9px;padding:12px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);flex-wrap:wrap}
+.af-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;background:rgba(255,255,255,.1);color:#fff}
+.af-btn.hang{background:#e5484d}
+
+section.block{padding:88px 24px}
 .container{max-width:1080px;margin:0 auto}
 .label{font-size:.85rem;font-weight:600;color:#0e9f7e;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
 .title{font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
-.sub{font-size:clamp(1rem,2.3vw,1.2rem);color:var(--mut);max-width:660px;line-height:1.6}
+.sub{font-size:clamp(1rem,2.3vw,1.2rem);color:var(--mut);max-width:680px;line-height:1.6}
 .center{text-align:center}.center .sub{margin:0 auto}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
-.card{background:var(--bg-alt);border-radius:18px;padding:32px 28px;transition:box-shadow .3s,transform .3s}
-.card:hover{box-shadow:var(--shadow-h);transform:translateY(-4px)}
-.card .ic{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:18px;background:linear-gradient(135deg,#14b8a6,#06b6d4);color:#fff}
-.card:nth-child(2) .ic{background:linear-gradient(135deg,#0071e3,#40a0ff)}
-.card:nth-child(3) .ic{background:linear-gradient(135deg,#5856d6,#af52de)}
-.card:nth-child(4) .ic{background:linear-gradient(135deg,#30d158,#34c759)}
-.card:nth-child(5) .ic{background:linear-gradient(135deg,#f59e0b,#f97316)}
-.card:nth-child(6) .ic{background:linear-gradient(135deg,#6366f1,#8b5cf6)}
-.card h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.02em}
-.card p{font-size:.92rem;color:var(--mut);line-height:1.55}
+.card{background:var(--bg-alt);border-radius:18px;padding:30px 26px}
+.card .ic{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;background:linear-gradient(135deg,#14b8a6,#06b6d4);color:#fff}
+.card:nth-child(3n+2) .ic{background:linear-gradient(135deg,#0071e3,#40a0ff)}
+.card:nth-child(3n) .ic{background:linear-gradient(135deg,#5856d6,#af52de)}
+.card h3{font-size:1.12rem;font-weight:700;margin-bottom:7px;letter-spacing:-.02em}
+.card p{font-size:.9rem;color:var(--mut);line-height:1.55}
 .alt{background:var(--bg-alt)}
 .uses{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
 .use{background:#fff;border-radius:16px;padding:26px 20px;box-shadow:var(--shadow);text-align:center}
@@ -57,7 +74,7 @@ section.block{padding:96px 24px}
 .cta p{color:rgba(255,255,255,.62);max-width:540px;margin:0 auto 28px}
 footer{background:var(--bg-alt);border-top:1px solid var(--line);padding:40px 24px;text-align:center;font-size:.8rem;color:var(--mut)}
 footer a{color:var(--accent)}
-@media(max-width:860px){.grid{grid-template-columns:1fr}.uses{grid-template-columns:1fr 1fr}section.block{padding:72px 20px}}
+@media(max-width:860px){.grid{grid-template-columns:1fr}.uses{grid-template-columns:1fr 1fr}section.block{padding:64px 20px}.showcase{background:linear-gradient(180deg,#04060f 0%,#04060f 22%,#fff 22%,#fff 100%)}}
 </style>
 </head>
 <body>
@@ -76,25 +93,111 @@ footer a{color:var(--accent)}
   </div>
 </section>
 
-<section class="block">
-  <div class="container center">
-    <p class="label">Confianza</p>
-    <h2 class="title">Video banking que sí es seguro</h2>
-    <p class="sub">Devuelve la confianza al canal remoto: identidad verificada y protección anti-fraude desde el diseño.</p>
-    <div class="grid" style="text-align:left">
-      <div class="card"><div class="ic">&#128737;</div><h3>Sesión verificada</h3><p>Cada llamada muestra un código de verificación compartido: el cliente confirma que habla con su banco real.</p></div>
-      <div class="card"><div class="ic">&#128683;</div><h3>Anti-fraude integrado</h3><p>Banner anti-phishing permanente. El banco nunca pide clave, OTP ni PIN dentro de la llamada.</p></div>
-      <div class="card"><div class="ic">&#127974;</div><h3>Nativo del banco</h3><p>Con la marca del banco, no una app de terceros. El cliente entra por un canal reconocible y confiable.</p></div>
-      <div class="card"><div class="ic">&#128274;</div><h3>Cifrado extremo a extremo</h3><p>Transporte seguro (TLS/E2EE). La conversación es privada entre el banco y el cliente.</p></div>
-      <div class="card"><div class="ic">&#128172;</div><h3>Subtítulos y multi-idioma</h3><p>Subtítulos en vivo e interpretación por participante para atender a cualquier cliente.</p></div>
-      <div class="card"><div class="ic">&#128203;</div><h3>Flujos guiados</h3><p>Plantillas config-driven: el ejecutivo guía onboarding, asesoría o una operación paso a paso.</p></div>
+<!-- ===== Mockup real de la llamada ===== -->
+<section class="showcase">
+  <div class="appframe">
+    <div class="af-top">
+      <div class="af-bank"><span class="lg">&#127974;</span> Tu Banco &middot; Y4Meet</div>
+      <span class="af-verify"><span class="d"></span> Sesión verificada &middot; TLS &middot; E2EE</span>
+    </div>
+    <div class="af-phish">&#128737;&#65039; El banco nunca te pedirá tu clave, OTP ni PIN en esta llamada</div>
+    <div class="af-grid">
+      <div class="af-tile"><img src="assets/y4meet/ejecutivo.png" alt="Ejecutivo del banco en videollamada Y4Meet" loading="lazy"><span class="af-name"><span class="chk">&#10004;</span> Ejecutivo &middot; verificado</span></div>
+      <div class="af-tile"><img src="assets/y4meet/cliente.png" alt="Cliente en videollamada Y4Meet" loading="lazy"><span class="af-name">Cliente</span></div>
+    </div>
+    <div class="af-dock">
+      <span class="af-btn">&#127908;</span><span class="af-btn">&#128247;</span><span class="af-btn">&#128421;&#65039;</span>
+      <span class="af-btn">&#128172;</span><span class="af-btn">&#127760;</span><span class="af-btn">&#128308;</span>
+      <span class="af-btn">&#128100;</span><span class="af-btn hang">&#128222;</span>
     </div>
   </div>
 </section>
 
+<!-- ===== Seguridad ===== -->
+<section class="block">
+  <div class="container center">
+    <p class="label">Confianza</p>
+    <h2 class="title">Video banking que sí es seguro</h2>
+    <p class="sub">El fraude rompió la confianza en el canal remoto. Y4Meet la devuelve con identidad verificada y protección anti-fraude desde el diseño.</p>
+    <div class="grid" style="text-align:left">
+      <div class="card"><div class="ic">&#128737;</div><h3>Sesión verificada</h3><p>Un código de verificación compartido en cada llamada: el cliente confirma que habla con su banco real, no con un impostor.</p></div>
+      <div class="card"><div class="ic">&#128683;</div><h3>Anti-fraude integrado</h3><p>Banner anti-phishing permanente. El banco nunca pide clave, OTP ni PIN dentro de la llamada.</p></div>
+      <div class="card"><div class="ic">&#128274;</div><h3>Cifrado TLS / E2EE</h3><p>Transporte seguro extremo a extremo. La conversación es privada entre el banco y el cliente.</p></div>
+      <div class="card"><div class="ic">&#127974;</div><h3>Nativo del banco</h3><p>Con la marca del banco, no una app de terceros. Un canal reconocible que el cliente confía.</p></div>
+      <div class="card"><div class="ic">&#127760;</div><h3>Listo para redes bancarias</h3><p>Diseñado para funcionar tras firewalls y SWG corporativos, con relay TURN cuando la red lo exige.</p></div>
+      <div class="card"><div class="ic">&#128221;</div><h3>Grabación y evidencia</h3><p>Graba la sesión para respaldo, cumplimiento y auditoría cuando el proceso lo requiere.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Colaboración ===== -->
 <section class="block alt">
   <div class="container center">
-    <p class="label">Casos de uso</p>
+    <p class="label">Productividad</p>
+    <h2 class="title">Una sala de reunión completa</h2>
+    <p class="sub">Mucho más que una videollamada: todo lo que un ejecutivo necesita para resolver en vivo.</p>
+    <div class="grid" style="text-align:left">
+      <div class="card"><div class="ic">&#128421;</div><h3>Pantalla compartida</h3><p>Comparte documentos, formularios y el propio sistema del banco para llenar y firmar juntos.</p></div>
+      <div class="card"><div class="ic">&#128172;</div><h3>Chat en vivo</h3><p>Mensajes, enlaces y archivos durante la llamada, sincronizados para todos los participantes.</p></div>
+      <div class="card"><div class="ic">&#9989;</div><h3>Agenda y compromisos</h3><p>Tableros de agenda y compromisos con avance en vivo. La reunión deja acuerdos, no solo palabras.</p></div>
+      <div class="card"><div class="ic">&#127916;</div><h3>Actividades y videoteca</h3><p>Dinámicas guiadas y biblioteca de videos para capacitación y asesoría dentro de la sala.</p></div>
+      <div class="card"><div class="ic">&#127912;</div><h3>Fondo virtual con marca</h3><p>Fondos profesionales con la identidad del banco para cada ejecutivo.</p></div>
+      <div class="card"><div class="ic">&#129504;</div><h3>Copiloto con IA</h3><p>Un asistente que guía cada paso del flujo, sugiere y resume — configurable por plantilla.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Idioma ===== -->
+<section class="block">
+  <div class="container center">
+    <p class="label">Sin barreras</p>
+    <h2 class="title">Interpretación en vivo, para cualquier cliente</h2>
+    <p class="sub">Atiende en el idioma del cliente sin intérpretes externos. Interpretación 100% local, privada y sin costo por minuto.</p>
+    <div class="grid" style="text-align:left">
+      <div class="card"><div class="ic">&#127760;</div><h3>Subtítulos en vivo</h3><p>Transcripción y subtítulos en tiempo real durante toda la llamada.</p></div>
+      <div class="card"><div class="ic">&#128483;</div><h3>Voz traducida por participante</h3><p>Cada quien escucha en su idioma: interpretación de voz personalizada por participante.</p></div>
+      <div class="card"><div class="ic">&#128274;</div><h3>100% local y privado</h3><p>El procesamiento ocurre en el dispositivo: nada de la conversación sale a un tercero.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Escala ===== -->
+<section class="block alt">
+  <div class="container center">
+    <p class="label">Escala y flexibilidad</p>
+    <h2 class="title">De un 1:1 a un auditorio</h2>
+    <div class="grid" style="text-align:left">
+      <div class="card"><div class="ic">&#128101;</div><h3>1:1 y grupos pequeños</h3><p>Conexión directa P2P con relay TURN de respaldo: máxima calidad y estabilidad.</p></div>
+      <div class="card"><div class="ic">&#128225;</div><h3>Grupos grandes (SFU)</h3><p>Reuniones de 20+ participantes con servidor SFU LiveKit, sin sacrificar rendimiento.</p></div>
+      <div class="card"><div class="ic">&#128279;</div><h3>Links de invitado</h3><p>Invita por link con admisión del organizador y enlaces con vigencia controlada.</p></div>
+      <div class="card"><div class="ic">&#128260;</div><h3>Salas públicas perpetuas</h3><p>Salas permanentes con un link fijo, sin login ni caducidad, para atención continua.</p></div>
+      <div class="card"><div class="ic">&#128081;</div><h3>Relevo de liderazgo</h3><p>El organizador puede ceder el control y coordinar múltiples salas desde un solo enlace.</p></div>
+      <div class="card"><div class="ic">&#129513;</div><h3>Plantillas config-driven</h3><p>Onboarding, asesoría o capacitación: flujos guiados que se arman por configuración, no por código.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Plantillas ===== -->
+<section class="block">
+  <div class="container center">
+    <p class="label">Plantillas poderosas</p>
+    <h2 class="title">Una sala distinta para cada misión</h2>
+    <p class="sub">Y4Meet no es una sala genérica. Cada plantilla arma el ambiente, los pasos, las herramientas y el copiloto adecuados — por configuración, no por código.</p>
+    <div class="grid" style="text-align:left">
+      <div class="card"><div class="ic">&#127919;</div><h3>Cuarto de guerra</h3><p>Monitoreo y decisiones en crisis: tableros en vivo, roles claros, foco total y evidencia de lo acordado.</p></div>
+      <div class="card"><div class="ic">&#127891;</div><h3>Capacitación</h3><p>Láminas de apoyo, guion guiado, tips y casos. El facilitador marca por dónde va la clase para todos, en vivo.</p></div>
+      <div class="card"><div class="ic">&#128101;</div><h3>Equipo</h3><p>Daily, seguimiento y retrospectiva con agenda y compromisos que quedan registrados y con avance visible.</p></div>
+      <div class="card"><div class="ic">&#128188;</div><h3>Comercial</h3><p>Demo, negociación y cierre: presenta, comparte pantalla y haz avanzar el pipeline dentro de la misma llamada.</p></div>
+      <div class="card"><div class="ic">&#129309;</div><h3>Onboarding</h3><p>Alta de cliente guiada paso a paso, con verificación de identidad y firma cara a cara.</p></div>
+      <div class="card"><div class="ic">&#127911;</div><h3>Atención al cliente</h3><p>Soporte y gestión de reclamos con trazabilidad, grabación y evidencia de cada acuerdo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Casos ===== -->
+<section class="block alt">
+  <div class="container center">
+    <p class="label">Casos de uso en banca</p>
     <h2 class="title">Todo lo de la sucursal, en una llamada</h2>
     <div class="uses">
       <div class="use"><div class="ue">&#129309;</div><h3>Onboarding</h3><p>Apertura de cuenta y verificación de identidad remota.</p></div>
@@ -108,7 +211,7 @@ footer a{color:var(--accent)}
 <section class="block cta">
   <div class="container">
     <h2>Cara a cara, sin dudas</h2>
-    <p>Te mostramos Y4Meet en acción: la sesión verificada, el anti-fraude y el onboarding remoto.</p>
+    <p>Te mostramos Y4Meet en acción: la sesión verificada, el anti-fraude, la interpretación en vivo y el onboarding remoto.</p>
     <a href="index.html#contacto" class="btn">Hablemos</a>
   </div>
 </section>

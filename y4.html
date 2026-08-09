@@ -30,6 +30,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;ali
 .btn:hover{background:#0077ed;transform:scale(1.02)}
 section.block{padding:96px 24px}
 .container{max-width:1080px;margin:0 auto}
+.shot{max-width:1000px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.1);box-shadow:0 30px 70px rgba(15,23,42,.28)}
+.shot .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:#0b1020;border-bottom:1px solid rgba(255,255,255,.08)}
+.shot .bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57;display:inline-block}
+.shot .bar i:nth-child(2){background:#febc2e}.shot .bar i:nth-child(3){background:#28c840}
+.shot .bar span{margin-left:10px;font-size:.72rem;color:rgba(255,255,255,.4);font-family:ui-monospace,Menlo,monospace}
+.shot img{width:100%;display:block}
+.shot-cap{text-align:center;max-width:660px;margin:26px auto 0;color:var(--mut);font-size:.98rem;line-height:1.6}
+.shot-cap b{color:var(--ink)}
 .label{font-size:.85rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
 .title{font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
 .sub{font-size:clamp(1rem,2.3vw,1.2rem);color:var(--mut);max-width:660px;line-height:1.6}
@@ -72,6 +80,17 @@ footer a{color:var(--accent)}
     <h1>Y4 &middot; el Banking OS sobre BIAN</h1>
     <p>Estandarizamos los servicios de un banco sobre <strong>BIAN</strong>, el estándar global de arquitectura bancaria. Expón y <strong>monetiza APIs</strong> sobre tu core actual —sin reemplazarlo— y lanza nuevos productos por configuración, no por código.</p>
     <a href="index.html#contacto" class="btn">Solicitar una demo</a>
+  </div>
+</section>
+
+<!-- ===== Screenshot real: Monetización de APIs BIAN ===== -->
+<section class="block" style="padding-top:64px;padding-bottom:24px">
+  <div class="container">
+    <div class="shot">
+      <div class="bar"><i></i><i></i><i></i><span>Banking OS &middot; Monetización de APIs BIAN</span></div>
+      <img src="assets/y4/monetizacion.png" alt="Panel de Monetización de APIs BIAN en Y4: ingreso por Service Domain sobre invocaciones reales, con tarifa config-driven, mapa de calor y desglose por empresa">
+    </div>
+    <p class="shot-cap"><b>Monetización de APIs BIAN, en vivo.</b> Ingreso por Service Domain sobre invocaciones reales, con tarifa <strong>config-driven</strong> — mapa de calor, desglose por empresa y por llamada. Cada API estándar puede generar ingresos.</p>
   </div>
 </section>
 
