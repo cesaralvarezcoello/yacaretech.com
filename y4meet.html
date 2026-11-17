@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Y4Meet - La videollamada nativa del banco. Sesion verificada y anti-fraude integrado, interpretacion en vivo, grabacion, pantalla compartida, plantillas guiadas con IA. Onboarding, asesoria y COMEX cara a cara.">
-<title>Y4Meet — La banca cara a cara, verificada — YacareTech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Y4Meet: la videollamada segura de su institución. Sesión verificada y anti-fraude integrado, interpretación en vivo, grabación, pantalla compartida y salas guiadas. Atención, asesoría y firma cara a cara.">
+<title>Y4Meet — Videollamada segura, cara a cara — YacareTech</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -76,8 +76,9 @@ footer{background:var(--bg-alt);border-top:1px solid var(--line);padding:40px 24
 footer a{color:var(--accent)}
 @media(max-width:860px){.grid{grid-template-columns:1fr}.uses{grid-template-columns:1fr 1fr}section.block{padding:64px 20px}.showcase{background:linear-gradient(180deg,#04060f 0%,#04060f 22%,#fff 22%,#fff 100%)}}
 </style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body data-page="y4meet">
 
 <nav><div class="nav-inner">
   <a href="index.html" class="nav-logo">Yacare<span>Tech</span></a>
@@ -87,9 +88,12 @@ footer a{color:var(--accent)}
 <section class="hero">
   <div class="hero-in">
     <span class="badge"><span class="dot"></span> Sesión verificada &middot; Anti-fraude integrado</span>
-    <h1>Y4Meet — la banca cara a cara</h1>
-    <p>La videollamada <strong>nativa del banco</strong>. Tu ejecutivo te mira a los ojos, desde donde estés, con cada sesión <strong>verificada</strong> y el anti-fraude integrado. Nunca te pediremos tu clave.</p>
-    <a href="index.html#contacto" class="btn">Solicitar una demo</a>
+    <h1>Y4Meet — videollamada segura, cara a cara</h1>
+    <p>La videollamada <strong>propia de su institución</strong>, con su marca. Su banco atiende a sus clientes y su entidad atiende a la ciudadanía cara a cara, desde donde estén, con cada sesión <strong>verificada</strong> y el anti-fraude integrado.</p>
+    <div class="yt-demo-actions">
+      <a class="yt-try" data-demo="BANCA" data-demo-action="try" href="index.html#contacto">Pru&eacute;bela ahora</a>
+      <a class="yt-lead" data-demo="BANCA" data-demo-action="lead" href="index.html#contacto">Quiero una demostraci&oacute;n</a>
+    </div>
   </div>
 </section>
 
@@ -97,10 +101,10 @@ footer a{color:var(--accent)}
 <section class="showcase">
   <div class="appframe">
     <div class="af-top">
-      <div class="af-bank"><span class="lg">&#127974;</span> Tu Banco &middot; Y4Meet</div>
-      <span class="af-verify"><span class="d"></span> Sesión verificada &middot; TLS &middot; E2EE</span>
+      <div class="af-bank"><span class="lg">&#127974;</span> Su Banco &middot; Y4Meet</div>
+      <span class="af-verify"><span class="d"></span> Sesión verificada &middot; Cifrada</span>
     </div>
-    <div class="af-phish">&#128737;&#65039; El banco nunca te pedirá tu clave, OTP ni PIN en esta llamada</div>
+    <div class="af-phish">&#128737;&#65039; El banco nunca le pedirá su clave ni sus códigos en esta llamada</div>
     <div class="af-grid">
       <div class="af-tile"><img src="assets/y4meet/ejecutivo.png" alt="Ejecutivo del banco en videollamada Y4Meet" loading="lazy"><span class="af-name"><span class="chk">&#10004;</span> Ejecutivo &middot; verificado</span></div>
       <div class="af-tile"><img src="assets/y4meet/cliente.png" alt="Cliente en videollamada Y4Meet" loading="lazy"><span class="af-name">Cliente</span></div>
@@ -117,15 +121,15 @@ footer a{color:var(--accent)}
 <section class="block">
   <div class="container center">
     <p class="label">Confianza</p>
-    <h2 class="title">Video banking que sí es seguro</h2>
+    <h2 class="title">Atención por video que sí es segura</h2>
     <p class="sub">El fraude rompió la confianza en el canal remoto. Y4Meet la devuelve con identidad verificada y protección anti-fraude desde el diseño.</p>
     <div class="grid" style="text-align:left">
       <div class="card"><div class="ic">&#128737;</div><h3>Sesión verificada</h3><p>Un código de verificación compartido en cada llamada: el cliente confirma que habla con su banco real, no con un impostor.</p></div>
-      <div class="card"><div class="ic">&#128683;</div><h3>Anti-fraude integrado</h3><p>Banner anti-phishing permanente. El banco nunca pide clave, OTP ni PIN dentro de la llamada.</p></div>
-      <div class="card"><div class="ic">&#128274;</div><h3>Cifrado TLS / E2EE</h3><p>Transporte seguro extremo a extremo. La conversación es privada entre el banco y el cliente.</p></div>
-      <div class="card"><div class="ic">&#127974;</div><h3>Nativo del banco</h3><p>Con la marca del banco, no una app de terceros. Un canal reconocible que el cliente confía.</p></div>
-      <div class="card"><div class="ic">&#127760;</div><h3>Listo para redes bancarias</h3><p>Diseñado para funcionar tras firewalls y SWG corporativos, con relay TURN cuando la red lo exige.</p></div>
-      <div class="card"><div class="ic">&#128221;</div><h3>Grabación y evidencia</h3><p>Graba la sesión para respaldo, cumplimiento y auditoría cuando el proceso lo requiere.</p></div>
+      <div class="card"><div class="ic">&#128683;</div><h3>Anti-fraude integrado</h3><p>Un aviso permanente contra el engaño. La institución nunca pide claves ni códigos dentro de la llamada.</p></div>
+      <div class="card"><div class="ic">&#128274;</div><h3>Conversación cifrada</h3><p>La conversación es privada entre la institución y la persona que atiende.</p></div>
+      <div class="card"><div class="ic">&#127974;</div><h3>Con la marca de su institución</h3><p>No es una aplicación de terceros: un canal reconocible en el que la persona confía.</p></div>
+      <div class="card"><div class="ic">&#127760;</div><h3>Listo para redes corporativas</h3><p>Funciona dentro de las redes protegidas de bancos e instituciones públicas.</p></div>
+      <div class="card"><div class="ic">&#128221;</div><h3>Grabación y evidencia</h3><p>Grabe la sesión para respaldo, cumplimiento y auditoría cuando el proceso lo requiere.</p></div>
     </div>
   </div>
 </section>
@@ -137,12 +141,12 @@ footer a{color:var(--accent)}
     <h2 class="title">Una sala de reunión completa</h2>
     <p class="sub">Mucho más que una videollamada: todo lo que un ejecutivo necesita para resolver en vivo.</p>
     <div class="grid" style="text-align:left">
-      <div class="card"><div class="ic">&#128421;</div><h3>Pantalla compartida</h3><p>Comparte documentos, formularios y el propio sistema del banco para llenar y firmar juntos.</p></div>
+      <div class="card"><div class="ic">&#128421;</div><h3>Pantalla compartida</h3><p>Comparta documentos, formularios y el propio sistema de su institución para llenar y firmar juntos.</p></div>
       <div class="card"><div class="ic">&#128172;</div><h3>Chat en vivo</h3><p>Mensajes, enlaces y archivos durante la llamada, sincronizados para todos los participantes.</p></div>
       <div class="card"><div class="ic">&#9989;</div><h3>Agenda y compromisos</h3><p>Tableros de agenda y compromisos con avance en vivo. La reunión deja acuerdos, no solo palabras.</p></div>
       <div class="card"><div class="ic">&#127916;</div><h3>Actividades y videoteca</h3><p>Dinámicas guiadas y biblioteca de videos para capacitación y asesoría dentro de la sala.</p></div>
-      <div class="card"><div class="ic">&#127912;</div><h3>Fondo virtual con marca</h3><p>Fondos profesionales con la identidad del banco para cada ejecutivo.</p></div>
-      <div class="card"><div class="ic">&#129504;</div><h3>Copiloto con IA</h3><p>Un asistente que guía cada paso del flujo, sugiere y resume — configurable por plantilla.</p></div>
+      <div class="card"><div class="ic">&#127912;</div><h3>Fondo virtual con marca</h3><p>Fondos profesionales con la identidad de su institución para cada persona de su equipo.</p></div>
+      <div class="card"><div class="ic">&#129504;</div><h3>Copiloto con IA</h3><p>Un asistente que guía cada paso, sugiere y resume, ajustado a cada tipo de sala.</p></div>
     </div>
   </div>
 </section>
@@ -152,11 +156,11 @@ footer a{color:var(--accent)}
   <div class="container center">
     <p class="label">Sin barreras</p>
     <h2 class="title">Interpretación en vivo, para cualquier cliente</h2>
-    <p class="sub">Atiende en el idioma del cliente sin intérpretes externos. Interpretación 100% local, privada y sin costo por minuto.</p>
+    <p class="sub">Atienda en el idioma de cada persona sin intérpretes externos. Interpretación privada y sin costo por minuto.</p>
     <div class="grid" style="text-align:left">
       <div class="card"><div class="ic">&#127760;</div><h3>Subtítulos en vivo</h3><p>Transcripción y subtítulos en tiempo real durante toda la llamada.</p></div>
       <div class="card"><div class="ic">&#128483;</div><h3>Voz traducida por participante</h3><p>Cada quien escucha en su idioma: interpretación de voz personalizada por participante.</p></div>
-      <div class="card"><div class="ic">&#128274;</div><h3>100% local y privado</h3><p>El procesamiento ocurre en el dispositivo: nada de la conversación sale a un tercero.</p></div>
+      <div class="card"><div class="ic">&#128274;</div><h3>Privado</h3><p>Nada de la conversación sale a un tercero.</p></div>
     </div>
   </div>
 </section>
@@ -167,12 +171,12 @@ footer a{color:var(--accent)}
     <p class="label">Escala y flexibilidad</p>
     <h2 class="title">De un 1:1 a un auditorio</h2>
     <div class="grid" style="text-align:left">
-      <div class="card"><div class="ic">&#128101;</div><h3>1:1 y grupos pequeños</h3><p>Conexión directa P2P con relay TURN de respaldo: máxima calidad y estabilidad.</p></div>
-      <div class="card"><div class="ic">&#128225;</div><h3>Grupos grandes (SFU)</h3><p>Reuniones de 20+ participantes con servidor SFU LiveKit, sin sacrificar rendimiento.</p></div>
-      <div class="card"><div class="ic">&#128279;</div><h3>Links de invitado</h3><p>Invita por link con admisión del organizador y enlaces con vigencia controlada.</p></div>
-      <div class="card"><div class="ic">&#128260;</div><h3>Salas públicas perpetuas</h3><p>Salas permanentes con un link fijo, sin login ni caducidad, para atención continua.</p></div>
+      <div class="card"><div class="ic">&#128101;</div><h3>1:1 y grupos pequeños</h3><p>Conexión directa, de la mejor calidad y estable aun en redes exigentes.</p></div>
+      <div class="card"><div class="ic">&#128225;</div><h3>Grupos grandes</h3><p>Reuniones con muchos participantes, sin sacrificar la calidad.</p></div>
+      <div class="card"><div class="ic">&#128279;</div><h3>Enlaces de invitado</h3><p>Invite por enlace con admisión del organizador y enlaces con vigencia controlada.</p></div>
+      <div class="card"><div class="ic">&#128260;</div><h3>Salas públicas perpetuas</h3><p>Salas permanentes con un enlace fijo, sin usuario ni caducidad, para atención continua.</p></div>
       <div class="card"><div class="ic">&#128081;</div><h3>Relevo de liderazgo</h3><p>El organizador puede ceder el control y coordinar múltiples salas desde un solo enlace.</p></div>
-      <div class="card"><div class="ic">&#129513;</div><h3>Plantillas config-driven</h3><p>Onboarding, asesoría o capacitación: flujos guiados que se arman por configuración, no por código.</p></div>
+      <div class="card"><div class="ic">&#129513;</div><h3>Plantillas guiadas</h3><p>Vinculación de clientes, asesoría o capacitación: pasos guiados que su equipo ajusta sin programar.</p></div>
     </div>
   </div>
 </section>
@@ -182,13 +186,13 @@ footer a{color:var(--accent)}
   <div class="container center">
     <p class="label">Plantillas poderosas</p>
     <h2 class="title">Una sala distinta para cada misión</h2>
-    <p class="sub">Y4Meet no es una sala genérica. Cada plantilla arma el ambiente, los pasos, las herramientas y el copiloto adecuados — por configuración, no por código.</p>
+    <p class="sub">Y4Meet no es una sala genérica. Cada plantilla arma el ambiente, los pasos, las herramientas y el asistente adecuados, sin programar.</p>
     <div class="grid" style="text-align:left">
       <div class="card"><div class="ic">&#127919;</div><h3>Cuarto de guerra</h3><p>Monitoreo y decisiones en crisis: tableros en vivo, roles claros, foco total y evidencia de lo acordado.</p></div>
-      <div class="card"><div class="ic">&#127891;</div><h3>Capacitación</h3><p>Láminas de apoyo, guion guiado, tips y casos. El facilitador marca por dónde va la clase para todos, en vivo.</p></div>
-      <div class="card"><div class="ic">&#128101;</div><h3>Equipo</h3><p>Daily, seguimiento y retrospectiva con agenda y compromisos que quedan registrados y con avance visible.</p></div>
-      <div class="card"><div class="ic">&#128188;</div><h3>Comercial</h3><p>Demo, negociación y cierre: presenta, comparte pantalla y haz avanzar el pipeline dentro de la misma llamada.</p></div>
-      <div class="card"><div class="ic">&#129309;</div><h3>Onboarding</h3><p>Alta de cliente guiada paso a paso, con verificación de identidad y firma cara a cara.</p></div>
+      <div class="card"><div class="ic">&#127891;</div><h3>Capacitación</h3><p>Láminas de apoyo, guion guiado, consejos y casos. El facilitador marca por dónde va la clase para todos, en vivo.</p></div>
+      <div class="card"><div class="ic">&#128101;</div><h3>Equipo</h3><p>Reunión diaria, seguimiento y retrospectiva con agenda y compromisos que quedan registrados y con avance visible.</p></div>
+      <div class="card"><div class="ic">&#128188;</div><h3>Comercial</h3><p>Demostración, negociación y cierre: presente, comparta pantalla y avance cada oportunidad dentro de la misma llamada.</p></div>
+      <div class="card"><div class="ic">&#129309;</div><h3>Vinculación de clientes</h3><p>Alta de cliente guiada paso a paso, con verificación de identidad y firma cara a cara.</p></div>
       <div class="card"><div class="ic">&#127911;</div><h3>Atención al cliente</h3><p>Soporte y gestión de reclamos con trazabilidad, grabación y evidencia de cada acuerdo.</p></div>
     </div>
   </div>
@@ -197,28 +201,37 @@ footer a{color:var(--accent)}
 <!-- ===== Casos ===== -->
 <section class="block alt">
   <div class="container center">
-    <p class="label">Casos de uso en banca</p>
-    <h2 class="title">Todo lo de la sucursal, en una llamada</h2>
+    <p class="label">Casos de uso</p>
+    <h2 class="title">Todo lo de la ventanilla, en una llamada</h2>
     <div class="uses">
-      <div class="use"><div class="ue">&#129309;</div><h3>Onboarding</h3><p>Apertura de cuenta y verificación de identidad remota.</p></div>
+      <div class="use"><div class="ue">&#129309;</div><h3>Apertura de cuenta</h3><p>Apertura de cuenta y verificación de identidad remota.</p></div>
       <div class="use"><div class="ue">&#128188;</div><h3>Asesoría</h3><p>Inversiones y banca privada cara a cara.</p></div>
-      <div class="use"><div class="ue">&#127760;</div><h3>COMEX asistido</h3><p>Cierra factoring o comercio exterior en vivo.</p></div>
+      <div class="use"><div class="ue">&#127760;</div><h3>Comercio exterior asistido</h3><p>Cierre factoring o comercio exterior en vivo.</p></div>
       <div class="use"><div class="ue">&#128221;</div><h3>Firma y reclamos</h3><p>Firma de documentos y soporte con evidencia.</p></div>
     </div>
+    <p class="sub" style="margin-top:32px">Y en el sector público: atención ciudadana con turno y videollamada, sin que nadie tenga que trasladarse. <a href="municipios.html" style="color:var(--accent);font-weight:600">Vea la plataforma para municipios &rarr;</a></p>
   </div>
 </section>
 
 <section class="block cta">
   <div class="container">
     <h2>Cara a cara, sin dudas</h2>
-    <p>Te mostramos Y4Meet en acción: la sesión verificada, el anti-fraude, la interpretación en vivo y el onboarding remoto.</p>
-    <a href="index.html#contacto" class="btn">Hablemos</a>
+    <p>Le mostramos Y4Meet en acción: la sesión verificada, el anti-fraude, la interpretación en vivo y la vinculación remota de clientes.</p>
+    <div class="yt-demo-actions">
+      <a class="yt-try" data-demo="BANCA" data-demo-action="try" href="index.html#contacto">Pru&eacute;bela ahora</a>
+      <a class="yt-lead" data-demo="BANCA" data-demo-action="lead" href="index.html#contacto">Quiero una demostraci&oacute;n</a>
+    </div>
   </div>
 </section>
 
 <footer>
-  <a href="index.html">YacareTech</a> &middot; Copyright &copy; 2026 Yacaretech Cia. Ltda. All rights reserved.
+  <a href="index.html">YacareTech</a> &middot; Copyright &copy; 2026 Yacaretech Cia. Ltda. Todos los derechos reservados.
 </footer>
 
+<div class="yt-demo-bar" data-sticky-demo>
+  <a class="yt-try" data-demo="BANCA" data-demo-action="try" href="index.html#contacto">Pru&eacute;bela ahora</a>
+  <a class="yt-lead" data-demo="BANCA" data-demo-action="lead" href="index.html#contacto">Quiero una demostraci&oacute;n</a>
+</div>
+<script src="assets/config.js"></script>
 </body>
 </html>

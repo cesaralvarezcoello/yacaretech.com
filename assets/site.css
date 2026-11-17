@@ -1,6 +1,8 @@
 /* Shared pieces of the product pages: live-demo buttons and the mobile sticky demo bar.
    Links are filled in by assets/config.js (data-demo / data-demo-action). */
 html, body { overflow-x: hidden; }
+/* room so the hero buttons stay on the dark area, above the white fade */
+.hero { padding-bottom: 170px; }
 .yt-demo-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
 .yt-try, .yt-lead {
   display: inline-block; padding: 14px 28px; border-radius: 980px; font-size: .95rem; font-weight: 600;
