@@ -799,6 +799,7 @@ html, body { overflow-x: hidden; }
 }
 .vcard:hover { box-shadow: var(--card-hover-shadow); transform: translateY(-3px); }
 .vcard-wide { grid-column: 1 / -1; }
+.vcard-badge { margin-left: auto; font-size: 0.75rem; font-weight: 600; color: #8a6d00; background: rgba(255,214,10,0.18); border: 1px solid rgba(255,214,10,0.5); padding: 5px 10px; border-radius: 980px; white-space: nowrap; }
 .vcard-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
 .vcard-icon {
   width: 48px; height: 48px; flex: 0 0 48px;
@@ -964,6 +965,7 @@ html, body { overflow-x: hidden; }
 <a href="#" class="nav-logo">Yacare<span>Tech</span></a>
 <ul class="nav-links" id="navLinks">
 <li><a href="#productos">Productos</a></li>
+<li><a href="marketplace.html">Marketplace</a></li>
 <li><a href="#historias">Historias</a></li>
 <li><a href="#demostracion">C&oacute;mo probarlas</a></li>
 <li><a href="#proyectos">Nuevos proyectos</a></li>
@@ -1027,6 +1029,23 @@ html, body { overflow-x: hidden; }
 <a class="btn-try" data-demo="BANCA" data-demo-action="try" href="#contacto">Pru&eacute;bela ahora</a>
 <a class="btn-lead" data-demo="BANCA" data-demo-action="lead" href="#contacto">Quiero una demostraci&oacute;n</a>
 <a class="vcard-more" href="y4.html">Conocer m&aacute;s &rarr;</a>
+</div>
+</article>
+
+<!-- MARKETPLACE -->
+<article class="vcard vcard-wide fade-in" style="--vc:#6366F1" id="marketplace">
+<div class="vcard-head"><div class="vcard-icon">&#129309;</div><h3>Marketplace Financiero Y4</h3><span class="vcard-badge">Pre-lanzamiento</span></div>
+<p class="vcard-hook">Donde la demanda corporativa encuentra a los bancos. <em>Antes que nadie.</em></p>
+<p class="vcard-benefit">Las empresas publican sus necesidades de financiamiento y los bancos responden con su cotizaci&oacute;n, cada uno en privado. El cliente compara lado a lado con apoyo de inteligencia artificial, que le explica por qu&eacute; una oferta conviene m&aacute;s, y adjudica con un clic. Ordenado, veloz y en igualdad de acceso.</p>
+<ul class="vcard-caps">
+<li><strong>01 &middot; El cliente publica su intenci&oacute;n:</strong> factoring, garant&iacute;as, cartas de cr&eacute;dito, cobranzas o confirming.</li>
+<li><strong>02 &middot; Los bancos cotizan en privado:</strong> ofertas selladas, nadie ve la de los dem&aacute;s.</li>
+<li><strong>03 &middot; Adjudica con apoyo de IA:</strong> tasa, comisi&oacute;n y plazo, explicados lado a lado.</li>
+</ul>
+<div class="vcard-actions">
+<a class="btn-try" href="#contacto" data-topic="Soy un banco: quiero ser socio fundador del Marketplace Financiero Y4">Soy un banco: quiero ser socio fundador</a>
+<a class="btn-lead" href="#contacto" data-topic="Soy una empresa: quiero financiamiento en el Marketplace Financiero Y4">Soy una empresa: quiero financiamiento</a>
+<a class="vcard-more" href="marketplace.html">Conocer m&aacute;s &rarr;</a>
 </div>
 </article>
 
@@ -1344,6 +1363,7 @@ html, body { overflow-x: hidden; }
 <a href="talento.html">Talento humano</a>
 <a href="compras.html">Compras p&uacute;blicas</a>
 <a href="y4meet.html">Y4Meet</a>
+<a href="marketplace.html">Marketplace Financiero Y4</a>
 </div>
 <div class="footer-col">
 <h4>Banca</h4>
@@ -1411,6 +1431,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
   });
 });
+
+// ---- Topic coming from another page (index.html?tema=...#contacto) ----
+(function () {
+  try {
+    const tema = new URLSearchParams(location.search).get('tema');
+    const msg = document.querySelector('#contactForm textarea');
+    if (tema && msg && !msg.value) msg.value = 'Me interesa: ' + tema.slice(0, 200) + '.\n\n';
+  } catch (e) { /* ignore */ }
+})();
 
 // ---- Contact form -> opens the visitor's e-mail with the message (static site, no backend) ----
 const contactForm = document.getElementById('contactForm');
