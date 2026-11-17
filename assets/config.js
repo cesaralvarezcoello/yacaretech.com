@@ -64,7 +64,8 @@
   function injectStyles() {
     if (document.getElementById('yt-wa-style')) return;
     var css =
-      '.yt-wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px) + var(--yt-wa-lift,0px));z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:inherit}' +
+      '.yt-wa{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:inherit}' +
+      '.yt-wa.lifted{bottom:calc(12px + var(--yt-wa-lift,0px))}' +
       '.yt-wa-btn{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;background:#1f9d55;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:transform .15s}' +
       '.yt-wa-btn:hover{transform:scale(1.06)}' +
       '.yt-wa-btn svg{width:28px;height:28px}' +
@@ -139,7 +140,9 @@
     if (sticky) {
       var lift = function () {
         var visible = getComputedStyle(sticky).display !== 'none';
-        wrap.style.setProperty('--yt-wa-lift', visible ? sticky.offsetHeight + 'px' : '0px');
+        wrap.style.setProperty('--yt-wa-lift', sticky.offsetHeight + 'px');
+        wrap.classList.toggle('lifted', visible);
+        document.body.classList.toggle('has-demo-bar', visible);
       };
       lift();
       window.addEventListener('resize', lift);

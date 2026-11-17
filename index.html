@@ -891,6 +891,31 @@ html, body { overflow-x: hidden; }
 .phone-card span { height: 8px; border-radius: 4px; background: #e5e5ea; }
 .phone-card span.short { width: 55%; }
 
+/* ---- Stories: navigate like a social network ---- */
+.stories-section { background: linear-gradient(160deg, #f5f7ff 0%, #ffffff 45%, #f3fbf8 100%); }
+.stories-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.stories-lead { font-size: clamp(1.02rem, 2.3vw, 1.2rem); color: var(--text-secondary); line-height: 1.65; margin-bottom: 28px; max-width: 620px; }
+.stories-points { list-style: none; display: grid; gap: 16px; }
+.stories-points li { display: flex; gap: 14px; align-items: flex-start; font-size: 0.97rem; line-height: 1.55; color: var(--text-secondary); }
+.stories-points li > span { flex: 0 0 36px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #fff; box-shadow: var(--card-shadow); font-size: 1rem; }
+.stories-points strong { color: var(--text-primary); }
+.phone-lg { width: 290px; aspect-ratio: auto; padding-bottom: 18px; }
+.phone-appbar { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; margin-bottom: 12px; }
+.phone-appbar i { width: 22px; height: 22px; border-radius: 50%; background: #d1d1d6; }
+.wall-post { background: #fff; border-radius: 16px; padding: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); margin-bottom: 12px; }
+.wall-head { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
+.wall-head b { display: block; font-size: 0.75rem; }
+.wall-head small { font-size: 0.65rem; color: var(--text-secondary); }
+.wall-avatar { width: 28px; height: 28px; border-radius: 50%; background: #F59E0B; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+.wall-media { height: 92px; border-radius: 12px; background: linear-gradient(135deg, #0EA5E9, #8B5CF6); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 10px; }
+.wall-post p { font-size: 0.75rem; line-height: 1.45; margin-bottom: 10px; color: var(--text-primary); }
+.wall-btn { display: block; text-align: center; background: #0071e3; color: #fff; font-size: 0.75rem; font-weight: 600; padding: 8px; border-radius: 980px; }
+.newway-section { padding-top: 0; }
+.newway-wide { max-width: 860px; margin: 0 auto; }
+@media (max-width: 860px) {
+  .stories-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
 /* ---- New projects ---- */
 .projects-section { background: radial-gradient(ellipse 90% 70% at 50% 30%, #1a2744 0%, #0d1117 60%, #010409 100%); color: #fff; }
 .projects-section .section-title { color: #fff; }
@@ -939,6 +964,7 @@ html, body { overflow-x: hidden; }
 <a href="#" class="nav-logo">Yacare<span>Tech</span></a>
 <ul class="nav-links" id="navLinks">
 <li><a href="#productos">Productos</a></li>
+<li><a href="#historias">Historias</a></li>
 <li><a href="#demostracion">C&oacute;mo probarlas</a></li>
 <li><a href="#proyectos">Nuevos proyectos</a></li>
 <li><a href="#servicios">Servicios</a></li>
@@ -1072,6 +1098,27 @@ html, body { overflow-x: hidden; }
 </div>
 </article>
 
+<!-- Y4MEET -->
+<article class="vcard vcard-wide fade-in" style="--vc:#14B8A6" id="y4meet">
+<div class="vcard-head"><div class="vcard-icon">&#127909;</div><h3>Y4Meet &middot; videollamada segura</h3></div>
+<p class="vcard-hook">Atienda cara a cara, <em>sin que nadie se traslade</em></p>
+<p class="vcard-benefit">La videollamada propia de su instituci&oacute;n, con su marca: para que el banco atienda a sus clientes y la entidad p&uacute;blica a la ciudadan&iacute;a, con turnos y videollamada, de forma segura.</p>
+<ul class="vcard-caps">
+<li><strong>Sesi&oacute;n verificada:</strong> la persona confirma que habla con su instituci&oacute;n real, no con un impostor.</li>
+<li><strong>Anti-fraude integrado:</strong> un aviso permanente recuerda que nunca se piden claves dentro de la llamada.</li>
+<li><strong>Grabaci&oacute;n y evidencia:</strong> respaldo de cada acuerdo cuando el proceso lo requiere.</li>
+<li><strong>Interpretaci&oacute;n en vivo:</strong> subt&iacute;tulos y voz traducida para atender en el idioma de cada persona.</li>
+<li><strong>De un 1:1 a un auditorio:</strong> desde una atenci&oacute;n individual hasta reuniones grandes.</li>
+<li><strong>Salas para cada misi&oacute;n:</strong> atenci&oacute;n, asesor&iacute;a, capacitaci&oacute;n y firma cara a cara.</li>
+</ul>
+<div class="vcard-actions">
+<a class="btn-try" data-demo="BANCA" data-demo-action="try" href="#contacto">Pru&eacute;bela ahora</a>
+<a class="btn-lead" href="#contacto" data-topic="Y4Meet, videollamada segura">Quiero una demostraci&oacute;n</a>
+<a class="vcard-more" href="y4meet.html">Conocer m&aacute;s &rarr;</a>
+</div>
+</article>
+
+
 </div>
 </div>
 </section>
@@ -1093,48 +1140,50 @@ html, body { overflow-x: hidden; }
 </div>
 </section>
 
-<!-- ===== UNA NUEVA FORMA DE TRABAJAR ===== -->
-<section class="newway-section" id="nueva-forma">
-<div class="container">
-<div class="fade-in" style="text-align:center;">
-<p class="section-label">Incluido en cada plataforma</p>
-<h2 class="section-title">Una nueva forma de trabajar</h2>
-<p class="section-subtitle" style="margin:0 auto;">Dos beneficios que su gente y sus clientes notan desde el primer d&iacute;a.</p>
+<!-- ===== HISTORIAS: navegacion como red social ===== -->
+<section class="stories-section" id="historias">
+<div class="container stories-grid">
+<div class="stories-copy fade-in">
+<p class="section-label">Una nueva forma de trabajar</p>
+<h2 class="section-title">Sus apps ya no se navegan solo con men&uacute;s: se navegan con historias</h2>
+<p class="stories-lead">Como en las redes sociales que su gente ya usa todos los d&iacute;as: una franja de historias arriba, un muro con publicaciones y noticias destacadas. Historias claras que explican cada paso y llevan a cada persona directo a lo que tiene que hacer.</p>
+<ul class="stories-points">
+<li><span>&#9654;</span><div><strong>Gu&iacute;an paso a paso.</strong> Al servidor p&uacute;blico, al ciudadano, al cliente y al colaborador: cada uno ve lo que le toca hacer hoy.</div></li>
+<li><span>&#128240;</span><div><strong>Un muro para informar.</strong> Publicaciones y noticias destacadas, con un bot&oacute;n que lleva directo a la acci&oacute;n.</div></li>
+<li><span>&#129309;</span><div><strong>Todos se relacionan.</strong> Los miembros de su organizaci&oacute;n, sus clientes y sus colaboradores interact&uacute;an como en una red social.</div></li>
+<li><span>&#127775;</span><div><strong>F&aacute;cil desde el primer d&iacute;a.</strong> Sin manuales: la propia aplicaci&oacute;n se presenta y ense&ntilde;a a usarla.</div></li>
+</ul>
 </div>
-<div class="newway-grid">
-<div class="newway-text fade-in">
-<div class="newway-block">
+<div class="phone-wrap fade-in" aria-hidden="true">
+<div class="phone phone-lg">
+<div class="phone-notch"></div>
+<div class="phone-appbar"><b>Su instituci&oacute;n</b><i></i></div>
+<div class="phone-stories">
+<div class="story"><span class="story-ring" style="--s1:#0EA5E9;--s2:#8B5CF6"><span class="story-face">&#128075;</span></span><small>Bienvenida</small></div>
+<div class="story"><span class="story-ring" style="--s1:#F59E0B;--s2:#EF4444"><span class="story-face">&#128203;</span></span><small>Pendientes</small></div>
+<div class="story"><span class="story-ring" style="--s1:#10B981;--s2:#0EA5E9"><span class="story-face">&#128227;</span></span><small>Noticias</small></div>
+<div class="story"><span class="story-ring story-seen"><span class="story-face">&#127891;</span></span><small>C&oacute;mo usarla</small></div>
+</div>
+<div class="wall-post">
+<div class="wall-head"><span class="wall-avatar">&#127963;</span><div><b>Talento humano</b><small>Destacado &middot; hoy</small></div></div>
+<div class="wall-media"><span>&#127965;</span></div>
+<p>Ya puede pedir sus vacaciones desde el tel&eacute;fono. Le mostramos c&oacute;mo en tres pasos.</p>
+<span class="wall-btn">Pedir vacaciones</span>
+</div>
+<div class="phone-card"><span></span><span class="short"></span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===== APP MOVIL CON AVISOS ===== -->
+<section class="newway-section" id="app-movil">
+<div class="container">
+<div class="newway-block newway-wide fade-in">
 <div class="newway-icon">&#128241;</div>
 <div>
 <h3>Su app m&oacute;vil, con avisos al instante</h3>
 <p>Hoy, llegar al tel&eacute;fono de su gente y de sus clientes es un problema. Con nosotros ya viene resuelto: la aplicaci&oacute;n se instala desde el navegador, con la marca de su instituci&oacute;n, y avisa al instante cuando una solicitud fue aprobada, un tr&aacute;mite cambi&oacute; de estado o hay una tarea pendiente.</p>
-</div>
-</div>
-<div class="newway-block">
-<div class="newway-icon">&#10024;</div>
-<div>
-<h3>Historias que guían</h3>
-<p>Una nueva manera de navegar y relacionarse entre todos los miembros de su organizaci&oacute;n, sus clientes y colaboradores: historias que gu&iacute;an a cada persona paso a paso y hacen f&aacute;cil usar la plataforma desde el primer d&iacute;a. Publicaciones destacadas, lo que cada persona tiene pendiente y la presentaci&oacute;n de la propia aplicaci&oacute;n, a un toque.</p>
-</div>
-</div>
-</div>
-<div class="phone-wrap fade-in" aria-hidden="true">
-<div class="phone">
-<div class="phone-notch"></div>
-<div class="phone-notif">
-<span class="phone-notif-dot"></span>
-<div><strong>Solicitud aprobada</strong><span>Sus vacaciones fueron aprobadas.</span></div>
-</div>
-<div class="phone-stories">
-<div class="story"><span class="story-ring" style="--s1:#0EA5E9;--s2:#8B5CF6"><span class="story-face">&#128075;</span></span><small>Bienvenida</small></div>
-<div class="story"><span class="story-ring" style="--s1:#F59E0B;--s2:#EF4444"><span class="story-face">&#128203;</span></span><small>Pendientes</small></div>
-<div class="story"><span class="story-ring" style="--s1:#10B981;--s2:#0EA5E9"><span class="story-face">&#128227;</span></span><small>Avisos</small></div>
-<div class="story"><span class="story-ring story-seen"><span class="story-face">&#127891;</span></span><small>Gu&iacute;a</small></div>
-</div>
-<div class="phone-card"><span></span><span></span><span class="short"></span></div>
-<div class="phone-card"><span></span><span class="short"></span></div>
-<div class="phone-card"><span></span><span></span><span class="short"></span></div>
-</div>
 </div>
 </div>
 </div>
@@ -1294,6 +1343,7 @@ html, body { overflow-x: hidden; }
 <a href="tributaria.html">Administraci&oacute;n tributaria</a>
 <a href="talento.html">Talento humano</a>
 <a href="compras.html">Compras p&uacute;blicas</a>
+<a href="y4meet.html">Y4Meet</a>
 </div>
 <div class="footer-col">
 <h4>Banca</h4>
