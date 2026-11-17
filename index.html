@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Yacaretech Cia. Ltda.">
 <meta name="company" content="YacareTech">
-<meta name="description" content="YacareTech - Y4, el Banking OS sobre BIAN. Comercio exterior, factoring, confirming y banca por video verificada para el sector financiero.">
-<meta name="copyright" content="&copy; 2026 Yacaretech Cia. Ltda. All rights reserved.">
-<title>YacareTech - Y4 Banking OS para el Sector Financiero</title>
+<meta name="description" content="YacareTech: plataformas para la banca, municipios, administraci&oacute;n tributaria, talento humano y compras p&uacute;blicas. Pru&eacute;belas hoy mismo, sin contrase&ntilde;a.">
+<meta name="copyright" content="&copy; 2026 Yacaretech Cia. Ltda.">
+<title>YacareTech - Plataformas para el gobierno y el sector financiero</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -777,520 +777,592 @@ footer {
   .why-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
 }
+
+/* ---- VITRINA: products with live demos ---- */
+html, body { overflow-x: hidden; }
+.lineup {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 56px;
+}
+.vcard {
+  --vc: #0071e3;
+  background: var(--bg-alt);
+  border-radius: 22px;
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  border-top: 4px solid var(--vc);
+  transition: box-shadow 0.3s, transform 0.3s;
+  min-width: 0;
+}
+.vcard:hover { box-shadow: var(--card-hover-shadow); transform: translateY(-3px); }
+.vcard-wide { grid-column: 1 / -1; }
+.vcard-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.vcard-icon {
+  width: 48px; height: 48px; flex: 0 0 48px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  background: var(--vc);
+  color: #fff;
+}
+.vcard h3 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.vcard-hook { font-size: 1.12rem; font-weight: 600; line-height: 1.35; margin-bottom: 8px; color: var(--text-primary); }
+.vcard-hook em { font-style: normal; color: var(--vc); }
+.vcard-benefit { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 18px; }
+.vcard-caps { list-style: none; display: grid; gap: 10px; margin-bottom: 22px; }
+.vcard-wide .vcard-caps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.vcard-caps li {
+  font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary);
+  padding-left: 22px; position: relative;
+}
+.vcard-caps li::before {
+  content: ''; position: absolute; left: 2px; top: 0.5em;
+  width: 9px; height: 9px; border-radius: 50%; background: var(--vc);
+}
+.vcard-caps strong { color: var(--text-primary); font-weight: 600; }
+.vcard-sub { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.vcard-sub a {
+  font-size: 0.85rem; font-weight: 600; color: var(--text-primary);
+  background: var(--bg-primary); border: 1px solid var(--nav-border);
+  padding: 8px 14px; border-radius: 980px; text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.vcard-sub a:hover { border-color: var(--vc); color: var(--vc); }
+.vcard-actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn-try, .btn-lead {
+  display: inline-block; padding: 12px 22px; border-radius: 980px;
+  font-size: 0.92rem; font-weight: 600; text-decoration: none; text-align: center;
+  transition: transform 0.15s, background 0.2s, color 0.2s;
+}
+.btn-try { background: var(--vc); color: #fff; }
+.btn-try:hover { transform: scale(1.03); }
+.btn-lead { background: transparent; color: var(--text-primary); border: 1.5px solid rgba(0,0,0,0.18); }
+.btn-lead:hover { border-color: var(--vc); color: var(--vc); }
+.vcard-more { font-size: 0.9rem; font-weight: 600; color: var(--accent); text-decoration: none; margin-left: 6px; }
+.vcard-more:hover { text-decoration: underline; }
+
+/* ---- How the demo works ---- */
+.demo-section { background: var(--bg-alt); }
+.demo-steps {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-top: 48px;
+  list-style: none; counter-reset: step;
+}
+.demo-steps li {
+  background: var(--bg-primary); border-radius: 18px; padding: 28px 24px; position: relative;
+  counter-increment: step;
+}
+.demo-steps li::before {
+  content: counter(step);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-weight: 700; font-size: 0.95rem; margin-bottom: 14px;
+}
+.demo-steps h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+.demo-steps p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.55; }
+
+/* ---- A new way of working ---- */
+.newway-section { background: var(--bg-primary); }
+.newway-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; align-items: center; margin-top: 48px; }
+.newway-block { display: flex; gap: 18px; background: var(--bg-alt); border-radius: 20px; padding: 28px 26px; }
+.newway-block + .newway-block { margin-top: 20px; }
+.newway-icon { flex: 0 0 48px; width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; background: linear-gradient(135deg, #0071e3, #40a0ff); color: #fff; }
+.newway-block h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+.newway-block p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+.phone-wrap { display: flex; justify-content: center; }
+.phone {
+  width: 260px; max-width: 100%; aspect-ratio: 9 / 18; background: #f5f5f7; border: 10px solid #1d1d1f; border-radius: 40px;
+  padding: 30px 14px 14px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.18); overflow: hidden;
+}
+.phone-notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 80px; height: 18px; background: #1d1d1f; border-radius: 10px; }
+.phone-notif { display: flex; gap: 10px; align-items: flex-start; background: #fff; border-radius: 14px; padding: 10px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.1); margin-bottom: 16px; font-size: 0.72rem; line-height: 1.35; }
+.phone-notif strong { display: block; font-size: 0.75rem; }
+.phone-notif span { color: var(--text-secondary); }
+.phone-notif-dot { flex: 0 0 10px; width: 10px; height: 10px; border-radius: 50%; background: #1f9d55; margin-top: 3px; }
+.phone-stories { display: flex; gap: 10px; justify-content: space-between; margin-bottom: 16px; }
+.story { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+.story small { font-size: 0.6rem; color: var(--text-secondary); white-space: nowrap; }
+.story-ring { width: 48px; height: 48px; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, var(--s1, #0071e3), var(--s2, #40a0ff)); display: block; }
+.story-ring.story-seen { background: #c7c7cc; }
+.story-face { width: 100%; height: 100%; border-radius: 50%; background: #fff; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.phone-card { background: #fff; border-radius: 12px; padding: 12px; margin-bottom: 10px; display: grid; gap: 7px; }
+.phone-card span { height: 8px; border-radius: 4px; background: #e5e5ea; }
+.phone-card span.short { width: 55%; }
+
+/* ---- New projects ---- */
+.projects-section { background: radial-gradient(ellipse 90% 70% at 50% 30%, #1a2744 0%, #0d1117 60%, #010409 100%); color: #fff; }
+.projects-section .section-title { color: #fff; }
+.projects-section .section-subtitle { color: rgba(255,255,255,0.65); }
+.projects-section .section-label { color: #7cc0ff; }
+.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 48px; }
+.pcard {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px; padding: 34px 30px; display: flex; flex-direction: column; min-width: 0;
+}
+.pcard-status {
+  align-self: flex-start; font-size: 0.78rem; font-weight: 600; color: #ffd60a;
+  background: rgba(255,214,10,0.12); border: 1px solid rgba(255,214,10,0.35);
+  padding: 6px 12px; border-radius: 980px; margin-bottom: 18px;
+}
+.pcard h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 10px; }
+.pcard-summary { font-size: 1rem; color: rgba(255,255,255,0.85); line-height: 1.55; margin-bottom: 12px; }
+.pcard-detail { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 22px; }
+.pcard .btn-lead { margin-top: auto; align-self: flex-start; color: #fff; border-color: rgba(255,255,255,0.35); }
+.pcard .btn-lead:hover { color: #fff; border-color: #fff; }
+
+@media (max-width: 960px) {
+  .vcard-wide .vcard-caps { grid-template-columns: 1fr; }
+  .demo-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .lineup, .projects-grid, .newway-grid { grid-template-columns: 1fr; }
+  .newway-block { padding: 22px 18px; gap: 14px; }
+  .vcard { padding: 28px 22px 24px; }
+  .pcard { padding: 28px 22px; }
+}
+@media (max-width: 480px) {
+  .demo-steps { grid-template-columns: 1fr; }
+  .vcard-actions { flex-direction: column; align-items: stretch; }
+  .vcard-more { margin: 6px 0 0; text-align: center; }
+  .pcard .btn-lead { align-self: stretch; }
+  .hero-buttons a { width: 100%; max-width: 320px; text-align: center; }
+}
 </style>
 </head>
-<body>
+<body data-page="inicio">
 
 <!-- ===== NAV ===== -->
 <nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Yacare<span>Tech</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#productos" data-i18n="nav.products">Productos</a></li>
-      <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
-      <li><a href="#casos" data-i18n="nav.cases">&iquest;Por qu&eacute; elegirnos?</a></li>
-      <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
-    </ul>
-    <div style="display:flex;align-items:center;gap:16px;">
-      <div class="lang-toggle" id="langToggle">
-        <span id="langEs" class="active">ES</span>
-        <span id="langEn">EN</span>
-      </div>
-      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
+<div class="nav-inner">
+<a href="#" class="nav-logo">Yacare<span>Tech</span></a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#productos">Productos</a></li>
+<li><a href="#demostracion">C&oacute;mo probarlas</a></li>
+<li><a href="#proyectos">Nuevos proyectos</a></li>
+<li><a href="#servicios">Servicios</a></li>
+<li><a href="#contacto">Contacto</a></li>
+</ul>
+<button class="nav-hamburger" id="navHamburger" aria-label="Men&uacute;">
+<span></span><span></span><span></span>
+</button>
+</div>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="inicio">
-  <div class="hero-grid"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
-  <div class="hero-content">
-    <span class="hero-badge" data-i18n="hero.badge">&#128300; Construyendo un core bancario 100% BIAN-native</span>
-    <h1 data-i18n="hero.title">Llevamos la banca al siguiente nivel</h1>
-    <p data-i18n="hero.subtitle">Y4 es nuestro Banking OS sobre BIAN &mdash;el est&aacute;ndar global&mdash;: estandariza los servicios de un banco y habilita comercio exterior, factoring, confirming y banca por video verificada, por configuraci&oacute;n y no por c&oacute;digo.</p>
-    <div class="hero-buttons">
-      <a href="#productos" class="btn-primary" data-i18n="hero.cta1">Conoce Nuestros Productos</a>
-      <a href="#contacto" class="btn-secondary" data-i18n="hero.cta2">Cont&aacute;ctanos</a>
-    </div>
-  </div>
+<div class="hero-grid"></div>
+<div class="hero-orb hero-orb-1"></div>
+<div class="hero-orb hero-orb-2"></div>
+<div class="hero-orb hero-orb-3"></div>
+<div class="hero-content">
+<span class="hero-badge">Demostraciones en l&iacute;nea, sin contrase&ntilde;a</span>
+<h1>Llevamos los sistemas del gobierno y del sector financiero a otro nivel</h1>
+<p>Lo acompa&ntilde;amos con plataformas que puede probar hoy mismo, desde su tel&eacute;fono: banca, municipios, administraci&oacute;n tributaria, talento humano y compras p&uacute;blicas.</p>
+<div class="hero-buttons">
+<a href="#productos" class="btn-primary">Pru&eacute;belas ahora</a>
+<a href="#contacto" class="btn-secondary">Cont&aacute;ctenos</a>
+</div>
+</div>
 </section>
 
 <!-- ===== PRODUCTOS ===== -->
 <section class="products-section" id="productos">
-  <div class="container">
-    <div class="fade-in">
-      <p class="section-label" data-i18n="products.label">La suite Y4</p>
-      <h2 class="section-title" data-i18n="products.title">Y4 &middot; la suite que transforma la banca</h2>
-      <p class="section-subtitle" data-i18n="products.subtitle">Un Banking OS sobre BIAN y un conjunto de plataformas listas para producci&oacute;n, del comercio exterior al financiamiento y la banca por video.</p>
-    </div>
-    <div class="products-grid products-grid-3">
-      <a href="y4.html" class="product-card product-card-link fade-in">
-        <div class="product-icon">&#127974;</div>
-        <h3 data-i18n="products.y4.title">Y4 &middot; Banking OS</h3>
-        <p data-i18n="products.y4.desc">N&uacute;cleo bancario sobre BIAN, el est&aacute;ndar global. Expone y ayuda a <strong>monetizar APIs bancarias est&aacute;ndar sobre tu core actual</strong> &mdash;sin reemplazarlo, con impacto interno m&iacute;nimo&mdash; y lanza nuevos productos por configuraci&oacute;n, no por c&oacute;digo.</p>
-        <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
-      </a>
-      <a href="globalCX.html" class="product-card product-card-link fade-in">
-        <div class="product-icon">&#127758;</div>
-        <h3 data-i18n="products.tf.title">Comercio Exterior</h3>
-        <p data-i18n="products.tf.desc">Cartas de Cr&eacute;dito, Garant&iacute;as, Standby y Cobranzas Documentarias bajo est&aacute;ndares ICC/UCP, con IA para el manejo de documentos.</p>
-        <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
-      </a>
-      <a href="factoring.html" class="product-card product-card-link fade-in">
-        <div class="product-icon">&#128176;</div>
-        <h3 data-i18n="products.fact.title">Factoring &amp; Confirming</h3>
-        <p data-i18n="products.fact.desc">Factoring local e internacional y confirming, con validaci&oacute;n fiscal (SRI), control de cupos y contabilidad autom&aacute;tica. Del anticipo al cobro.</p>
-        <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
-      </a>
-      <a href="y4meet.html" class="product-card product-card-link fade-in">
-        <div class="product-icon">&#127909;</div>
-        <h3 data-i18n="products.meet.title">Y4Meet</h3>
-        <p data-i18n="products.meet.desc">La videollamada nativa del banco: sesi&oacute;n verificada y anti-fraude integrado. Onboarding, asesor&iacute;a y firma cara a cara, sin ir a la sucursal.</p>
-        <span class="product-link-arrow" data-i18n="products.tf.cta">Explorar &rarr;</span>
-      </a>
-      <a href="compras.html" class="product-card product-card-link fade-in">
-        <div class="product-icon">&#128722;</div>
-        <h3 data-i18n="products.cb.title">Compras P&uacute;blicas</h3>
-        <p data-i18n="products.cb.desc">Plataforma de compras p&uacute;blicas con IA nativa para automatizaci&oacute;n de procesos de contrataci&oacute;n, evaluaci&oacute;n inteligente de ofertas y transparencia en tiempo real.</p>
-        <span class="product-link-arrow" data-i18n="products.cb.cta">Explorar &rarr;</span>
-      </a>
-      <div class="product-card fade-in">
-        <div class="product-icon">&#9881;</div>
-        <h3 data-i18n="products.comp.title">Componentes Empresariales</h3>
-        <p data-i18n="products.comp.desc">Componentes poderosos y reutilizables que facilitan la construcci&oacute;n de plataformas empresariales: autenticaci&oacute;n, workflows, notificaciones, reportes y m&aacute;s.</p>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="fade-in">
+<p class="section-label">Nuestras plataformas</p>
+<h2 class="section-title">Elija la suya y pru&eacute;bela ahora</h2>
+<p class="section-subtitle">Cada plataforma tiene una demostraci&oacute;n en vivo con datos de ejemplo. Entre con el rol que prefiera o p&iacute;danos una demostraci&oacute;n acompa&ntilde;ada.</p>
+</div>
+
+<div class="lineup">
+
+<!-- BANCA -->
+<article class="vcard vcard-wide fade-in" style="--vc:#0EA5E9" id="banca">
+<div class="vcard-head"><div class="vcard-icon">&#127974;</div><h3>Banca</h3></div>
+<p class="vcard-hook">Su comercio exterior, <em>sin papel y sin esperas</em></p>
+<p class="vcard-benefit">Comercio exterior y banca empresas en una sola plataforma. Sus clientes empresa solicitan y siguen sus operaciones en l&iacute;nea, y su equipo las procesa con control de cuatro ojos, registro contable y mensajer&iacute;a interbancaria est&aacute;ndar.</p>
+<ul class="vcard-caps">
+<li><strong>Cartas de cr&eacute;dito:</strong> importaci&oacute;n, exportaci&oacute;n y standby, de punta a punta.</li>
+<li><strong>Garant&iacute;as y cobranzas:</strong> validadas antes de aprobar, seguidas hasta el cierre.</li>
+<li><strong>Cuatro ojos:</strong> una persona ingresa y otra distinta autoriza.</li>
+<li><strong>Banca empresas:</strong> sus clientes solicitan y siguen en l&iacute;nea.</li>
+<li><strong>Mercado de cotizaciones:</strong> varios bancos cotizan; la empresa elige.</li>
+<li><strong>Factoring y mensajer&iacute;a:</strong> descuento de facturas y mensajes est&aacute;ndar.</li>
+</ul>
+<div class="vcard-sub">
+<a href="y4.html">Y4 &middot; Banking OS</a>
+<a href="globalCX.html">Comercio exterior</a>
+<a href="factoring.html">Factoring y confirming</a>
+<a href="y4meet.html">Y4Meet &middot; videollamada del banco</a>
+</div>
+<div class="vcard-actions">
+<a class="btn-try" data-demo="BANCA" data-demo-action="try" href="#contacto">Pru&eacute;bela ahora</a>
+<a class="btn-lead" data-demo="BANCA" data-demo-action="lead" href="#contacto">Quiero una demostraci&oacute;n</a>
+<a class="vcard-more" href="y4.html">Conocer m&aacute;s &rarr;</a>
+</div>
+</article>
+
+<!-- MUNICIPIOS -->
+<article class="vcard fade-in" style="--vc:#10B981" id="municipios">
+<div class="vcard-head"><div class="vcard-icon">&#127963;</div><h3>Municipios</h3></div>
+<p class="vcard-hook">Su municipio atiende <em>en l&iacute;nea, todo el d&iacute;a</em></p>
+<p class="vcard-benefit">Tr&aacute;mites, turnos y videollamada, con expediente y firma electr&oacute;nica.</p>
+<ul class="vcard-caps">
+<li><strong>Todo es un tr&aacute;mite:</strong> en l&iacute;nea o en ventanilla, con sus plazos.</li>
+<li><strong>Turno y videollamada:</strong> atenci&oacute;n sin que nadie se traslade.</li>
+<li><strong>Personal y compras:</strong> talento humano y compras p&uacute;blicas incluidos.</li>
+</ul>
+<div class="vcard-actions">
+<a class="btn-try" data-demo="MUNICIPIOS" data-demo-action="try" href="#contacto">Pru&eacute;bela ahora</a>
+<a class="btn-lead" data-demo="MUNICIPIOS" data-demo-action="lead" href="#contacto">Quiero una demostraci&oacute;n</a>
+<a class="vcard-more" href="municipios.html">Conocer m&aacute;s &rarr;</a>
+</div>
+</article>
+
+<!-- TRIBUTARIA -->
+<article class="vcard fade-in" style="--vc:#8B5CF6" id="tributaria">
+<div class="vcard-head"><div class="vcard-icon">&#129534;</div><h3>Administraci&oacute;n tributaria</h3></div>
+<p class="vcard-hook">Del contribuyente a su cuenta, <em>sin papeles</em></p>
+<p class="vcard-benefit">Declaraciones, cuenta corriente, control y sanciones en una sola plataforma.</p>
+<ul class="vcard-caps">
+<li><strong>Declaraciones:</strong> formularios configurables y c&aacute;lculo del impuesto.</li>
+<li><strong>Cuenta corriente:</strong> pagos, devoluciones e intereses en un lugar.</li>
+<li><strong>Control y sanciones:</strong> cruces, riesgo y sanciones con aprobaci&oacute;n.</li>
+</ul>
+<div class="vcard-actions">
+<a class="btn-try" data-demo="TRIBUTARIA" data-demo-action="try" href="#contacto">Pru&eacute;bela ahora</a>
+<a class="btn-lead" data-demo="TRIBUTARIA" data-demo-action="lead" href="#contacto">Quiero una demostraci&oacute;n</a>
+<a class="vcard-more" href="tributaria.html">Conocer m&aacute;s &rarr;</a>
+</div>
+</article>
+
+<!-- TALENTO -->
+<article class="vcard fade-in" style="--vc:#F59E0B" id="talento">
+<div class="vcard-head"><div class="vcard-icon">&#128101;</div><h3>Talento humano para el sector p&uacute;blico</h3></div>
+<p class="vcard-hook">Su gente pide y aprueba <em>desde el tel&eacute;fono</em></p>
+<p class="vcard-benefit">Vacaciones, permisos y n&oacute;mina, con cada documento firmado.</p>
+<ul class="vcard-caps">
+<li><strong>Autoservicio:</strong> vacaciones y permisos desde el tel&eacute;fono.</li>
+<li><strong>Ciclo completo:</strong> de la selecci&oacute;n a la desvinculaci&oacute;n.</li>
+<li><strong>N&oacute;mina:</strong> mensual, con su archivo para el banco.</li>
+</ul>
+<div class="vcard-actions">
+<a class="btn-try" data-demo="TALENTO" data-demo-action="try" href="#contacto">Pru&eacute;bela ahora</a>
+<a class="btn-lead" data-demo="TALENTO" data-demo-action="lead" href="#contacto">Quiero una demostraci&oacute;n</a>
+<a class="vcard-more" href="talento.html">Conocer m&aacute;s &rarr;</a>
+</div>
+</article>
+
+<!-- COMPRAS -->
+<article class="vcard fade-in" style="--vc:#EF4444" id="compras">
+<div class="vcard-head"><div class="vcard-icon">&#128722;</div><h3>Compras p&uacute;blicas</h3></div>
+<p class="vcard-hook">Compras p&uacute;blicas claras, <em>del plan al pago</em></p>
+<p class="vcard-benefit">Procedimientos de la norma, proveedores en l&iacute;nea y reglas que revisan cada compra.</p>
+<ul class="vcard-caps">
+<li><strong>Plan anual:</strong> alineado con su planificaci&oacute;n.</li>
+<li><strong>Procedimientos:</strong> todos los de la norma, del inicio al pago.</li>
+<li><strong>Proveedores en l&iacute;nea:</strong> ofertan y reclaman desde su portal.</li>
+</ul>
+<div class="vcard-actions">
+<a class="btn-try" data-demo="COMPRAS" data-demo-action="try" href="#contacto">Pru&eacute;bela ahora</a>
+<a class="btn-lead" data-demo="COMPRAS" data-demo-action="lead" href="#contacto">Quiero una demostraci&oacute;n</a>
+<a class="vcard-more" href="compras.html">Conocer m&aacute;s &rarr;</a>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- ===== COMO FUNCIONA LA DEMOSTRACION ===== -->
+<section class="demo-section" id="demostracion">
+<div class="container">
+<div class="fade-in" style="text-align:center;">
+<p class="section-label">C&oacute;mo probarlas</p>
+<h2 class="section-title">Pru&eacute;bela usted mismo, en minutos</h2>
+<p class="section-subtitle" style="margin:0 auto;">Al pulsar &laquo;Pru&eacute;bela ahora&raquo; entra a la plataforma real, preparada para que la recorra sin compromiso.</p>
+</div>
+<ol class="demo-steps fade-in">
+<li><h3>Sin contrase&ntilde;a</h3><p>Elija el rol con el que quiere entrar y acceda de inmediato, sin crear una cuenta.</p></li>
+<li><h3>Con datos de ejemplo</h3><p>Encuentre la plataforma con informaci&oacute;n de muestra lista para trabajar.</p></li>
+<li><h3>Recorrido guiado</h3><p>Dentro de la aplicaci&oacute;n, una gu&iacute;a le muestra paso a paso lo que puede hacer.</p></li>
+<li><h3><span data-demo-minutes>60</span> minutos</h3><p>Su sesi&oacute;n dura <span data-demo-minutes>60</span> minutos y luego la demostraci&oacute;n se reinicia sola.</p></li>
+</ol>
+</div>
+</section>
+
+<!-- ===== UNA NUEVA FORMA DE TRABAJAR ===== -->
+<section class="newway-section" id="nueva-forma">
+<div class="container">
+<div class="fade-in" style="text-align:center;">
+<p class="section-label">Incluido en cada plataforma</p>
+<h2 class="section-title">Una nueva forma de trabajar</h2>
+<p class="section-subtitle" style="margin:0 auto;">Dos beneficios que su gente y sus clientes notan desde el primer d&iacute;a.</p>
+</div>
+<div class="newway-grid">
+<div class="newway-text fade-in">
+<div class="newway-block">
+<div class="newway-icon">&#128241;</div>
+<div>
+<h3>Su app m&oacute;vil, con avisos al instante</h3>
+<p>Hoy, llegar al tel&eacute;fono de su gente y de sus clientes es un problema. Con nosotros ya viene resuelto: la aplicaci&oacute;n se instala desde el navegador, con la marca de su instituci&oacute;n, y avisa al instante cuando una solicitud fue aprobada, un tr&aacute;mite cambi&oacute; de estado o hay una tarea pendiente.</p>
+</div>
+</div>
+<div class="newway-block">
+<div class="newway-icon">&#10024;</div>
+<div>
+<h3>Historias que guían</h3>
+<p>Una nueva manera de navegar y relacionarse entre todos los miembros de su organizaci&oacute;n, sus clientes y colaboradores: historias que gu&iacute;an a cada persona paso a paso y hacen f&aacute;cil usar la plataforma desde el primer d&iacute;a. Publicaciones destacadas, lo que cada persona tiene pendiente y la presentaci&oacute;n de la propia aplicaci&oacute;n, a un toque.</p>
+</div>
+</div>
+</div>
+<div class="phone-wrap fade-in" aria-hidden="true">
+<div class="phone">
+<div class="phone-notch"></div>
+<div class="phone-notif">
+<span class="phone-notif-dot"></span>
+<div><strong>Solicitud aprobada</strong><span>Sus vacaciones fueron aprobadas.</span></div>
+</div>
+<div class="phone-stories">
+<div class="story"><span class="story-ring" style="--s1:#0EA5E9;--s2:#8B5CF6"><span class="story-face">&#128075;</span></span><small>Bienvenida</small></div>
+<div class="story"><span class="story-ring" style="--s1:#F59E0B;--s2:#EF4444"><span class="story-face">&#128203;</span></span><small>Pendientes</small></div>
+<div class="story"><span class="story-ring" style="--s1:#10B981;--s2:#0EA5E9"><span class="story-face">&#128227;</span></span><small>Avisos</small></div>
+<div class="story"><span class="story-ring story-seen"><span class="story-face">&#127891;</span></span><small>Gu&iacute;a</small></div>
+</div>
+<div class="phone-card"><span></span><span></span><span class="short"></span></div>
+<div class="phone-card"><span></span><span class="short"></span></div>
+<div class="phone-card"><span></span><span></span><span class="short"></span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===== NUEVOS PROYECTOS ===== -->
+<section class="projects-section" id="proyectos">
+<div class="container">
+<div class="fade-in" style="text-align:center;">
+<p class="section-label">Nuevos proyectos</p>
+<h2 class="section-title">Lo que estamos construyendo</h2>
+<p class="section-subtitle" style="margin:0 auto;">Muy pronto. Sabemos que lo necesita.</p>
+</div>
+<div class="projects-grid">
+<article class="pcard fade-in">
+<span class="pcard-status">En desarrollo</span>
+<h3>IA on premise para el sector p&uacute;blico y financiero</h3>
+<p class="pcard-summary">Inteligencia artificial especializada que funciona dentro de su instituci&oacute;n: sus datos no salen de ella.</p>
+<p class="pcard-detail">Un asistente que se apoya en su normativa y en sus documentos para responder con respaldo, ayudar a completar formularios y revisar lo que su instituci&oacute;n recibe. Hoy la plataforma ya incluye asistentes que responden citando la norma cargada en el sistema y que ayudan a completar formularios; la versi&oacute;n especializada que se instala y funciona por completo dentro de su instituci&oacute;n est&aacute; en desarrollo.</p>
+<a class="btn-lead" href="#contacto" data-topic="IA on premise para el sector p&uacute;blico y financiero">Cu&eacute;ntenos qu&eacute; necesita</a>
+</article>
+<article class="pcard fade-in">
+<span class="pcard-status">En desarrollo</span>
+<h3>Sistema de Gesti&oacute;n Financiera Gubernamental</h3>
+<p class="pcard-summary">Presupuesto, contabilidad gubernamental y tesorer&iacute;a, integrados con los sistemas de su instituci&oacute;n.</p>
+<p class="pcard-detail">Estamos desarrollando un sistema para la gesti&oacute;n financiera de las entidades p&uacute;blicas: el presupuesto, la contabilidad gubernamental, la tesorer&iacute;a y la integraci&oacute;n con los sistemas que su instituci&oacute;n ya utiliza. Si le interesa, cu&eacute;ntenos qu&eacute; necesita su instituci&oacute;n.</p>
+<a class="btn-lead" href="#contacto" data-topic="Sistema de Gesti&oacute;n Financiera Gubernamental">Cu&eacute;ntenos qu&eacute; necesita</a>
+</article>
+</div>
+</div>
 </section>
 
 <!-- ===== SERVICIOS ===== -->
 <section class="services-section" id="servicios">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;">
-      <p class="section-label" data-i18n="services.label">Servicios</p>
-      <h2 class="section-title" data-i18n="services.title">Acompa&ntilde;amos cada etapa</h2>
-      <p class="section-subtitle" style="margin:0 auto;" data-i18n="services.subtitle">Desde la consultor&iacute;a estrat&eacute;gica hasta el soporte continuo, cubrimos todo el ciclo de vida de sus proyectos tecnol&oacute;gicos.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card fade-in">
-        <div class="service-icon">&#128161;</div>
-        <h3 data-i18n="services.consulting.title">Consultor&iacute;a Tecnol&oacute;gica</h3>
-        <p data-i18n="services.consulting.desc">Evaluaci&oacute;n de arquitectura, roadmaps de modernizaci&oacute;n y estrategia digital para instituciones financieras.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">&#128187;</div>
-        <h3 data-i18n="services.dev.title">Desarrollo a Medida</h3>
-        <p data-i18n="services.dev.desc">Equipos dedicados que construyen soluciones personalizadas con metodolog&iacute;as &aacute;giles y entrega continua.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">&#9729;</div>
-        <h3 data-i18n="services.cloud.title">Migraci&oacute;n a la Nube</h3>
-        <p data-i18n="services.cloud.desc">Transici&oacute;n segura a Azure, GCP o AWS con arquitecturas cloud-native y cero tiempo de inactividad.</p>
-      </div>
-      <div class="service-card fade-in">
-        <div class="service-icon">&#128736;</div>
-        <h3 data-i18n="services.support.title">Soporte y Mantenimiento</h3>
-        <p data-i18n="services.support.desc">Monitoreo 24/7, actualizaciones proactivas y SLAs garantizados para operaci&oacute;n continua.</p>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="fade-in" style="text-align:center;">
+<p class="section-label">Servicios</p>
+<h2 class="section-title">Acompa&ntilde;amos cada etapa</h2>
+<p class="section-subtitle" style="margin:0 auto;">Desde la consultor&iacute;a hasta el soporte continuo, lo acompa&ntilde;amos en todo el ciclo de vida de sus proyectos.</p>
+</div>
+<div class="services-grid">
+<div class="service-card fade-in">
+<div class="service-icon">&#128161;</div>
+<h3>Consultor&iacute;a</h3>
+<p>Diagn&oacute;stico, hoja de ruta de modernizaci&oacute;n y estrategia digital para su instituci&oacute;n.</p>
+</div>
+<div class="service-card fade-in">
+<div class="service-icon">&#9881;</div>
+<h3>Implementaci&oacute;n a su medida</h3>
+<p>Configuramos la plataforma con sus productos, sus tr&aacute;mites y sus reglas, junto a su equipo.</p>
+</div>
+<div class="service-card fade-in">
+<div class="service-icon">&#128279;</div>
+<h3>Integraci&oacute;n</h3>
+<p>Conectamos la plataforma con los sistemas que su instituci&oacute;n ya utiliza, sin reemplazarlos.</p>
+</div>
+<div class="service-card fade-in">
+<div class="service-icon">&#128736;</div>
+<h3>Soporte y mantenimiento</h3>
+<p>Monitoreo, actualizaciones y acompa&ntilde;amiento para que su operaci&oacute;n no se detenga.</p>
+</div>
+</div>
+</div>
 </section>
 
 <!-- ===== POR QUE ELEGIRNOS ===== -->
 <section class="stats-section" id="casos">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;">
-      <p class="section-label" data-i18n="stats.label">&iquest;Por qu&eacute; elegirnos?</p>
-      <h2 class="section-title" data-i18n="stats.title">Enfoque, experiencia y tecnolog&iacute;a de punta</h2>
-      <p class="section-subtitle" style="margin:0 auto;" data-i18n="stats.subtitle">Combinamos conocimiento profundo del sector financiero con ingenier&iacute;a de software moderna para entregar soluciones que realmente importan.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card fade-in">
-        <div class="why-icon">&#127919;</div>
-        <h3 data-i18n="stats.focus.title">Especializaci&oacute;n Financiera</h3>
-        <p data-i18n="stats.focus.desc">No somos generalistas. Cada l&iacute;nea de c&oacute;digo est&aacute; dise&ntilde;ada para resolver problemas reales de banca, trade finance y cumplimiento regulatorio.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">&#129302;</div>
-        <h3 data-i18n="stats.ai.title">IA Nativa</h3>
-        <p data-i18n="stats.ai.desc">Inteligencia artificial integrada desde el dise&ntilde;o, no como complemento. Automatizaci&oacute;n inteligente de documentos, an&aacute;lisis y toma de decisiones.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">&#9889;</div>
-        <h3 data-i18n="stats.modern.title">BIAN &amp; Adopci&oacute;n No Invasiva</h3>
-        <p data-i18n="stats.modern.desc">Sobre BIAN, el est&aacute;ndar global, con Event Sourcing y CQRS. Patr&oacute;n strangler: convivimos con tu core actual, sin reemplazarlo, y evolucionamos sin fricci&oacute;n.</p>
-      </div>
-      <div class="why-card fade-in">
-        <div class="why-icon">&#129309;</div>
-        <h3 data-i18n="stats.partner.title">Partners, No Proveedores</h3>
-        <p data-i18n="stats.partner.desc">Trabajamos como extensi&oacute;n de su equipo. Compromiso real con sus objetivos, plazos y est&aacute;ndares de calidad.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TECNOLOGIA ===== -->
-<section class="tech-section" id="tecnologia">
-  <div class="container">
-    <div class="fade-in" style="text-align:center;">
-      <p class="section-label" data-i18n="tech.label">Tecnolog&iacute;a</p>
-      <h2 class="section-title" data-i18n="tech.title">Construido con lo mejor</h2>
-      <p class="section-subtitle" style="margin:0 auto;" data-i18n="tech.subtitle">Stack tecnol&oacute;gico de clase mundial para soluciones financieras de misi&oacute;n cr&iacute;tica.</p>
-    </div>
-    <div class="tech-grid fade-in">
-      <div class="tech-tag"><span class="tech-tag-icon">&#127974;</span> BIAN (est&aacute;ndar global)</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#9881;</span> Banking OS config-driven</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#9749;</span> Java / Spring Boot</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#9883;</span> React</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#9096;</span> Kubernetes</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#9729;</span> Microsoft Azure</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#9729;</span> Google Cloud</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#129302;</span> AI / Machine Learning</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#128202;</span> Event Sourcing / CQRS</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#128274;</span> OAuth 2.0 / OpenID</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#128450;</span> PostgreSQL / MySQL</div>
-      <div class="tech-tag"><span class="tech-tag-icon">&#128640;</span> CI/CD Pipelines</div>
-    </div>
-  </div>
+<div class="container">
+<div class="fade-in" style="text-align:center;">
+<p class="section-label">&iquest;Por qu&eacute; elegirnos?</p>
+<h2 class="section-title">Pensado para su instituci&oacute;n</h2>
+<p class="section-subtitle" style="margin:0 auto;">Conocemos el sector financiero y el sector p&uacute;blico, y construimos plataformas que su equipo puede adaptar sin depender de nosotros para cada cambio.</p>
+</div>
+<div class="why-grid">
+<div class="why-card fade-in">
+<div class="why-icon">&#127919;</div>
+<h3>Especializaci&oacute;n</h3>
+<p>Banca, comercio exterior, administraci&oacute;n tributaria, municipios, talento humano y compras p&uacute;blicas: resolvemos problemas reales de cada sector.</p>
+</div>
+<div class="why-card fade-in">
+<div class="why-icon">&#128295;</div>
+<h3>Se configura, no se programa</h3>
+<p>Formularios, tr&aacute;mites, productos y reglas se ajustan por configuraci&oacute;n, para responder r&aacute;pido a cada cambio de la norma o del negocio.</p>
+</div>
+<div class="why-card fade-in">
+<div class="why-icon">&#129309;</div>
+<h3>Convive con sus sistemas</h3>
+<p>Se integra con lo que su instituci&oacute;n ya tiene, sin reemplazarlo, para avanzar por etapas y sin fricci&oacute;n.</p>
+</div>
+<div class="why-card fade-in">
+<div class="why-icon">&#128588;</div>
+<h3>Socios, no proveedores</h3>
+<p>Trabajamos como una extensi&oacute;n de su equipo, con compromiso real con sus objetivos, plazos y est&aacute;ndares de calidad.</p>
+</div>
+</div>
+</div>
 </section>
 
 <!-- ===== CONTACTO ===== -->
 <section class="contact-section" id="contacto">
-  <div class="container">
-    <div class="fade-in">
-      <p class="section-label" data-i18n="contact.label">Contacto</p>
-      <h2 class="section-title" data-i18n="contact.title">Hablemos de su pr&oacute;ximo proyecto</h2>
-      <p class="section-subtitle" data-i18n="contact.subtitle">Estamos listos para ayudarle a transformar su operaci&oacute;n financiera.</p>
-    </div>
-    <div class="contact-layout">
-      <form class="contact-form fade-in" id="contactForm" onsubmit="return false;">
-        <input type="text" placeholder="Nombre" data-i18n-placeholder="contact.form.name" required>
-        <input type="email" placeholder="Email" data-i18n-placeholder="contact.form.email" required>
-        <textarea placeholder="Mensaje" data-i18n-placeholder="contact.form.message" required></textarea>
-        <button type="submit" class="btn-primary" data-i18n="contact.form.send">Enviar Mensaje</button>
-      </form>
-      <div class="contact-info fade-in">
-        <h3 data-i18n="contact.info.title">Informaci&oacute;n de Contacto</h3>
-        <div class="contact-item">
-          <span class="contact-item-icon">&#128231;</span>
-          <div class="contact-item-text">
-            <strong>Email</strong>
-            <span>yandry.castro@yacaretech.com<br>cesar.alvarez@yacaretech.com</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <span class="contact-item-icon">&#127758;</span>
-          <div class="contact-item-text">
-            <strong data-i18n="contact.info.web">Web</strong>
-            <span>www.yacaretech.com</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <span class="contact-item-icon">&#128205;</span>
-          <div class="contact-item-text">
-            <strong data-i18n="contact.info.location">Ubicaci&oacute;n</strong>
-            <span data-i18n="contact.info.locationValue">Am&eacute;rica Latina</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="fade-in">
+<p class="section-label">Contacto</p>
+<h2 class="section-title">Hablemos de su pr&oacute;ximo proyecto</h2>
+<p class="section-subtitle">Cu&eacute;ntenos qu&eacute; necesita su instituci&oacute;n y le preparamos una demostraci&oacute;n a su medida.</p>
+</div>
+<div class="contact-layout">
+<form class="contact-form fade-in" id="contactForm">
+<input type="text" placeholder="Nombre" aria-label="Nombre" required>
+<input type="email" placeholder="Correo electr&oacute;nico" aria-label="Correo electr&oacute;nico" required>
+<textarea placeholder="Mensaje" aria-label="Mensaje" required></textarea>
+<button type="submit" class="btn-primary">Enviar mensaje</button>
+</form>
+<div class="contact-info fade-in">
+<h3>Informaci&oacute;n de contacto</h3>
+<div class="contact-item">
+<span class="contact-item-icon">&#128172;</span>
+<div class="contact-item-text">
+<strong>Escr&iacute;banos por WhatsApp</strong>
+<div data-whatsapp-list style="margin-top:8px;"></div>
+</div>
+</div>
+<div class="contact-item">
+<span class="contact-item-icon">&#128231;</span>
+<div class="contact-item-text">
+<strong>Correo</strong>
+<span>yandry.castro@yacaretech.com<br>cesar.alvarez@yacaretech.com</span>
+</div>
+</div>
+<div class="contact-item">
+<span class="contact-item-icon">&#127758;</span>
+<div class="contact-item-text">
+<strong>Web</strong>
+<span>www.yacaretech.com</span>
+</div>
+</div>
+<div class="contact-item">
+<span class="contact-item-icon">&#128205;</span>
+<div class="contact-item-text">
+<strong>Ubicaci&oacute;n</strong>
+<span>Am&eacute;rica Latina</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4 data-i18n="footer.products">Productos</h4>
-        <a href="y4.html" data-i18n="footer.y4">Y4 &middot; Banking OS</a>
-        <a href="globalCX.html" data-i18n="footer.tf">Comercio Exterior</a>
-        <a href="factoring.html" data-i18n="footer.fact">Factoring &amp; Confirming</a>
-        <a href="y4meet.html" data-i18n="footer.meet">Y4Meet</a>
-        <a href="compras.html" data-i18n="footer.cb">Compras P&uacute;blicas</a>
-        <a href="#productos" data-i18n="footer.comp">Componentes Empresariales</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.services">Servicios</h4>
-        <a href="#servicios" data-i18n="footer.consulting">Consultor&iacute;a</a>
-        <a href="#servicios" data-i18n="footer.dev">Desarrollo a Medida</a>
-        <a href="#servicios" data-i18n="footer.cloud">Migraci&oacute;n Cloud</a>
-        <a href="#servicios" data-i18n="footer.support">Soporte</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.tech">Tecnolog&iacute;a</h4>
-        <a href="#tecnologia">Java / Spring Boot</a>
-        <a href="#tecnologia">React</a>
-        <a href="#tecnologia">Kubernetes</a>
-        <a href="#tecnologia">Azure / GCP</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footer.company">Empresa</h4>
-        <a href="#casos" data-i18n="footer.cases">&iquest;Por qu&eacute; elegirnos?</a>
-        <a href="#contacto" data-i18n="footer.contact">Contacto</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      Copyright &copy; 2026 Yacaretech Cia. Ltda. All rights reserved.
-    </div>
-  </div>
+<div class="footer-inner">
+<div class="footer-grid">
+<div class="footer-col">
+<h4>Plataformas</h4>
+<a href="y4.html">Banca &middot; Y4</a>
+<a href="municipios.html">Municipios</a>
+<a href="tributaria.html">Administraci&oacute;n tributaria</a>
+<a href="talento.html">Talento humano</a>
+<a href="compras.html">Compras p&uacute;blicas</a>
+</div>
+<div class="footer-col">
+<h4>Banca</h4>
+<a href="globalCX.html">Comercio exterior</a>
+<a href="factoring.html">Factoring y confirming</a>
+<a href="y4meet.html">Y4Meet</a>
+</div>
+<div class="footer-col">
+<h4>Pru&eacute;belas</h4>
+<a data-demo="BANCA" data-demo-action="try" href="#contacto">Demostraci&oacute;n de banca</a>
+<a data-demo="MUNICIPIOS" data-demo-action="try" href="#contacto">Demostraci&oacute;n de municipios</a>
+<a data-demo="TRIBUTARIA" data-demo-action="try" href="#contacto">Demostraci&oacute;n tributaria</a>
+<a data-demo="TALENTO" data-demo-action="try" href="#contacto">Demostraci&oacute;n de talento humano</a>
+<a data-demo="COMPRAS" data-demo-action="try" href="#contacto">Demostraci&oacute;n de compras</a>
+</div>
+<div class="footer-col">
+<h4>Empresa</h4>
+<a href="#servicios">Servicios</a>
+<a href="#casos">&iquest;Por qu&eacute; elegirnos?</a>
+<a href="#proyectos">Nuevos proyectos</a>
+<a href="#contacto">Contacto</a>
+</div>
+</div>
+<div class="footer-bottom">
+Copyright &copy; 2026 Yacaretech Cia. Ltda. Todos los derechos reservados.
+</div>
+</div>
 </footer>
 
+<script src="assets/config.js"></script>
 <script>
-// ---- i18n ----
-const i18n = {
-  es: {
-    'nav.products': 'Productos',
-    'nav.services': 'Servicios',
-    'nav.cases': '\u00bfPor qu\u00e9 elegirnos?',
-    'nav.contact': 'Contacto',
-    'hero.badge': '\ud83d\udd2c Construyendo un core bancario 100% BIAN-native',
-    'hero.title': 'Llevamos la banca al siguiente nivel',
-    'hero.subtitle': 'Y4 es nuestro Banking OS sobre BIAN \u2014el est\u00e1ndar global\u2014: estandariza los servicios de un banco y habilita comercio exterior, factoring, confirming y banca por video verificada, por configuraci\u00f3n y no por c\u00f3digo.',
-    'hero.cta1': 'Conoce la Suite Y4',
-    'hero.cta2': 'Cont\u00e1ctanos',
-    'products.label': 'La suite Y4',
-    'products.title': 'Y4 \u00b7 la suite que transforma la banca',
-    'products.subtitle': 'Un Banking OS sobre BIAN y un conjunto de plataformas listas para producci\u00f3n, del comercio exterior al financiamiento y la banca por video.',
-    'products.y4.title': 'Y4 \u00b7 Banking OS',
-    'products.y4.desc': 'N\u00facleo bancario sobre BIAN, el est\u00e1ndar global. Expone y ayuda a monetizar APIs bancarias est\u00e1ndar sobre tu core actual \u2014sin reemplazarlo, con impacto interno m\u00ednimo\u2014 y lanza nuevos productos por configuraci\u00f3n, no por c\u00f3digo.',
-    'products.tf.title': 'Comercio Exterior',
-    'products.tf.desc': 'Cartas de Cr\u00e9dito, Garant\u00edas, Standby y Cobranzas Documentarias bajo est\u00e1ndares ICC/UCP, con IA para el manejo de documentos.',
-    'products.tf.cta': 'Explorar \u2192',
-    'products.fact.title': 'Factoring & Confirming',
-    'products.fact.desc': 'Factoring local e internacional y confirming, con validaci\u00f3n fiscal (SRI), control de cupos y contabilidad autom\u00e1tica. Del anticipo al cobro.',
-    'products.meet.title': 'Y4Meet',
-    'products.meet.desc': 'La videollamada nativa del banco: sesi\u00f3n verificada y anti-fraude integrado. Onboarding, asesor\u00eda y firma cara a cara, sin ir a la sucursal.',
-    'products.cb.title': 'Compras P\u00fablicas',
-    'products.cb.desc': 'Plataforma de compras p\u00fablicas con IA nativa para automatizaci\u00f3n de procesos de contrataci\u00f3n, evaluaci\u00f3n inteligente de ofertas y transparencia en tiempo real.',
-    'products.cb.cta': 'Explorar \u2192',
-    'products.comp.title': 'Componentes Empresariales',
-    'products.comp.desc': 'Componentes poderosos y reutilizables que facilitan la construcci\u00f3n de plataformas empresariales: autenticaci\u00f3n, workflows, notificaciones, reportes y m\u00e1s.',
-    'services.label': 'Servicios',
-    'services.title': 'Acompa\u00f1amos cada etapa',
-    'services.subtitle': 'Desde la consultor\u00eda estrat\u00e9gica hasta el soporte continuo, cubrimos todo el ciclo de vida de sus proyectos tecnol\u00f3gicos.',
-    'services.consulting.title': 'Consultor\u00eda Tecnol\u00f3gica',
-    'services.consulting.desc': 'Evaluaci\u00f3n de arquitectura, roadmaps de modernizaci\u00f3n y estrategia digital para instituciones financieras.',
-    'services.dev.title': 'Desarrollo a Medida',
-    'services.dev.desc': 'Equipos dedicados que construyen soluciones personalizadas con metodolog\u00edas \u00e1giles y entrega continua.',
-    'services.cloud.title': 'Migraci\u00f3n a la Nube',
-    'services.cloud.desc': 'Transici\u00f3n segura a Azure, GCP o AWS con arquitecturas cloud-native y cero tiempo de inactividad.',
-    'services.support.title': 'Soporte y Mantenimiento',
-    'services.support.desc': 'Monitoreo 24/7, actualizaciones proactivas y SLAs garantizados para operaci\u00f3n continua.',
-    'stats.label': '\u00bfPor qu\u00e9 elegirnos?',
-    'stats.title': 'Enfoque, experiencia y tecnolog\u00eda de punta',
-    'stats.subtitle': 'Combinamos conocimiento profundo del sector financiero con ingenier\u00eda de software moderna para entregar soluciones que realmente importan.',
-    'stats.focus.title': 'Especializaci\u00f3n Financiera',
-    'stats.focus.desc': 'No somos generalistas. Cada l\u00ednea de c\u00f3digo est\u00e1 dise\u00f1ada para resolver problemas reales de banca, trade finance y cumplimiento regulatorio.',
-    'stats.ai.title': 'IA Nativa',
-    'stats.ai.desc': 'Inteligencia artificial integrada desde el dise\u00f1o, no como complemento. Automatizaci\u00f3n inteligente de documentos, an\u00e1lisis y toma de decisiones.',
-    'stats.modern.title': 'BIAN & Adopci\u00f3n No Invasiva',
-    'stats.modern.desc': 'Sobre BIAN, el est\u00e1ndar global, con Event Sourcing y CQRS. Patr\u00f3n strangler: convivimos con tu core actual, sin reemplazarlo, y evolucionamos sin fricci\u00f3n.',
-    'stats.partner.title': 'Partners, No Proveedores',
-    'stats.partner.desc': 'Trabajamos como extensi\u00f3n de su equipo. Compromiso real con sus objetivos, plazos y est\u00e1ndares de calidad.',
-    'tech.label': 'Tecnolog\u00eda',
-    'tech.title': 'Construido con lo mejor',
-    'tech.subtitle': 'Stack tecnol\u00f3gico de clase mundial para soluciones financieras de misi\u00f3n cr\u00edtica.',
-    'contact.label': 'Contacto',
-    'contact.title': 'Hablemos de su pr\u00f3ximo proyecto',
-    'contact.subtitle': 'Estamos listos para ayudarle a transformar su operaci\u00f3n financiera.',
-    'contact.form.name': 'Nombre',
-    'contact.form.email': 'Email',
-    'contact.form.message': 'Mensaje',
-    'contact.form.send': 'Enviar Mensaje',
-    'contact.info.title': 'Informaci\u00f3n de Contacto',
-    'contact.info.web': 'Web',
-    'contact.info.location': 'Ubicaci\u00f3n',
-    'contact.info.locationValue': 'Am\u00e9rica Latina',
-    'footer.products': 'Productos',
-    'footer.y4': 'Y4 \u00b7 Banking OS',
-    'footer.tf': 'Comercio Exterior',
-    'footer.fact': 'Factoring & Confirming',
-    'footer.meet': 'Y4Meet',
-    'footer.cb': 'Compras P\u00fablicas',
-    'footer.comp': 'Componentes Empresariales',
-    'footer.services': 'Servicios',
-    'footer.consulting': 'Consultor\u00eda',
-    'footer.dev': 'Desarrollo a Medida',
-    'footer.cloud': 'Migraci\u00f3n Cloud',
-    'footer.support': 'Soporte',
-    'footer.tech': 'Tecnolog\u00eda',
-    'footer.company': 'Empresa',
-    'footer.cases': '\u00bfPor qu\u00e9 elegirnos?',
-    'footer.contact': 'Contacto'
-  },
-  en: {
-    'nav.products': 'Products',
-    'nav.services': 'Services',
-    'nav.cases': 'Why Us?',
-    'nav.contact': 'Contact',
-    'hero.badge': '\ud83d\udd2c Building a 100% BIAN-native banking core',
-    'hero.title': 'We take banking to the next level',
-    'hero.subtitle': 'Y4 is our Banking OS built on BIAN \u2014the global standard\u2014: it standardizes a bank\u2019s services and powers foreign trade, factoring, confirming and verified video banking, by configuration, not by code.',
-    'hero.cta1': 'Explore the Y4 Suite',
-    'hero.cta2': 'Contact Us',
-    'products.label': 'The Y4 suite',
-    'products.title': 'Y4 \u00b7 the suite that transforms banking',
-    'products.subtitle': 'A Banking OS on BIAN plus a set of production-ready platforms, from foreign trade to financing and video banking.',
-    'products.y4.title': 'Y4 \u00b7 Banking OS',
-    'products.y4.desc': 'A banking core built on BIAN, the global standard. It exposes and helps monetize standard banking APIs on top of your existing core \u2014without replacing it, with minimal internal impact\u2014 and launches new products by configuration, not by code.',
-    'products.tf.title': 'Foreign Trade',
-    'products.tf.desc': 'Letters of Credit, Guarantees, Standby and Documentary Collections under ICC/UCP standards, with AI for document handling.',
-    'products.tf.cta': 'Explore \u2192',
-    'products.fact.title': 'Factoring & Confirming',
-    'products.fact.desc': 'Local and international factoring plus confirming, with tax validation, credit-limit control and automated accounting. From advance to collection.',
-    'products.meet.title': 'Y4Meet',
-    'products.meet.desc': 'The bank\u2019s native video call: verified session and built-in anti-fraud. Onboarding, advisory and signing face to face \u2014 without visiting a branch.',
-    'products.cb.title': 'Public Procurement',
-    'products.cb.desc': 'AI-native public procurement platform for automated bidding processes, intelligent offer evaluation and real-time transparency.',
-    'products.cb.cta': 'Explore \u2192',
-    'products.comp.title': 'Enterprise Components',
-    'products.comp.desc': 'Powerful, reusable components that simplify building enterprise platforms: authentication, workflows, notifications, reporting and more.',
-    'services.label': 'Services',
-    'services.title': 'We support every stage',
-    'services.subtitle': 'From strategic consulting to ongoing support, we cover the entire lifecycle of your technology projects.',
-    'services.consulting.title': 'Technology Consulting',
-    'services.consulting.desc': 'Architecture assessment, modernization roadmaps and digital strategy for financial institutions.',
-    'services.dev.title': 'Custom Development',
-    'services.dev.desc': 'Dedicated teams building tailored solutions with agile methodologies and continuous delivery.',
-    'services.cloud.title': 'Cloud Migration',
-    'services.cloud.desc': 'Secure transition to Azure, GCP or AWS with cloud-native architectures and zero downtime.',
-    'services.support.title': 'Support & Maintenance',
-    'services.support.desc': '24/7 monitoring, proactive updates and guaranteed SLAs for continuous operation.',
-    'stats.label': 'Why Choose Us?',
-    'stats.title': 'Focus, expertise and cutting-edge technology',
-    'stats.subtitle': 'We combine deep financial sector knowledge with modern software engineering to deliver solutions that truly matter.',
-    'stats.focus.title': 'Financial Specialization',
-    'stats.focus.desc': 'We are not generalists. Every line of code is designed to solve real problems in banking, trade finance and regulatory compliance.',
-    'stats.ai.title': 'Native AI',
-    'stats.ai.desc': 'Artificial intelligence integrated from design, not as an add-on. Intelligent document automation, analysis and decision-making.',
-    'stats.modern.title': 'BIAN & Non-Invasive Adoption',
-    'stats.modern.desc': 'Built on BIAN, the global standard, with Event Sourcing and CQRS. Strangler pattern: we coexist with your existing core, without replacing it, and evolve without friction.',
-    'stats.partner.title': 'Partners, Not Vendors',
-    'stats.partner.desc': 'We work as an extension of your team. Real commitment to your goals, timelines and quality standards.',
-    'tech.label': 'Technology',
-    'tech.title': 'Built with the best',
-    'tech.subtitle': 'World-class technology stack for mission-critical financial solutions.',
-    'contact.label': 'Contact',
-    'contact.title': "Let\u2019s talk about your next project",
-    'contact.subtitle': 'We are ready to help you transform your financial operation.',
-    'contact.form.name': 'Name',
-    'contact.form.email': 'Email',
-    'contact.form.message': 'Message',
-    'contact.form.send': 'Send Message',
-    'contact.info.title': 'Contact Information',
-    'contact.info.web': 'Web',
-    'contact.info.location': 'Location',
-    'contact.info.locationValue': 'Latin America',
-    'footer.products': 'Products',
-    'footer.y4': 'Y4 · Banking OS',
-    'footer.tf': 'Foreign Trade',
-    'footer.fact': 'Factoring & Confirming',
-    'footer.meet': 'Y4Meet',
-    'footer.cb': 'Public Procurement',
-    'footer.comp': 'Enterprise Components',
-    'footer.services': 'Services',
-    'footer.consulting': 'Consulting',
-    'footer.dev': 'Custom Development',
-    'footer.cloud': 'Cloud Migration',
-    'footer.support': 'Support',
-    'footer.tech': 'Technology',
-    'footer.company': 'Company',
-    'footer.cases': 'Why Us?',
-    'footer.contact': 'Contact'
-  }
-};
-
-let currentLang = localStorage.getItem('yt-lang') || 'es';
-
-function setLang(lang) {
-  currentLang = lang;
-  localStorage.setItem('yt-lang', lang);
-  document.documentElement.lang = lang;
-
-  document.getElementById('langEs').classList.toggle('active', lang === 'es');
-  document.getElementById('langEn').classList.toggle('active', lang === 'en');
-
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (i18n[lang][key]) el.textContent = i18n[lang][key];
-  });
-
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (i18n[lang][key]) el.placeholder = i18n[lang][key];
-  });
-}
-
-document.getElementById('langToggle').addEventListener('click', () => {
-  setLang(currentLang === 'es' ? 'en' : 'es');
-});
-
-// Init lang
-setLang(currentLang);
-
 // ---- Mobile menu ----
 const hamburger = document.getElementById('navHamburger');
 const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-
-// Close mobile menu on link click
-navLinks.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-  });
-});
-
-// ---- Intersection Observer for fade-in ----
+// ---- Fade-in on scroll ----
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.15 });
-
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.12 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// ---- Nav dark/light based on hero ----
+// ---- Nav dark/light over the hero ----
 const navEl = document.querySelector('nav');
 const heroEl = document.querySelector('.hero');
-
 function updateNav() {
   const heroBottom = heroEl.offsetTop + heroEl.offsetHeight - 100;
-  if (window.scrollY < heroBottom) {
-    navEl.classList.add('nav-dark');
-  } else {
-    navEl.classList.remove('nav-dark');
-  }
+  navEl.classList.toggle('nav-dark', window.scrollY < heroBottom);
 }
-
 window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
 
-// ---- Smooth scroll offset for fixed nav ----
+// ---- Smooth scroll with offset for the fixed nav (in-page anchors only) ----
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
     const id = a.getAttribute('href');
-    if (id === '#') return;
+    if (!id || id === '#' || !id.startsWith('#')) return;
     const target = document.querySelector(id);
-    if (target) {
-      e.preventDefault();
-      const top = target.offsetTop - 60;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
+    if (!target) return;
+    e.preventDefault();
+    const topic = a.getAttribute('data-topic');
+    const msg = document.querySelector('#contactForm textarea');
+    if (topic && msg && !msg.value) msg.value = 'Me interesa: ' + topic + '.\n\n';
+    window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
   });
 });
 
-// ---- Contact form -> abre el correo con el mensaje prellenado (sitio estatico, sin backend) ----
+// ---- Contact form -> opens the visitor's e-mail with the message (static site, no backend) ----
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
@@ -1301,16 +1373,11 @@ if (contactForm) {
     const mensaje = (contactForm.querySelector('textarea') || {}).value || '';
     const to = 'yandry.castro@yacaretech.com,cesar.alvarez@yacaretech.com';
     const asunto = encodeURIComponent('Contacto web' + (nombre ? ' — ' + nombre : ''));
-    const cuerpo = encodeURIComponent(
-      'Nombre: ' + nombre + '\n' +
-      'Email: ' + email + '\n\n' +
-      mensaje.trim() + '\n'
-    );
-    // Feedback breve en el boton
+    const cuerpo = encodeURIComponent('Nombre: ' + nombre + '\n' + 'Correo: ' + email + '\n\n' + mensaje.trim() + '\n');
     const btn = contactForm.querySelector('button[type="submit"]');
     if (btn) {
       const original = btn.textContent;
-      btn.textContent = currentLang === 'en' ? 'Opening your email…' : 'Abriendo tu correo…';
+      btn.textContent = 'Abriendo su correo…';
       setTimeout(() => { btn.textContent = original; }, 3000);
     }
     window.location.href = 'mailto:' + to + '?subject=' + asunto + '&body=' + cuerpo;
