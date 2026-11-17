@@ -19,11 +19,11 @@
 (function () {
   var SITE_CONFIG = {
     demos: {
-      BANCA: 'https://appy4comexback.yacaretech.com',
-      TRIBUTARIA: 'https://appdemoetax.yacaretech.com',
-      MUNICIPIOS: 'https://appdemoetax.yacaretech.com',
-      TALENTO: 'https://appdemotalento.yacaretech.com',
-      COMPRAS: 'https://appdemocompras.yacaretech.com'
+      BANCA: 'https://y4comexback.yacaretech.com',
+      TRIBUTARIA: 'https://demoetax.yacaretech.com',
+      MUNICIPIOS: 'https://demoetax.yacaretech.com',
+      TALENTO: 'https://demotalento.yacaretech.com',
+      COMPRAS: 'https://democompras.yacaretech.com'
     },
     // Length of a demo session, as the demos announce it.
     demoMinutes: 60,
