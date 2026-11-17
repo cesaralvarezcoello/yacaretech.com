@@ -1,0 +1,48 @@
+/* Shared pieces of the product pages: live-demo buttons and the mobile sticky demo bar.
+   Links are filled in by assets/config.js (data-demo / data-demo-action). */
+html, body { overflow-x: hidden; }
+.yt-demo-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
+.yt-try, .yt-lead {
+  display: inline-block; padding: 14px 28px; border-radius: 980px; font-size: .95rem; font-weight: 600;
+  text-decoration: none; text-align: center; transition: transform .15s, background .2s, border-color .2s;
+}
+.yt-try { background: var(--yt-accent, #0071e3); color: #fff; }
+.yt-try:hover { transform: scale(1.03); }
+.yt-lead { background: rgba(255,255,255,.12); color: #fff; border: 1.5px solid rgba(255,255,255,.3); }
+.yt-lead:hover { background: rgba(255,255,255,.2); }
+.yt-lead.on-light { background: transparent; color: #1d1d1f; border-color: rgba(0,0,0,.2); }
+.yt-lead.on-light:hover { border-color: var(--yt-accent, #0071e3); color: var(--yt-accent, #0071e3); }
+
+/* "How the demo works" strip */
+.yt-howto { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 36px auto 0; max-width: 920px; list-style: none; }
+.yt-howto li { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 18px 16px; text-align: left; }
+.yt-howto strong { display: block; font-size: .95rem; color: #fff; margin-bottom: 4px; }
+.yt-howto span { font-size: .85rem; color: rgba(255,255,255,.62); line-height: 1.5; }
+
+/* Demo roles ("Pruébela como…") */
+.yt-roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 40px; text-align: left; }
+.yt-role { background: #fff; border-radius: 18px; padding: 24px 22px; box-shadow: 0 2px 12px rgba(0,0,0,.08); border-top: 4px solid var(--yt-accent, #0071e3); }
+.yt-role h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 6px; }
+.yt-role p { font-size: .9rem; color: #6e6e73; line-height: 1.55; }
+
+/* Mobile sticky demo bar */
+.yt-demo-bar { display: none; }
+@media (max-width: 768px) {
+  .yt-demo-bar {
+    display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(255,255,255,.92); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-top: 1px solid rgba(0,0,0,.08);
+  }
+  .yt-demo-bar a { flex: 1 1 0; padding: 12px 10px; font-size: .9rem; }
+  .yt-demo-bar .yt-lead { background: #fff; color: #1d1d1f; border-color: rgba(0,0,0,.18); }
+  body.has-demo-bar { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+  .yt-howto { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .yt-demo-actions { flex-direction: column; align-items: stretch; }
+  .yt-demo-actions a { width: 100%; }
+}
+@media (max-width: 768px) {
+  .yt-demo-bar a { display: flex; align-items: center; justify-content: center; line-height: 1.2; }
+}
