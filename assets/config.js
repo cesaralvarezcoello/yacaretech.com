@@ -35,10 +35,10 @@
       text: 'Hola, quiero conocer las plataformas de Yacaretech'
     },
     // Verified-company seal: shown in every footer and in the contact section ([data-verified]).
-    // url: the company profile on ConnectAmericas (replace with the profile's own address when available).
+    // url: the company's verified profile on ConnectAmericas.
     verified: {
       label: 'Empresa verificada en ConnectAmericas (BID)',
-      url: 'https://connectamericas.com/',
+      url: 'https://connectamericas.com/company/yacaretech-cialtda',
       image: 'https://connectamericas.com/sites/default/files/content-idb/verifiedbadge.png'
     }
   };
