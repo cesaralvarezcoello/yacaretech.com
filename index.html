@@ -917,6 +917,54 @@ html, body { overflow-x: hidden; }
   .stories-grid { grid-template-columns: 1fr; gap: 40px; }
 }
 
+/* ---- Process designer and rules ---- */
+.motor-section { background: var(--bg-alt); }
+.motor-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.motor-visual { display: grid; gap: 18px; min-width: 0; }
+.motor-panel { background: #fff; border-radius: 18px; padding: 18px; box-shadow: var(--card-shadow); min-width: 0; }
+.motor-panel-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 10px; }
+.bpmn { width: 100%; height: auto; display: block; font-family: inherit; }
+.dmn-wrap { overflow-x: auto; }
+.dmn { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.dmn th, .dmn td { border: 1px solid #e5e5ea; padding: 8px 10px; text-align: left; white-space: nowrap; }
+.dmn th { background: #f5f5f7; font-weight: 600; }
+.dmn th.out { background: #eef0ff; }
+.dmn td.out { font-weight: 600; }
+.dmn td.ok { color: #1f9d55; } .dmn td.warn { color: #b45309; } .dmn td.no { color: #EF4444; }
+.motor-sim { margin-top: 12px; font-size: 0.82rem; color: var(--text-secondary); display: flex; gap: 8px; align-items: center; }
+.motor-sim span { color: #fff; background: #1f9d55; border-radius: 50%; width: 20px; height: 20px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.6rem; }
+@media (max-width: 860px) { .motor-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+/* ---- Documents and APIs ---- */
+.docs-section { background: var(--bg-primary); }
+.search-mock { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 0.9rem; font-weight: 600; }
+.search-mock small { font-weight: 400; color: var(--text-secondary); }
+.apis-section { background: var(--bg-alt); }
+.apis-grid { margin-top: 40px; }
+.apis-steps { grid-template-columns: 1fr; margin-top: 0; }
+.api-card { background: #fff; border-radius: 16px; padding: 16px 18px; box-shadow: var(--card-shadow); display: grid; grid-template-columns: 1fr auto; gap: 10px 12px; align-items: center; }
+.api-card b { display: block; font-size: 0.95rem; }
+.api-card small { font-size: 0.78rem; color: var(--text-secondary); }
+.api-tag { font-size: 0.72rem; font-weight: 600; color: #1f9d55; background: #e8f7ee; border-radius: 980px; padding: 5px 10px; white-space: nowrap; }
+.api-meter { grid-column: 1 / -1; height: 8px; border-radius: 4px; background: #e5e5ea; overflow: hidden; }
+.api-meter i { display: block; height: 100%; background: linear-gradient(90deg, #0071e3, #6366F1); }
+@media (max-width: 860px) { .docs-section .motor-visual { order: 2; } }
+
+
+/* ---- Nav: the menu has many entries, collapse it earlier ---- */
+.nav-links { gap: 24px; }
+@media (max-width: 1180px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: absolute; top: 52px; left: 0; right: 0;
+    background: var(--nav-bg); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+    padding: 20px 24px; gap: 18px; border-bottom: 1px solid var(--nav-border);
+  }
+  nav.nav-dark .nav-links.open { background: rgba(0, 0, 0, 0.85); border-bottom-color: rgba(255,255,255,0.08); }
+  .nav-links.open a { font-size: 1rem; }
+}
+
 /* ---- New projects ---- */
 .projects-section { background: radial-gradient(ellipse 90% 70% at 50% 30%, #1a2744 0%, #0d1117 60%, #010409 100%); color: #fff; }
 .projects-section .section-title { color: #fff; }
@@ -967,6 +1015,7 @@ html, body { overflow-x: hidden; }
 <li><a href="#productos">Productos</a></li>
 <li><a href="marketplace.html">Marketplace</a></li>
 <li><a href="#historias">Historias</a></li>
+<li><a href="#procesos">Procesos y reglas</a></li>
 <li><a href="#demostracion">C&oacute;mo probarlas</a></li>
 <li><a href="#proyectos">Nuevos proyectos</a></li>
 <li><a href="#servicios">Servicios</a></li>
@@ -1205,6 +1254,131 @@ html, body { overflow-x: hidden; }
 <p>Hoy, llegar al tel&eacute;fono de su gente y de sus clientes es un problema. Con nosotros ya viene resuelto: la aplicaci&oacute;n se instala desde el navegador, con la marca de su instituci&oacute;n, y avisa al instante cuando una solicitud fue aprobada, un tr&aacute;mite cambi&oacute; de estado o hay una tarea pendiente.</p>
 </div>
 </div>
+</div>
+</section>
+
+<!-- ===== PROCESOS Y REGLAS ===== -->
+<section class="motor-section" id="procesos">
+<div class="container motor-grid">
+<div class="motor-copy fade-in">
+<p class="section-label">Procesos y reglas</p>
+<h2 class="section-title">Dise&ntilde;e sus procesos y sus reglas, sin programar</h2>
+<p class="stories-lead">Su equipo dibuja cada proceso y escribe cada regla en pantallas visuales, y la plataforma los ejecuta. Cuando cambia la norma o el negocio, usted cambia la regla el mismo d&iacute;a.</p>
+<ul class="stories-points">
+<li><span>&#128506;</span><div><strong>Procesos con el est&aacute;ndar BPMN.</strong> Un dise&ntilde;ador visual con el est&aacute;ndar internacional para procesos: lo que se dibuja es lo que se ejecuta.</div></li>
+<li><span>&#129518;</span><div><strong>Reglas en tablas de decisi&oacute;n (DMN).</strong> Elegibilidad, c&aacute;lculo de sanciones, aprobaciones y cupos en tablas que su equipo lee y ajusta.</div></li>
+<li><span>&#9889;</span><div><strong>Cambios en el d&iacute;a.</strong> Sin esperar un desarrollo ni una nueva versi&oacute;n del sistema.</div></li>
+<li><span>&#129514;</span><div><strong>Pruebe antes de publicar.</strong> Un modo de simulaci&oacute;n muestra el efecto de una regla antes de ponerla en marcha.</div></li>
+<li><span>&#128269;</span><div><strong>Todo queda registrado.</strong> Cada decisi&oacute;n es trazable y auditable: qu&eacute; regla se aplic&oacute;, cu&aacute;ndo y con qu&eacute; datos.</div></li>
+<li><span>&#128260;</span><div><strong>Un mismo motor para todo.</strong> Tr&aacute;mites, talento humano, compras p&uacute;blicas y banca se mueven con las mismas herramientas.</div></li>
+</ul>
+</div>
+<div class="motor-visual fade-in" aria-hidden="true">
+<div class="motor-panel">
+<p class="motor-panel-title">Proceso</p>
+<svg viewBox="0 0 440 170" class="bpmn" role="img">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6e6e73"/></marker></defs>
+<g fill="none" stroke="#6e6e73" stroke-width="1.6" marker-end="url(#arr)">
+<line x1="34" y1="85" x2="62" y2="85"/>
+<line x1="152" y1="85" x2="182" y2="85"/>
+<polyline points="210,63 210,35 268,35"/>
+<polyline points="210,107 210,135 268,135"/>
+<polyline points="358,35 400,35 400,68"/>
+<polyline points="358,135 400,135 400,102"/>
+</g>
+<circle cx="22" cy="85" r="12" fill="#e8f7ee" stroke="#1f9d55" stroke-width="2"/>
+<rect x="64" y="64" width="88" height="42" rx="9" fill="#eaf3ff" stroke="#0071e3" stroke-width="1.6"/>
+<text x="108" y="89" text-anchor="middle" font-size="11" fill="#1d1d1f">Recibir solicitud</text>
+<polygon points="210,63 232,85 210,107 188,85" fill="#fff7e6" stroke="#F59E0B" stroke-width="1.6"/>
+<text x="210" y="89" text-anchor="middle" font-size="13" fill="#b45309">&#215;</text>
+<rect x="270" y="14" width="88" height="42" rx="9" fill="#eaf3ff" stroke="#0071e3" stroke-width="1.6"/>
+<text x="314" y="39" text-anchor="middle" font-size="11" fill="#1d1d1f">Aprobar</text>
+<rect x="270" y="114" width="88" height="42" rx="9" fill="#eaf3ff" stroke="#0071e3" stroke-width="1.6"/>
+<text x="314" y="139" text-anchor="middle" font-size="11" fill="#1d1d1f">Pedir requisitos</text>
+<circle cx="400" cy="85" r="13" fill="#fdecec" stroke="#EF4444" stroke-width="3"/>
+<text x="204" y="50" text-anchor="end" font-size="9" fill="#6e6e73">cumple</text>
+<text x="204" y="126" text-anchor="end" font-size="9" fill="#6e6e73">no cumple</text>
+</svg>
+</div>
+<div class="motor-panel">
+<p class="motor-panel-title">Tabla de decisi&oacute;n &middot; Elegibilidad</p>
+<div class="dmn-wrap">
+<table class="dmn">
+<thead><tr><th>Antig&uuml;edad</th><th>Documentos</th><th class="out">Resultado</th></tr></thead>
+<tbody>
+<tr><td>&ge; 1 a&ntilde;o</td><td>completos</td><td class="out ok">Aprobar</td></tr>
+<tr><td>&ge; 1 a&ntilde;o</td><td>incompletos</td><td class="out warn">Pedir requisitos</td></tr>
+<tr><td>&lt; 1 a&ntilde;o</td><td>&mdash;</td><td class="out no">Revisi&oacute;n manual</td></tr>
+</tbody>
+</table>
+</div>
+<p class="motor-sim"><span>&#9654;</span> Modo de prueba: 3 casos simulados antes de publicar</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===== GESTOR DOCUMENTAL ===== -->
+<section class="docs-section" id="documentos">
+<div class="container motor-grid">
+<div class="motor-visual fade-in" aria-hidden="true">
+<div class="motor-panel">
+<p class="motor-panel-title">Expediente &middot; Tr&aacute;mite 2026-0142</p>
+<svg viewBox="0 0 400 210" class="bpmn">
+<path d="M20 50 h110 l18 18 h232 v130 h-360 z" fill="#fff4d6" stroke="#F59E0B" stroke-width="1.8"/>
+<g font-size="11" fill="#1d1d1f">
+<rect x="48" y="84" width="96" height="104" rx="8" fill="#fff" stroke="#d1d1d6"/>
+<rect x="60" y="100" width="62" height="6" rx="3" fill="#e5e5ea"/><rect x="60" y="114" width="72" height="6" rx="3" fill="#e5e5ea"/><rect x="60" y="128" width="50" height="6" rx="3" fill="#e5e5ea"/>
+<text x="96" y="174" text-anchor="middle">Solicitud</text>
+<rect x="154" y="84" width="96" height="104" rx="8" fill="#fff" stroke="#d1d1d6"/>
+<rect x="166" y="100" width="62" height="6" rx="3" fill="#e5e5ea"/><rect x="166" y="114" width="72" height="6" rx="3" fill="#e5e5ea"/><rect x="166" y="128" width="50" height="6" rx="3" fill="#e5e5ea"/>
+<text x="202" y="174" text-anchor="middle">Informe</text>
+<rect x="260" y="84" width="96" height="104" rx="8" fill="#fff" stroke="#1f9d55" stroke-width="1.6"/>
+<rect x="272" y="100" width="62" height="6" rx="3" fill="#e5e5ea"/><rect x="272" y="114" width="72" height="6" rx="3" fill="#e5e5ea"/>
+<path d="M276 140 c10 -14 16 4 24 -6 s10 8 20 -4" fill="none" stroke="#0071e3" stroke-width="1.8"/>
+<text x="308" y="174" text-anchor="middle">Resoluci&#243;n</text>
+<circle cx="350" cy="84" r="14" fill="#1f9d55"/><path d="M343 84 l5 5 l9 -10" fill="none" stroke="#fff" stroke-width="2.5"/>
+</g>
+</svg>
+</div>
+<div class="motor-panel search-mock"><span>&#128269;</span> &laquo;inter&eacute;s por mora&raquo; <small>encontrado dentro de 3 documentos</small></div>
+</div>
+<div class="motor-copy fade-in">
+<p class="section-label">Gesti&oacute;n documental</p>
+<h2 class="section-title">Cero papel: cada documento en su expediente, firmado y f&aacute;cil de encontrar</h2>
+<ul class="stories-points">
+<li><span>&#128450;</span><div><strong>Expediente bien conformado.</strong> Cada tr&aacute;mite con sus tipos de documento, su serie y clasificaci&oacute;n archiv&iacute;stica, y su ciclo de vida hasta el archivo y la baja documental.</div></li>
+<li><span>&#128269;</span><div><strong>Busque por el contenido.</strong> Encuentre un documento por lo que dice adentro, no solo por su nombre.</div></li>
+<li><span>&#9997;</span><div><strong>Firma electr&oacute;nica y portafirmas.</strong> Memorandos, certificados y resoluciones firmados sin papel.</div></li>
+<li><span>&#128221;</span><div><strong>Plantillas que se emiten solas.</strong> Dise&ntilde;e sus documentos en pantalla y el proceso los genera en el momento indicado.</div></li>
+<li><span>&#128241;</span><div><strong>Anexe desde el tel&eacute;fono.</strong> Agregue documentos a un tr&aacute;mite desde donde est&eacute;.</div></li>
+<li><span>&#128274;</span><div><strong>Acceso por rol y trazabilidad.</strong> Cada persona ve lo que le corresponde, y queda registrado qui&eacute;n vio y qui&eacute;n firm&oacute; cada documento.</div></li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- ===== MONETIZACION DE APIS ===== -->
+<section class="apis-section" id="apis">
+<div class="container">
+<div class="fade-in" style="text-align:center;">
+<p class="section-label">Para los bancos</p>
+<h2 class="section-title">Convierta sus servicios en nuevos ingresos</h2>
+<p class="section-subtitle" style="margin:0 auto;">Exponga los servicios de su banco como APIs con BIAN, el est&aacute;ndar bancario internacional, publ&iacute;quelas en un cat&aacute;logo para sus socios y fintech, defina planes y precios por consumo, controle qui&eacute;n usa qu&eacute; y cobre por uso. Sin reemplazar su core.</p>
+</div>
+<div class="motor-grid apis-grid">
+<ol class="demo-steps apis-steps fade-in">
+<li><h3>Conecte su core</h3><p>La plataforma se acopla a su core actual, sin migraciones forzadas y con el menor impacto interno.</p></li>
+<li><h3>Exponga sus servicios</h3><p>Publique capacidades bancarias est&aacute;ndar en un cat&aacute;logo para socios y fintech, auditadas y versionadas.</p></li>
+<li><h3>Lance y monetice</h3><p>Defina planes y precios por consumo, controle qui&eacute;n usa cada servicio y cobre por uso.</p></li>
+</ol>
+<div class="motor-visual fade-in" aria-hidden="true">
+<div class="api-card"><div><b>Consulta de cuentas</b><small>Cat&aacute;logo &middot; socios</small></div><span class="api-tag">Plan por consumo</span><div class="api-meter"><i style="width:68%"></i></div></div>
+<div class="api-card"><div><b>Pagos y transferencias</b><small>Cat&aacute;logo &middot; fintech</small></div><span class="api-tag">Plan por consumo</span><div class="api-meter"><i style="width:42%"></i></div></div>
+<div class="api-card"><div><b>Cartas de cr&eacute;dito</b><small>Cat&aacute;logo &middot; empresas</small></div><span class="api-tag">Plan mensual</span><div class="api-meter"><i style="width:25%"></i></div></div>
+</div>
+</div>
+<div style="text-align:center;margin-top:32px" class="fade-in"><a class="vcard-more" href="y4.html">Conozca Y4 para la banca &rarr;</a></div>
 </div>
 </section>
 
