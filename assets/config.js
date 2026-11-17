@@ -33,6 +33,13 @@
         { display: '+593 97 860 8200', wa: '593978608200' }
       ],
       text: 'Hola, quiero conocer las plataformas de Yacaretech'
+    },
+    // Verified-company seal: shown in every footer and in the contact section ([data-verified]).
+    // url: the company profile on ConnectAmericas (replace with the profile's own address when available).
+    verified: {
+      label: 'Empresa verificada en ConnectAmericas (BID)',
+      url: 'https://connectamericas.com/',
+      image: 'https://connectamericas.com/sites/default/files/content-idb/verifiedbadge.png'
     }
   };
 
@@ -162,6 +169,57 @@
     var minutes = document.querySelectorAll('[data-demo-minutes]');
     for (var j = 0; j < minutes.length; j++) minutes[j].textContent = String(SITE_CONFIG.demoMinutes);
     wireWhatsApp();
+    wireVerified();
+  }
+
+  function verifiedSeal() {
+    var v = SITE_CONFIG.verified;
+    var a = document.createElement('a');
+    a.className = 'yt-verified';
+    a.href = v.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.title = v.label;
+    var img = document.createElement('img');
+    img.src = v.image;
+    img.alt = '';
+    img.width = 28;
+    img.height = 28;
+    img.loading = 'lazy';
+    var span = document.createElement('span');
+    span.textContent = v.label;
+    a.appendChild(img);
+    a.appendChild(span);
+    return a;
+  }
+
+  function wireVerified() {
+    if (!SITE_CONFIG.verified || !SITE_CONFIG.verified.url) return;
+    if (!document.getElementById('yt-verified-style')) {
+      var st = document.createElement('style');
+      st.id = 'yt-verified-style';
+      st.textContent =
+        '.yt-verified{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;' +
+        'background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:inherit;text-decoration:none;' +
+        'font-size:14px;font-weight:600;line-height:1.3;max-width:100%}' +
+        '.yt-verified:hover{background:rgba(255,255,255,.14)}' +
+        '.yt-verified img{width:28px;height:28px;flex:none}' +
+        '.yt-verified-row{display:flex;justify-content:center;padding:18px 16px 4px}' +
+        '[data-verified] .yt-verified{background:rgba(0,115,230,.08);border-color:rgba(0,115,230,.25)}';
+      document.head.appendChild(st);
+    }
+    var footers = document.querySelectorAll('footer');
+    for (var i = 0; i < footers.length; i++) {
+      if (footers[i].querySelector('.yt-verified')) continue;
+      var row = document.createElement('div');
+      row.className = 'yt-verified-row';
+      row.appendChild(verifiedSeal());
+      footers[i].insertBefore(row, footers[i].firstChild);
+    }
+    var spots = document.querySelectorAll('[data-verified]');
+    for (var j = 0; j < spots.length; j++) {
+      if (!spots[j].querySelector('.yt-verified')) spots[j].appendChild(verifiedSeal());
+    }
   }
 
   window.YacareSite = { config: SITE_CONFIG, demoUrl: demoUrl, whatsappUrl: whatsappUrl, wire: wire };
